@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +9,10 @@ public class PlayerController2D : MonoBehaviour
     Rigidbody2D rb2d;
     SpriteRenderer spriteRenderer; // used to flip player
     bool isGrounded;
-
-    [SerializeField]
     Transform groundCheck;
+    private Vector3 originalSpawnPosition; 
 
-    [SerializeField]
     public float runSpeed;
-
-    [SerializeField]
     public float jumpSpeed;
 
     // Start is called before the first frame update
@@ -23,7 +20,16 @@ public class PlayerController2D : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalSpawnPosition = gameObject.transform.position;
+
+        LevelManager.Instance.SetMaxDistance(5); // test level progress UI
+    }
+
+    public void Update()
+    {
+        // test level progress UI
+        LevelManager.Instance.SetLevelProgress(Math.Abs(gameObject.transform.position.x - originalSpawnPosition.x));
     }
 
     private void FixedUpdate()

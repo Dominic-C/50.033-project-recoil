@@ -17,7 +17,7 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log(mouseWorldPosition);
+        //Debug.Log(mouseWorldPosition);
 
         // calc direction of aim
         Vector3 aimDirection = (mouseWorldPosition - transform.position).normalized;
