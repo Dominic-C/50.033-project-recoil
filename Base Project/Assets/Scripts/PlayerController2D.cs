@@ -8,11 +8,17 @@ public class PlayerController2D : MonoBehaviour
     Animator animator;
     Rigidbody2D rb2d;
     SpriteRenderer spriteRenderer; // used to flip player
+
     bool isGrounded;
+
+    [SerializeField]
     Transform groundCheck;
     private Vector3 originalSpawnPosition; 
 
+    [SerializeField]
     public float runSpeed;
+
+    [SerializeField]
     public float jumpSpeed;
 
     // Start is called before the first frame update
