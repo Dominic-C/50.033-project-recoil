@@ -21,6 +21,12 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     public float jumpSpeed;
 
+    [SerializeField]
+    public float recoilForce;
+
+    private Transform aimTransform;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,18 +34,41 @@ public class PlayerController2D : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         originalSpawnPosition = gameObject.transform.position;
+        aimTransform = transform.Find("Weapon");
 
         LevelManager.Instance.SetMaxDistance(5); // test level progress UI
+    }
+
+    public Tuple<float, float> getRecoilValues(float recoilForce)
+    {
+        Debug.Log(aimTransform.eulerAngles);
+        float x = recoilForce * Mathf.Cos(aimTransform.eulerAngles.z * Mathf.Deg2Rad);
+        float y = recoilForce * Mathf.Sin(aimTransform.eulerAngles.z * Mathf.Deg2Rad);
+        return Tuple.Create(x, y);
     }
 
     public void Update()
     {
         // test level progress UI
         LevelManager.Instance.SetLevelProgress(Math.Abs(gameObject.transform.position.x - originalSpawnPosition.x));
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Tuple<float, float> recoilVals = getRecoilValues(recoilForce);
+            rb2d.velocity = new Vector2(rb2d.velocity.x + recoilVals.Item1, rb2d.velocity.y + recoilVals.Item2);
+            Debug.Log("x vel:" + recoilVals.Item1 + ", y vel: " + recoilVals.Item2);
+            animator.Play("Player_jump");
+        }
     }
+
 
     private void FixedUpdate()
     {
+        // for debugging
+        float x = recoilForce * Mathf.Cos(aimTransform.eulerAngles.z * Mathf.Deg2Rad);
+        float y = recoilForce * Mathf.Sin(aimTransform.eulerAngles.z * Mathf.Deg2Rad);
+        Debug.Log("angle: " + aimTransform.eulerAngles.z + ", x vel:" + x + ", y vel:" + y);
+
         if (Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")))
         {
             isGrounded = true;
@@ -69,7 +98,7 @@ public class PlayerController2D : MonoBehaviour
         }
         else
         {
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y);
             animator.Play("Player_idle");
         }
 
@@ -78,5 +107,10 @@ public class PlayerController2D : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumpSpeed);
             animator.Play("Player_jump");
         }
+
+        // get angle of weapon
+        // Debug.Log(aimTransform.eulerAngles);
+
+
     }
 }
