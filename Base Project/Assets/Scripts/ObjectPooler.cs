@@ -3,62 +3,84 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ObjectPooler : MonoBehaviour
-{   
+public class ObjectPooler : MonoBehaviour  // singleton class
+{
     [System.Serializable]
     public class Pool
     {
-        public string tag;
         public GameObject prefab;
         public int size;
+        public int spawnCount = 0;
+        public List<GameObject> objectPool = new List<GameObject>();
     }
 
-    public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-    public static ObjectPooler Instance = null;
+    public Dictionary<string, Pool> poolDictionary;
+    
+    // all projectile prefabs
+    public GameObject gunProjectilePrefab;
 
-    public int numObstaclesSpawned;
+    // implementing ObjectPooler as singleton
+    private static ObjectPooler instance = null;
+    private static readonly object objectPoolerLock = new object();  // locking objectPooler because it may be accessed by multiple threads beyond this class
+    public static ObjectPooler Instance
+    {
+        get 
+        {
+            lock(objectPoolerLock)
+            {
+                return instance;
+            }
+        }
+    }
 
     private void Awake()
     {
-        if (Instance == null)
+        // implementing ObjectPooler as singleton
+        if (instance != null && instance != this)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
+            return;
         }
-        
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);  // don't destroy this instance of ObjectPooler when changing scenes
     }
 
     void Start()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
-        foreach (Pool pool in pools)
+        Pool gunProjectilePool = new Pool {prefab=gunProjectilePrefab, size=10};
+        // all existing pools
+        poolDictionary = new Dictionary<string, Pool>
         {
-            Queue<GameObject> objectPool = new Queue<GameObject>();
+            {"gunProjectile", gunProjectilePool}
+        };
+
+        // populate existing pools
+        foreach (string poolTag in poolDictionary.Keys)
+        {
+            Pool pool = poolDictionary[poolTag];
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
-                objectPool.Enqueue(obj);
+                pool.objectPool.Add(obj);
             }
-
-            poolDictionary.Add(pool.tag, objectPool);
         }
     }
 
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
+    public GameObject SpawnFromPool(string tag)
     {
-        numObstaclesSpawned += 1;
-        Debug.Log("Number obstacles spawned: " + numObstaclesSpawned);
-
         if (poolDictionary.ContainsKey(tag))
         {
-            GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-            objectToSpawn.SetActive(true);
-            objectToSpawn.transform.position = position;
-            objectToSpawn.transform.rotation = rotation;
-            poolDictionary[tag].Enqueue(objectToSpawn);
-            return objectToSpawn;
+            Pool pool = poolDictionary[tag];
+            List<GameObject> objectPool = pool.objectPool;
+            for (int i=0; i<objectPool.Count; i++)
+            {
+                if (!objectPool[i].activeInHierarchy)
+                {
+                    return objectPool[i];
+                }
+            }
+            return null;
         }
         else
         {

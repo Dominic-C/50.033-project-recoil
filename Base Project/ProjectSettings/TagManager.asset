@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GameBorder
   layers:
   - Default
   - TransparentFX
@@ -52,4 +53,7 @@ TagManager:
     locked: 0
   - name: Weapon
     uniqueID: 972492851
+    locked: 0
+  - name: PlayerProjectile
+    uniqueID: 1289279617
     locked: 0
