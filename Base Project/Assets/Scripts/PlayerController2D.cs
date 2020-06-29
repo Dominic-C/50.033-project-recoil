@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController2D : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerController2D : MonoBehaviour
     // states
     public static bool isFacingRight;
     public static bool isGrounded;
+    public delegate void reachedGround();
+    public static event reachedGround ReachGround;
 
     [SerializeField]
     Transform groundCheck;
@@ -28,7 +31,6 @@ public class PlayerController2D : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
-
         isFacingRight = true;
     }
 
@@ -86,11 +88,23 @@ public class PlayerController2D : MonoBehaviour
     {
         if (Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")))
         {
+
             isGrounded = true;
+            ReachGround();
         }
         else
         {
             isGrounded = false;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log("Touched door");
+        if (col.gameObject.tag == "NextLevelDoor")
+        {
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
