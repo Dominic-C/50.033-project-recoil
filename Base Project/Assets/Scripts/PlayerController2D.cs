@@ -14,8 +14,7 @@ public class PlayerController2D : MonoBehaviour
     // states
     public static bool isFacingRight;
     public static bool isGrounded;
-    public delegate void reachedGround();
-    public static event reachedGround ReachGround;
+
 
     [SerializeField]
     Transform groundCheck;
@@ -90,7 +89,6 @@ public class PlayerController2D : MonoBehaviour
         {
 
             isGrounded = true;
-            // ReachGround(); // required for tutorial stage only
         }
         else
         {

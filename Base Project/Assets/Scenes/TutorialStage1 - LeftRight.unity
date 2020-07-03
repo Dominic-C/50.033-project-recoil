@@ -474,7 +474,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550075956}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 705636044}
@@ -1147,7 +1147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881069004}
   - component: {fileID: 881069005}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI board Small  parchment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1249,12 +1249,12 @@ PrefabInstance:
     - target: {fileID: 2783410883307366898, guid: a47df02acc85bae449f59da618a21e11,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.26
+      value: -11.43
       objectReference: {fileID: 0}
     - target: {fileID: 2783410883307366898, guid: a47df02acc85bae449f59da618a21e11,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.07
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2783410883307366898, guid: a47df02acc85bae449f59da618a21e11,
         type: 3}
@@ -1313,7 +1313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1490878722}
   - component: {fileID: 1490878723}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: UI board Small  parchment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1427,7 +1427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c10860647720f74aaf698709271fbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numLevels: 0
+  playerSpawnPosition: {x: 0, y: 0, z: 0}
   progressSlider: {fileID: 0}
   progressFill: {fileID: 0}
   progressColorGradient:
@@ -1486,7 +1486,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697050510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 729385007}
