@@ -1,19 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.VR;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    private int currentLevel;
-    public int numLevels;
-
-    private float maxDistance;
-    private float currentDistance; // affected by how much player moves from starting point of the level.
-    public Slider progressSlider; // UI to show how much the player has progressed in the level.
-    public Image progressFill;
-    public Gradient progressColorGradient;
+    public static int currentLevel;
+    private GameObject player;
+    public Vector3 playerSpawnPosition;
+    public delegate void PlayerDeath();
+    public static event PlayerDeath PlayerDie;
+    public static void onPlayerDeath() { PlayerDie(); }
 
     void Awake()
     {
@@ -27,15 +29,32 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLevel = 0;
-        currentDistance = 0;
+        updateLevel();
+        SceneManager.sceneLoaded += delegate { updateLevel(); };
+        PlayerDie += delegate { respawn(); };
+
+    }
+    //Todo: call this function when scene changes
+    void updateLevel()
+    {
+        player = GameObject.Find("Penguin");
+        playerSpawnPosition = player.transform.position;
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("updated level, now level: " + currentLevel);
     }
 
-    // Update is called once per frame
-    void Update()
+    void respawn()
     {
-        
+        Debug.Log("Respawning");
+        player.transform.position = playerSpawnPosition;
     }
+
+    // Progress UI related functions
+    private float maxDistance;
+    private float currentDistance = 0; // affected by how much player moves from starting point of the level.
+    public Slider progressSlider; // UI to show how much the player has progressed in the level.
+    public Image progressFill;
+    public Gradient progressColorGradient;
 
     public void SetLevelProgress (float distance)
     {
@@ -54,9 +73,8 @@ public class LevelManager : MonoBehaviour
         progressSlider.maxValue = maxDistance;
     }
 
-    void GoToNextLevel()
+    void fillProgressSlider()
     {
-        currentLevel += 1;
         currentDistance = 0;
         progressSlider.value = currentDistance;
         progressFill.color = progressColorGradient.Evaluate(currentDistance / maxDistance);

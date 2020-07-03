@@ -14,8 +14,7 @@ public class PlayerController2D : MonoBehaviour
     // states
     public static bool isFacingRight;
     public static bool isGrounded;
-    public delegate void reachedGround();
-    public static event reachedGround ReachGround;
+
 
     [SerializeField]
     Transform groundCheck;
@@ -90,7 +89,6 @@ public class PlayerController2D : MonoBehaviour
         {
 
             isGrounded = true;
-            // ReachGround(); // required for tutorial stage only
         }
         else
         {
@@ -104,9 +102,10 @@ public class PlayerController2D : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (col.gameObject.tag == "WeaponPickup")
+        else if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("Touched WeaponPickup");
+            Debug.Log("Player dies");
+            LevelManager.onPlayerDeath();
         }
     }
 }

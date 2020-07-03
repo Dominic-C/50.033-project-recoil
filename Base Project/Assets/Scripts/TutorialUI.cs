@@ -9,29 +9,14 @@ public class TutorialUI : MonoBehaviour
     // Start is called before the first frame update
     public GameObject player;
     public Vector2 offset;
-    void Awake()
-    {
-        foreach (Transform t in gameObject.transform)
-        {
-            Debug.Log("Fading out");
-            StartCoroutine(fadeInAndOut(t.gameObject, false, 0.0001f));
-        }
 
-    }
     void Start()
     {
-        PlayerController2D.ReachGround += showTransientAnimation;
-    }
-
-    void showTransientAnimation()
-    {
-        //        gameObject.SetActive(true);
         Debug.Log("Fading in");
         foreach (Transform t in gameObject.transform)
         {
-            StartCoroutine(fadeInAndOut(t.gameObject, true, 1f));
+            StartCoroutine(fadeInAndOut(t.gameObject, true, 2f));
         }
-
     }
 
     // Update is called once per frame
