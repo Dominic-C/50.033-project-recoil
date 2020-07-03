@@ -42,7 +42,7 @@ public class PlayerController2D : MonoBehaviour
             // jumpSpeed value is originally 3
             Vector2 newForce = new Vector2(rb2d.velocity.x, jumpSpeed);
             rb2d.AddForce(newForce);
-            animator.Play("Player_jump");
+            animator.Play(AnimationType.PlayerJump);
         }
 
         // move player horizontally based on input
@@ -53,7 +53,7 @@ public class PlayerController2D : MonoBehaviour
             rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
             if (isGrounded)
             {
-                animator.Play("Player_run");
+                animator.Play(AnimationType.PlayerRun);
             }
 
             // rotate player and gun based on change in direction
@@ -68,7 +68,7 @@ public class PlayerController2D : MonoBehaviour
             rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
             if (isGrounded)
             {
-                animator.Play("Player_run");
+                animator.Play(AnimationType.PlayerRun);
             }
 
             // rotate player and gun based on change in direction
@@ -80,7 +80,7 @@ public class PlayerController2D : MonoBehaviour
         }
         else
         {
-            animator.Play("Player_idle");
+            animator.Play(AnimationType.PlayerIdle);
         }
     }
 
@@ -90,7 +90,7 @@ public class PlayerController2D : MonoBehaviour
         {
 
             isGrounded = true;
-            ReachGround();
+            // ReachGround(); // required for tutorial stage only
         }
         else
         {
@@ -100,11 +100,13 @@ public class PlayerController2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Touched door");
         if (col.gameObject.tag == "NextLevelDoor")
         {
-            
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        if (col.gameObject.tag == "WeaponPickup")
+        {
+            Debug.Log("Touched WeaponPickup");
         }
     }
 }
