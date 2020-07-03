@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TutorialStage1 - LeftRight.unity
     guid: a1432ec2eb6250e479af887f20ee0653
   - enabled: 1
-    path: Assets/Scenes/TutorialStage4 - Enemy.unity
+    path: Assets/Scenes/TutorialStage5 - Enemy.unity
     guid: 3e276896419618c40acde35ccbd299ac
   m_configObjects: {}

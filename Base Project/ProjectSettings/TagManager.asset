@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameBorder
   - NextLevelDoor
+  - WeaponPickup
   layers:
   - Default
   - TransparentFX
