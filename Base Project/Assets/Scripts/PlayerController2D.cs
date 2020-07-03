@@ -102,9 +102,10 @@ public class PlayerController2D : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (col.gameObject.tag == "WeaponPickup")
+        else if (col.gameObject.tag == "Enemy")
         {
-            Debug.Log("Touched WeaponPickup");
+            Debug.Log("Player dies");
+            LevelManager.onPlayerDeath();
         }
     }
 }
