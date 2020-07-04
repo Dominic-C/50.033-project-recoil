@@ -572,6 +572,8 @@ MonoBehaviour:
   - {fileID: 1933981094}
   - {fileID: 835431878}
   startWaitTime: 0.1
+  animator: {fileID: 0}
+  rb2d: {fileID: 0}
 --- !u!61 &316943237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -926,6 +928,13 @@ MonoBehaviour:
   idleAnimationClip: {fileID: 7400000, guid: 81b51c4c86435ea4eaf68175579f3f5a, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 9d8fc317141b9334ab1c0d410c7d0803, type: 2}
   isHit: 0
+  moveSpots: []
+  startWaitTime: 0
+  animator: {fileID: 0}
+  rb2d: {fileID: 0}
+  startTimeBetweenShots: 1.5
+  projectile: {fileID: 4507134427231319588, guid: c0e69d3da8bb5994a80f3b2f40861418,
+    type: 3}
 --- !u!50 &424182176
 Rigidbody2D:
   serializedVersion: 4
@@ -946,7 +955,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
