@@ -5,8 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - GameBorder
-  - NextLevelDoor
-  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -17,7 +15,7 @@ TagManager:
   - 
   - 
   - Ground
-  - Door
+  - Action
   - 
   - 
   - 
@@ -52,6 +50,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2739951281
+    locked: 0
+  - name: Enemy
+    uniqueID: 3512748085
     locked: 0
   - name: Weapon
     uniqueID: 972492851
