@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public AnimationClip runAnimationClip;
     public bool isHit;
 
-    // initialize in child class start method
+    // initialize protected variables in child classes
     protected Animator animator;
     protected Rigidbody2D rb2d;
     protected SpriteRenderer spriteRenderer;
@@ -29,15 +29,16 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // base class start function will not be inherited by children classes
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // base class update function should be empty
     }
 
+    // function to tell if the enemy is on the left or right relative to some target point
     public bool isLeft(float CurrentPoint, float TargetPoint)
     {
         if (CurrentPoint < TargetPoint)
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour
 
     // can also add IsAbove or IsBelow if required, but the idea is the same
 
+    // line of sight function
     public bool canSeePlayer(float distance)
     {
         bool val = false;
@@ -85,6 +87,7 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        // visual guide
         if (!val)
         {
             // cannot see player
@@ -98,22 +101,21 @@ public class Enemy : MonoBehaviour
         return val;
 
     }
+
+    // function to patrol randomly between a set of waypoints. To be called in update function of child class
     protected void patrol()
     {
-        // =============================== Patrol logic ======================================
+        // ====================================== Patrol Logic ========================================
         // move towards x position only, ignoring y positions
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveSpots[randomSpot].position.x, transform.position.y), moveSpeed * Time.deltaTime);
-
 
         // check if it has reached the spot (with some error margin), if yes, then move to another random location
         if (Vector2.Distance(transform.position, new Vector2(moveSpots[randomSpot].position.x, transform.position.y)) < 0.02f)
         {
-            // wait for awhile
             if (waitTime <= 0)
             {
-                // do something
                 randomSpot = UnityEngine.Random.Range(0, moveSpots.Length); // move to a new random location
-                waitTime = startWaitTime; // reset timer 
+                waitTime = startWaitTime;
             }
             else
             {
@@ -141,6 +143,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // function to chase the player. To be called in update function of child class.
     protected void chasePlayer()
     {
         if (transform.position.x < player.position.x)

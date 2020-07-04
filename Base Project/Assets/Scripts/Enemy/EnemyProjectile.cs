@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    public bool isFacingLeft;
+    public bool projectileOnLeft;
     public float projectileSpeed;
     // Start is called before the first frame update
     private Rigidbody2D rb2d;
@@ -13,14 +13,14 @@ public class EnemyProjectile : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (transform.position.x > player.position.x)
+        {
+            projectileSpeed = -projectileSpeed;
+        }
     }
 
     private void Update()
     {
-        if (isFacingLeft)
-        {
-            projectileSpeed = -projectileSpeed;
-        }
         rb2d.velocity = transform.TransformDirection(new Vector2(projectileSpeed, 0));
     }
 }

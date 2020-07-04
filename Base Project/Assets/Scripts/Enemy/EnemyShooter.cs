@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class EnemyShooter : Enemy
 {
-    SpriteRenderer spriteRenderer;
-
-    private Rigidbody2D rb2d;
-    private int randomSpot;
-    private float waitTime;
-    private Animator animator;
-
     // variables for shooting
     private float timeBetweenShots;
     public float startTimeBetweenShots; // seconds
@@ -34,19 +27,27 @@ public class EnemyShooter : Enemy
         if (playerInSight)
         {
             spriteRenderer.color = Color.red;
+            shootProjectile();
         }
         else
         {
             spriteRenderer.color = Color.white;
+            timeBetweenShots -= Time.deltaTime; // this is to reload even though the player is out of sight
+            patrol();
         }
+    }
+
+    // Helper methods
+    void shootProjectile()
+    {        
         // timed shots
-        if (timeBetweenShots <=0)
+        if (timeBetweenShots <= 0)
         {
-            if (playerInSight)
+            if (canSeePlayer(rangeOfSight))
             {
                 // shoot projectile
                 GameObject projectileObject = Instantiate(projectile, eyes.position, Quaternion.identity); // instantiate with initial position and rotation
-                projectileObject.GetComponent<EnemyProjectile>().isFacingLeft = isFacingLeft;
+                // projectileObject.GetComponent<EnemyProjectile>().isFacingLeft = isFacingLeft;
                 timeBetweenShots = startTimeBetweenShots;
             }
         }
@@ -55,6 +56,7 @@ public class EnemyShooter : Enemy
             // "recharge" even if player not in range
             timeBetweenShots -= Time.deltaTime;
         }
-     }
+
+    }
 }
 
