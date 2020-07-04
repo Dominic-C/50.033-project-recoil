@@ -59,15 +59,18 @@ public class WeaponController : MonoBehaviour
             Tuple<float, float> recoilVals = getRecoilValues(recoilForce);
             float horizontalForce = rb2d.velocity.x + recoilVals.Item1;
             float verticalForce = rb2d.velocity.y + recoilVals.Item2;
-            Debug.Log("horizontalForce: " + horizontalForce.ToString() + ", verticalForce: " + verticalForce.ToString());
+            // Debug.Log("horizontalForce: " + horizontalForce.ToString() + ", verticalForce: " + verticalForce.ToString());
             rb2d.AddForce(new Vector2(horizontalForce, verticalForce));
 
             if (projectileType == "gunProjectile")
             {
                 projectile = ObjectPooler.Instance.SpawnFromPool("gunProjectile");
-                projectile.transform.position = FirepointPrefab.transform.position;
-                projectile.transform.rotation = FirepointPrefab.transform.rotation;
-                projectile.SetActive(true);
+                if (projectile != null)
+                {
+                    projectile.transform.position = FirepointPrefab.transform.position;
+                    projectile.transform.rotation = FirepointPrefab.transform.rotation;
+                    projectile.SetActive(true);
+                }
             }
         }
     }
@@ -76,14 +79,14 @@ public class WeaponController : MonoBehaviour
     {
         if (PlayerController2D.isFacingRight)
         {
-            Debug.Log("aimTransform.eulerAngles: " + aimTransform.eulerAngles.ToString());
+            // Debug.Log("aimTransform.eulerAngles: " + aimTransform.eulerAngles.ToString());
             float x = recoilForce * Mathf.Cos((aimTransform.eulerAngles.z + 180)* Mathf.Deg2Rad);
             float y = recoilForce * Mathf.Sin((aimTransform.eulerAngles.z + 180) * Mathf.Deg2Rad);
             return Tuple.Create(x, y);
         }
         else
         {
-            Debug.Log("aimTransform.eulerAngles: " + aimTransform.eulerAngles.ToString());
+            // Debug.Log("aimTransform.eulerAngles: " + aimTransform.eulerAngles.ToString());
             float x = recoilForce * Mathf.Cos((aimTransform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
             float y = recoilForce * Mathf.Sin((aimTransform.eulerAngles.z + 180) * Mathf.Deg2Rad);
             return Tuple.Create(x, y);
