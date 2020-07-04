@@ -440,6 +440,11 @@ PrefabInstance:
       propertyPath: moveSpots.Array.data[0]
       value: 
       objectReference: {fileID: 1511118209}
+    - target: {fileID: 1149128317485880270, guid: 72f18be4418070c4bab273416f0f4885,
+        type: 3}
+      propertyPath: chaseSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f18be4418070c4bab273416f0f4885, type: 3}
 --- !u!1 &316943232
@@ -562,18 +567,17 @@ MonoBehaviour:
   player: {fileID: 1189804059}
   eyes: {fileID: 1565641983}
   moveSpeed: 3
+  chaseSpeed: 0
   rangeOfSight: 0.5
   idleAnimationClip: {fileID: 7400000, guid: 23755119553cdad45b26eace5137a6c4, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 23755119553cdad45b26eace5137a6c4, type: 2}
   isHit: 0
+  startWaitTime: 0.1
   moveSpots:
   - {fileID: 1375412734}
   - {fileID: 1417702004}
   - {fileID: 1933981094}
   - {fileID: 835431878}
-  startWaitTime: 0.1
-  animator: {fileID: 0}
-  rb2d: {fileID: 0}
 --- !u!61 &316943237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -924,14 +928,15 @@ MonoBehaviour:
   player: {fileID: 1189804059}
   eyes: {fileID: 1194093267}
   moveSpeed: 1
+  chaseSpeed: 2
   rangeOfSight: 1
   idleAnimationClip: {fileID: 7400000, guid: 81b51c4c86435ea4eaf68175579f3f5a, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 9d8fc317141b9334ab1c0d410c7d0803, type: 2}
   isHit: 0
-  moveSpots: []
   startWaitTime: 0
-  animator: {fileID: 0}
-  rb2d: {fileID: 0}
+  moveSpots:
+  - {fileID: 1474473319}
+  - {fileID: 1453978229}
   startTimeBetweenShots: 1.5
   projectile: {fileID: 4507134427231319588, guid: c0e69d3da8bb5994a80f3b2f40861418,
     type: 3}
@@ -2205,6 +2210,38 @@ Transform:
   m_Father: {fileID: 1186467287}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1393924570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1393924571}
+  m_Layer: 0
+  m_Name: Enemy4PatrolPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1393924571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1393924570}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1474473319}
+  - {fileID: 1453978229}
+  m_Father: {fileID: 2120319021}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1409102717
 GameObject:
   m_ObjectHideFlags: 3
@@ -2319,6 +2356,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1186467287}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1453978228
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1453978229}
+  m_Layer: 0
+  m_Name: Waypoint_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1453978229
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453978228}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.72, y: -0.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1393924571}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1474473318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1474473319}
+  m_Layer: 0
+  m_Name: Waypoint_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1474473319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474473318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.24, y: -0.62, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1393924571}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1500824994
 GameObject:
@@ -2876,6 +2973,7 @@ Transform:
   - {fileID: 1020894150}
   - {fileID: 1186467287}
   - {fileID: 1929122632}
+  - {fileID: 1393924571}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3001,6 +3099,11 @@ PrefabInstance:
       propertyPath: moveSpots.Array.data[0]
       value: 
       objectReference: {fileID: 677270405}
+    - target: {fileID: 1149128317485880270, guid: 72f18be4418070c4bab273416f0f4885,
+        type: 3}
+      propertyPath: chaseSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f18be4418070c4bab273416f0f4885, type: 3}
 --- !u!1001 &2783410884593978706

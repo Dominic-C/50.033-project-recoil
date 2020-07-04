@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public Transform player;
     public Transform eyes;
     public float moveSpeed;
+    public float chaseSpeed;
     public float rangeOfSight;
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
@@ -151,14 +152,14 @@ public class Enemy : MonoBehaviour
             animator.Play(runAnimationClip.name);
             spriteRenderer.flipX = false;
             isFacingLeft = false;
-            rb2d.velocity = new Vector2(moveSpeed, 0);
+            rb2d.velocity = new Vector2(chaseSpeed, 0);
         }
         else
         {
             animator.Play(runAnimationClip.name);
             spriteRenderer.flipX = true;
             isFacingLeft = true;
-            rb2d.velocity = new Vector2(-moveSpeed, 0);
+            rb2d.velocity = new Vector2(-chaseSpeed, 0);
         }
 
     }
