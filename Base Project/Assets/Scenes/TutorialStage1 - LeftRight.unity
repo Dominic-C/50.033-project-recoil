@@ -1604,7 +1604,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.9671141
+  orthographic size: 1.780211
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1628,7 +1628,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966194538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 0.81, z: -10}
+  m_LocalPosition: {x: -8.25, y: 0.5, z: -11.248809}
   m_LocalScale: {x: 0.0116531765, y: 0.23980072, z: 0.42616844}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1647,7 +1647,7 @@ GameObject:
   - component: {fileID: 2030105688}
   - component: {fileID: 2030105687}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: TutorialUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1817,50 +1817,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c5ea736215d7734bacd36b0ec0ed5ba, type: 3}
---- !u!1 &7930865363442670673
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7930865363442670674}
-  - component: {fileID: 7930865363442670675}
-  m_Layer: 0
-  m_Name: ObjectPooler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7930865363442670674
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930865363442670673}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7930865363442670675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7930865363442670673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56734876ea903624c8c08a5036baa861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotgunProjectilePrefab: {fileID: 794749220328565120, guid: 58a6b1548e5a75940ad68bdbb7f7c667,
-    type: 3}
-  rocketProjectilePrefab: {fileID: 1200021424344473916, guid: 92b3634aacd5b7f42b504ac25c626c62,
-    type: 3}

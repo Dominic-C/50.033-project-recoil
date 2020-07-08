@@ -1,16 +1,24 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+static class GunTypes
+{
+    public const string Rocket = "rocket";
+    public const string ShotGun = "shotgun";
+}
 
 public class WeaponController : MonoBehaviour
 {
     public GameObject PlayerPrefab;
     public GameObject FirepointPrefab;
 
-    private GameObject shotgunCount;
-    private GameObject rocketCount;
-    private GameObject equippedGunText;
+    public GameObject WeaponUI;
+    private CurrWeaponUI WeaponUIData;
+    public WeaponData ShotgunWeaponData;
+    public WeaponData RocketWeaponData;
 
     private GameObject projectile;
     private GameObject projectile0;
@@ -33,15 +41,13 @@ public class WeaponController : MonoBehaviour
     private void Start()
     {
         rb2d = PlayerPrefab.GetComponent<Rigidbody2D>();
-
-        shotgunCount = GameObject.Find("ShotgunCount");
-        rocketCount = GameObject.Find("RocketCount");
-        equippedGunText = GameObject.Find("EquippedGun");
-
-        equippedGun = "shotgun";
-
+        equippedGun = GunTypes.ShotGun;
         shotgunRecoilForce = ShotgunProjectileController.recoilForce;
+        WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
+        WeaponUI.SetActive(true);
+        setWeaponUI(equippedGun);
     }
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -70,12 +76,11 @@ public class WeaponController : MonoBehaviour
         {
             // reset shotgun ammo
             ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
-            shotgunCount.GetComponent<UnityEngine.UI.Text>().text = "Shotgun ammo: " + ShotgunProjectileController.ammoCount.ToString() + "/" + ShotgunProjectileController.maxAmmo.ToString();
-
+            
             // reset rocket ammo
             RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
-            rocketCount.GetComponent<UnityEngine.UI.Text>().text = "Rocket ammo: " + RocketProjectileController.ammoCount.ToString() + "/" + RocketProjectileController.maxAmmo.ToString();
-
+             
+            setWeaponUI(equippedGun);
             // ensure that ammo will only be reloaded once (esp in combination with the reload when landing on the ground)
             nextReloadTime = float.MaxValue;
         }
@@ -85,7 +90,7 @@ public class WeaponController : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            if (equippedGun == "shotgun")
+            if (equippedGun == GunTypes.ShotGun)
             {
                 if (ShotgunProjectileController.ammoCount > 0 && Time.time > shotgunNextFireTime)
                 {
@@ -102,14 +107,14 @@ public class WeaponController : MonoBehaviour
                         projectile0.transform.eulerAngles = FirepointPrefab.transform.eulerAngles + new Vector3(0,0,5);
                         projectile0.SetActive(true);
                     }
-                    projectile1 = ObjectPooler.Instance.SpawnFromPool("shotgun");
+                    projectile1 = ObjectPooler.Instance.SpawnFromPool(GunTypes.ShotGun);
                     if (projectile1 != null)
                     {
                         projectile1.transform.position = FirepointPrefab.transform.position;
                         projectile1.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
                         projectile1.SetActive(true);
                     }
-                    projectile2 = ObjectPooler.Instance.SpawnFromPool("shotgun");
+                    projectile2 = ObjectPooler.Instance.SpawnFromPool(GunTypes.ShotGun);
                     if (projectile2 != null)
                     {
                         projectile2.transform.position = FirepointPrefab.transform.position;
@@ -119,8 +124,8 @@ public class WeaponController : MonoBehaviour
 
                     // update ammoCount and change UI
                     ShotgunProjectileController.ammoCount -= 1;
-                    shotgunCount.GetComponent<UnityEngine.UI.Text>().text = "Shotgun ammo: " + ShotgunProjectileController.ammoCount.ToString() + "/" + ShotgunProjectileController.maxAmmo.ToString();
-
+                    updateAmmoText(ShotgunProjectileController.ammoCount, ShotgunProjectileController.maxAmmo);
+                    
                     // update next fire time to control fire rate of gun
                     shotgunNextFireTime = Time.time + ShotgunProjectileController.fireInterval;
 
@@ -131,7 +136,7 @@ public class WeaponController : MonoBehaviour
                     }
                 }
             }
-            else if (equippedGun == "rocket")
+            else if (equippedGun == GunTypes.Rocket)
             {
                 if (RocketProjectileController.ammoCount > 0 && Time.time > rocketNextFireTime)
                 {
@@ -143,8 +148,8 @@ public class WeaponController : MonoBehaviour
 
                     // update ammoCount and change UI
                     RocketProjectileController.ammoCount -= 1;
-                    rocketCount.GetComponent<UnityEngine.UI.Text>().text = "Rocket ammo: " + RocketProjectileController.ammoCount.ToString() + "/" + RocketProjectileController.maxAmmo.ToString();
-
+                    updateAmmoText(RocketProjectileController.ammoCount, RocketProjectileController.maxAmmo);
+                    
                     // update next fire time to control fire rate of gun
                     rocketNextFireTime = Time.time + RocketProjectileController.fireInterval;
                 }
@@ -153,13 +158,15 @@ public class WeaponController : MonoBehaviour
 
         if (Input.GetButtonDown("weapon 1"))
         {
-            equippedGun = "shotgun";
-            equippedGunText.GetComponent<UnityEngine.UI.Text>().text = "Equipped gun: Shotgun";
+            equippedGun = GunTypes.ShotGun;
+            //equippedGunText.GetComponent<UnityEngine.UI.Text>().text = "Equipped gun: Shotgun";
+            setWeaponUI(equippedGun);
         }
         else if (Input.GetButtonDown("weapon 2"))
         {
-            equippedGun = "rocket";
-            equippedGunText.GetComponent<UnityEngine.UI.Text>().text = "Equipped gun: Rocket";
+            equippedGun = GunTypes.Rocket;
+            setWeaponUI(equippedGun);
+//            equippedGunText.GetComponent<UnityEngine.UI.Text>().text = "Equipped gun: Rocket";
         }
     }
 
@@ -178,6 +185,40 @@ public class WeaponController : MonoBehaviour
             float x = shotgunRecoilForce * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
             float y = shotgunRecoilForce * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
             return Tuple.Create(x, y);
+        }
+    }
+
+
+    // set weapon UI methods
+    public WeaponData getWeaponDataForUI(string gunName) 
+    {
+        if (gunName == GunTypes.ShotGun)
+        {
+            return ShotgunWeaponData;
+        }
+        else if (gunName == GunTypes.Rocket)
+        {
+            return RocketWeaponData;
+        }
+        return null;
+    }
+
+    private void setWeaponUI(string equippedGun)
+    {
+        Debug.Log("Setting Weapon UI from Weaponcontroller");
+        if (getWeaponDataForUI(equippedGun) != null)
+        {
+            WeaponUIData.setWeaponData(getWeaponDataForUI(equippedGun));
+            GetComponent<SpriteRenderer>().sprite = getWeaponDataForUI(equippedGun).weaponImage;
+        }
+    }
+
+    private void updateAmmoText(int ammo, int maxAmmo)
+    {
+        Debug.Log("Ammo reduced");
+        if (getWeaponDataForUI(equippedGun) != null)
+        {
+            WeaponUIData.updateAmmoText(ammo, maxAmmo);
         }
     }
 }

@@ -48,7 +48,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("QUIT!");
         Application.Quit();
     }
-    //Todo: call this function when scene changes
+
     void updateLevel()
     {
         if (currentLevel != 0)
