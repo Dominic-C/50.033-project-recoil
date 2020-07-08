@@ -66,6 +66,7 @@ public class ObjectPooler : MonoBehaviour  // singleton class
             {
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
+                DontDestroyOnLoad(obj);
                 pool.objectPool.Add(obj);
             }
         }
