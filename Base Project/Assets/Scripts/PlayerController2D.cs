@@ -24,6 +24,7 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     public float jumpSpeed;
 
+    // UI for shotgun and rocket count. 
     private GameObject shotgunCount;
     private GameObject rocketCount;
 
@@ -54,16 +55,8 @@ public class PlayerController2D : MonoBehaviour
 
         if (isGrounded && !isJustGrounded)
         {
-            // reset shotgun ammo
-            ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
-            shotgunCount.GetComponent<UnityEngine.UI.Text>().text = "Shotgun ammo: " + ShotgunProjectileController.ammoCount.ToString() + "/" + ShotgunProjectileController.maxAmmo.ToString();
-
-            // reset rocket ammo
-            RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
-            rocketCount.GetComponent<UnityEngine.UI.Text>().text = "Rocket ammo: " + RocketProjectileController.ammoCount.ToString() + "/" + RocketProjectileController.maxAmmo.ToString();
-
-            // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
-            WeaponController.nextReloadTime = float.MaxValue;
+            // refill Ammo
+            if (shotgunCount && rocketCount) refillAmmo();
         }
 
         // move player horizontally based on input
@@ -119,6 +112,20 @@ public class PlayerController2D : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    void refillAmmo()
+    {
+        // reset shotgun ammo
+        ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
+        shotgunCount.GetComponent<UnityEngine.UI.Text>().text = "Shotgun ammo: " + ShotgunProjectileController.ammoCount.ToString() + "/" + ShotgunProjectileController.maxAmmo.ToString();
+
+        // reset rocket ammo
+        RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
+        rocketCount.GetComponent<UnityEngine.UI.Text>().text = "Rocket ammo: " + RocketProjectileController.ammoCount.ToString() + "/" + RocketProjectileController.maxAmmo.ToString();
+
+        // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
+        WeaponController.nextReloadTime = float.MaxValue;
     }
 
     void OnTriggerEnter2D(Collider2D col)
