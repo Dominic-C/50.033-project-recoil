@@ -81,6 +81,15 @@ public class WeaponController : MonoBehaviour
             RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
              
             setWeaponUI(equippedGun);
+            if (equippedGun == GunTypes.ShotGun)
+            {
+                updateAmmoText(ShotgunProjectileController.maxAmmo, ShotgunProjectileController.maxAmmo);
+            }
+            else if (equippedGun == GunTypes.Rocket)
+            {
+                updateAmmoText(RocketProjectileController.maxAmmo, RocketProjectileController.maxAmmo);
+            }
+            
             // ensure that ammo will only be reloaded once (esp in combination with the reload when landing on the ground)
             nextReloadTime = float.MaxValue;
         }
@@ -159,14 +168,12 @@ public class WeaponController : MonoBehaviour
         if (Input.GetButtonDown("weapon 1"))
         {
             equippedGun = GunTypes.ShotGun;
-            //equippedGunText.GetComponent<UnityEngine.UI.Text>().text = "Equipped gun: Shotgun";
             setWeaponUI(equippedGun);
         }
         else if (Input.GetButtonDown("weapon 2"))
         {
             equippedGun = GunTypes.Rocket;
             setWeaponUI(equippedGun);
-//            equippedGunText.GetComponent<UnityEngine.UI.Text>().text = "Equipped gun: Rocket";
         }
     }
 
