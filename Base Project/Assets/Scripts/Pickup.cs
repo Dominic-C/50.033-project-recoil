@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
 public enum PickupType
@@ -15,10 +16,14 @@ public class Pickup : MonoBehaviour
     public PickupType type;
     public GameObject linkedObject;
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        linkedObject.SetActive(true);
-        gameObject.SetActive(false); // to be replaced with some animation of disappearing
+        if (collider.gameObject.tag == "Player")
+        {
+            linkedObject.SetActive(true);
+            gameObject.SetActive(false); // to be replaced with some animation of disappearing
+
+        }
     }
 
     void Awake()

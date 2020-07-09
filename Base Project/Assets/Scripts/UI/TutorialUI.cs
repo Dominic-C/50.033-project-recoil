@@ -9,13 +9,37 @@ public class TutorialUI : MonoBehaviour
     // Start is called before the first frame update
     public GameObject player;
     public Vector2 offset;
+    public bool fadeIn;
+    public bool fadeOut;
+    public float waitTimeBeforeAnimation = 2.0f;
+    private bool readyToAnimate;
 
-    void Start()
+    void onDisabled()
     {
-        Debug.Log("Fading in");
+        readyToAnimate = false;
+    }
+
+    void OnEnable()
+    {
+            StartCoroutine(WaitBeforeAnimation());
+    }
+
+    IEnumerator WaitBeforeAnimation()
+    {
+        yield return new WaitForSeconds(waitTimeBeforeAnimation);
+        readyToAnimate = true;
         foreach (Transform t in gameObject.transform)
         {
-            StartCoroutine(fadeInAndOut(t.gameObject, true, 2f));
+            if (fadeIn)
+            {
+                Debug.Log("Fading in");
+                StartCoroutine(fadeInAndOut(t.gameObject, true, 2f));
+            }
+            if (fadeOut)
+            {
+                Debug.Log("Fading out");
+                StartCoroutine(fadeInAndOut(t.gameObject, false, 2f));
+            }
         }
     }
 
