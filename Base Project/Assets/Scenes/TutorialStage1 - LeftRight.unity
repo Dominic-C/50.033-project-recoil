@@ -429,8 +429,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bf3a7d99fd9e2f34eb0f512889b0d4b2, type: 2}
+  m_sharedMaterial: {fileID: -3281593686715140668, guid: bf3a7d99fd9e2f34eb0f512889b0d4b2,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -472,7 +473,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -951,6 +952,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1864208910}
   offset: {x: -0.7, y: -0.1}
+  fadeIn: 0
+  fadeOut: 0
+  waitTimeBeforeAnimation: 2
 --- !u!1 &729385006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1007,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1864208910}
   offset: {x: 0.7, y: -0.1}
+  fadeIn: 0
+  fadeOut: 0
+  waitTimeBeforeAnimation: 2
 --- !u!1 &865902447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,8 +1442,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: D
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bf3a7d99fd9e2f34eb0f512889b0d4b2, type: 2}
+  m_sharedMaterial: {fileID: -3281593686715140668, guid: bf3a7d99fd9e2f34eb0f512889b0d4b2,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1478,7 +1486,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
