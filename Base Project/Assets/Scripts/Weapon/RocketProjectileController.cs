@@ -10,7 +10,6 @@ public class RocketProjectileController : MonoBehaviour
     public static float fireInterval = 1.0f;
     public static int ammoCount = 1;
     public static int maxAmmo = 1;
-    
 
     private GameObject playerPrefab;
     private Rigidbody2D playerRb2d;
