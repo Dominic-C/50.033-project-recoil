@@ -12,7 +12,8 @@ public class Enemy : MonoBehaviour
     public float rangeOfSight;
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
-    public bool isHit;
+    public AnimationClip deathAnimationClip;
+    public bool isHit = false;
 
     // initialize protected variables in child classes
     protected Animator animator;
@@ -25,6 +26,9 @@ public class Enemy : MonoBehaviour
     protected bool isFacingLeft;
     protected int randomSpot;
     protected float waitTime;
+
+    // variables for hitbox
+    protected GameObject hitbox;
 
 
     // Start is called before the first frame update
@@ -164,5 +168,10 @@ public class Enemy : MonoBehaviour
 
     }
 
-
+    protected void die()
+    {
+        animator.Play(deathAnimationClip.name);
+        // todo add coroutine
+        Destroy(this.gameObject); //destroys the object after animation ended
+    }
 }

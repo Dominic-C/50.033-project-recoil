@@ -2277,7 +2277,7 @@ PrefabInstance:
     - target: {fileID: 2783410883307366863, guid: a47df02acc85bae449f59da618a21e11,
         type: 3}
       propertyPath: m_Name
-      value: Penguin
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2783410883307366898, guid: a47df02acc85bae449f59da618a21e11,
         type: 3}

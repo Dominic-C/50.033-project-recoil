@@ -23,6 +23,7 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
+            // DontDestroyOnLoad(player);
         } else
         {
             Destroy(this);
@@ -51,11 +52,11 @@ public class LevelManager : MonoBehaviour
 
     void updateLevel()
     {
-        if (currentLevel != 0)
+        currentLevel = SceneManager.GetActiveScene().buildIndex;
+        if (currentLevel > 0)
         {
-            player = GameObject.Find("Penguin");
+            player = GameObject.Find("Player");
             playerSpawnPosition = player.transform.position;
-            currentLevel = SceneManager.GetActiveScene().buildIndex;
             Debug.Log("updated level, now level: " + currentLevel);
         }
     }

@@ -162,15 +162,16 @@ MonoBehaviour:
   player: {fileID: 0}
   eyes: {fileID: 1149128317243966347}
   moveSpeed: 0.5
+  chaseSpeed: 0
   rangeOfSight: 1
   idleAnimationClip: {fileID: 7400000, guid: 022460ec06a5c194692525ab89c6fd42, type: 2}
   runAnimationClip: {fileID: 7400000, guid: ae73359f93a41914ea7e08bae1c4c8c3, type: 2}
   isHit: 0
+  startWaitTime: 2
   moveSpots:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  startWaitTime: 2
 --- !u!61 &1149128317485880271
 BoxCollider2D:
   m_ObjectHideFlags: 0

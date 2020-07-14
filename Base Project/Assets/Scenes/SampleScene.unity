@@ -530,6 +530,11 @@ PrefabInstance:
       propertyPath: chaseSpeed
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1149128317485880275, guid: 72f18be4418070c4bab273416f0f4885,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f18be4418070c4bab273416f0f4885, type: 3}
 --- !u!1001 &258569690
@@ -820,6 +825,7 @@ MonoBehaviour:
   rangeOfSight: 0.5
   idleAnimationClip: {fileID: 7400000, guid: 23755119553cdad45b26eace5137a6c4, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 23755119553cdad45b26eace5137a6c4, type: 2}
+  deathAnimationClip: {fileID: 0}
   isHit: 0
   startWaitTime: 0.1
   moveSpots:
@@ -1315,6 +1321,7 @@ MonoBehaviour:
   rangeOfSight: 1
   idleAnimationClip: {fileID: 7400000, guid: 81b51c4c86435ea4eaf68175579f3f5a, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 9d8fc317141b9334ab1c0d410c7d0803, type: 2}
+  deathAnimationClip: {fileID: 0}
   isHit: 0
   startWaitTime: 0
   moveSpots:
@@ -1690,7 +1697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &710681761
 Transform:
   m_ObjectHideFlags: 0
@@ -3282,6 +3289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ice_Zombie_Scaled
       objectReference: {fileID: 0}
+    - target: {fileID: 1149128316545213925, guid: 72f18be4418070c4bab273416f0f4885,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 1149128317485880270, guid: 72f18be4418070c4bab273416f0f4885,
         type: 3}
       propertyPath: moveSpots.Array.size
@@ -3311,6 +3323,21 @@ PrefabInstance:
         type: 3}
       propertyPath: chaseSpeed
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149128317485880271, guid: 72f18be4418070c4bab273416f0f4885,
+        type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149128317485880271, guid: 72f18be4418070c4bab273416f0f4885,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1149128317485880275, guid: 72f18be4418070c4bab273416f0f4885,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72f18be4418070c4bab273416f0f4885, type: 3}
@@ -3537,7 +3564,7 @@ PrefabInstance:
     - target: {fileID: 4680686100437927915, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 083854405516b974dbb62641d23a2a7f, type: 3}

@@ -30,7 +30,12 @@ public class BasicEnemy : Enemy
             spriteRenderer.color = Color.white;
             patrol();
         }
-    }
 
+        if (isHit)
+        {
+            die();
+        }
+
+    }
 
 }
