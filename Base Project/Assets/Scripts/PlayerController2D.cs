@@ -6,14 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController2D : MonoBehaviour
 {
-    public GameObject WeaponPrefab;
-    
     private Animator animator;
     private Rigidbody2D rb2d;
 
     // states
     public static bool isFacingRight;
     public static bool isGrounded;
+    public static bool isJustGrounded;
 
 
     [SerializeField]
@@ -25,23 +24,39 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     public float jumpSpeed;
 
+    // UI for shotgun and rocket count. 
+    private GameObject shotgunCount;
+    private GameObject rocketCount;
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
+
+        shotgunCount = GameObject.Find("ShotgunCount");
+        rocketCount = GameObject.Find("RocketCount");
     }
 
     void Update()
     {
-        // jump logic
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (isGrounded)
         {
-            // jumpSpeed value is originally 3
-            Vector2 newForce = new Vector2(rb2d.velocity.x, jumpSpeed);
-            rb2d.AddForce(newForce);
-            animator.Play(AnimationType.PlayerJump);
+            // jump logic
+            if (Input.GetButtonDown("Jump"))
+            {
+                // jumpSpeed value is originally 3
+                Vector2 newForce = new Vector2(rb2d.velocity.x, jumpSpeed);
+                rb2d.AddForce(newForce);
+                animator.Play("Player_jump");
+            }
+        }
+
+        if (isGrounded && !isJustGrounded)
+        {
+            // refill Ammo
+            if (shotgunCount && rocketCount) refillAmmo();
         }
 
         // move player horizontally based on input
@@ -81,6 +96,9 @@ public class PlayerController2D : MonoBehaviour
         {
             animator.Play(AnimationType.PlayerIdle);
         }
+
+        // state machine to retain state of previous frame
+        isJustGrounded = isGrounded;
     }
 
     private void FixedUpdate()
@@ -94,6 +112,20 @@ public class PlayerController2D : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    void refillAmmo()
+    {
+        // reset shotgun ammo
+        ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
+        shotgunCount.GetComponent<UnityEngine.UI.Text>().text = "Shotgun ammo: " + ShotgunProjectileController.ammoCount.ToString() + "/" + ShotgunProjectileController.maxAmmo.ToString();
+
+        // reset rocket ammo
+        RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
+        rocketCount.GetComponent<UnityEngine.UI.Text>().text = "Rocket ammo: " + RocketProjectileController.ammoCount.ToString() + "/" + RocketProjectileController.maxAmmo.ToString();
+
+        // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
+        WeaponController.nextReloadTime = float.MaxValue;
     }
 
     void OnTriggerEnter2D(Collider2D col)

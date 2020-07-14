@@ -23,6 +23,9 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
+        } else
+        {
+            Destroy(this);
         }
     }
 
@@ -34,13 +37,27 @@ public class LevelManager : MonoBehaviour
         PlayerDie += delegate { respawn(); };
 
     }
-    //Todo: call this function when scene changes
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("QUIT!");
+        Application.Quit();
+    }
+
     void updateLevel()
     {
-        player = GameObject.Find("Penguin");
-        playerSpawnPosition = player.transform.position;
-        currentLevel = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log("updated level, now level: " + currentLevel);
+        if (currentLevel != 0)
+        {
+            player = GameObject.Find("Penguin");
+            playerSpawnPosition = player.transform.position;
+            currentLevel = SceneManager.GetActiveScene().buildIndex;
+            Debug.Log("updated level, now level: " + currentLevel);
+        }
     }
 
     void respawn()

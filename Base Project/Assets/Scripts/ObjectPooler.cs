@@ -17,7 +17,8 @@ public class ObjectPooler : MonoBehaviour  // singleton class
     public Dictionary<string, Pool> poolDictionary;
     
     // all projectile prefabs
-    public GameObject gunProjectilePrefab;
+    public GameObject shotgunProjectilePrefab;
+    public GameObject rocketProjectilePrefab;
 
     // implementing ObjectPooler as singleton
     private static ObjectPooler instance = null;
@@ -47,11 +48,14 @@ public class ObjectPooler : MonoBehaviour  // singleton class
 
     void Start()
     {
-        Pool gunProjectilePool = new Pool {prefab=gunProjectilePrefab, size=10};
+        Pool shotgunProjectilePool = new Pool {prefab=shotgunProjectilePrefab, size=20};
+        Pool rocketProjectilePool = new Pool {prefab=rocketProjectilePrefab, size=10};
+        
         // all existing pools
         poolDictionary = new Dictionary<string, Pool>
         {
-            {"gunProjectile", gunProjectilePool}
+            {"shotgun", shotgunProjectilePool},
+            {"rocket", rocketProjectilePool},
         };
 
         // populate existing pools
@@ -62,6 +66,7 @@ public class ObjectPooler : MonoBehaviour  // singleton class
             {
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
+                DontDestroyOnLoad(obj);
                 pool.objectPool.Add(obj);
             }
         }

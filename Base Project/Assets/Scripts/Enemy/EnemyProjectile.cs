@@ -23,4 +23,9 @@ public class EnemyProjectile : MonoBehaviour
     {
         rb2d.velocity = transform.TransformDirection(new Vector2(projectileSpeed, 0));
     }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
