@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
     public AnimationClip deathAnimationClip;
-    public bool isHit = false;
+    public int health;
 
     // initialize protected variables in child classes
     protected Animator animator;

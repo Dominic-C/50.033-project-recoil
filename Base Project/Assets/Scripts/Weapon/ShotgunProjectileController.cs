@@ -31,11 +31,5 @@ public class ShotgunProjectileController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-
-        else if (other.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(other.transform.parent.gameObject);
-            gameObject.SetActive(false);
-        }
     }
 }
