@@ -38,18 +38,24 @@ public class WeaponController : MonoBehaviour
     private float onGroundReloadInterval = 3.0f;
     public static float nextReloadTime = 0.0f;
 
+    public delegate void GroundReload();
+    public static event GroundReload groundReload;
+    public static void onGroundReload() { groundReload(); }
+
     private void Start()
     {
+        // set up gun and delegate for PlayerController to call event to trigger
         rb2d = PlayerPrefab.GetComponent<Rigidbody2D>();
         equippedGun = GunTypes.ShotGun;
         shotgunRecoilForce = ShotgunProjectileController.recoilForce;
+        groundReload += delegate { refillAmmo(); };
+
+        // weapon UI setup
         WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
         WeaponUI.SetActive(true);
         setWeaponUI(equippedGun);
     }
 
-
-    // Update is called once per frame
     void FixedUpdate()
     {
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -74,12 +80,7 @@ public class WeaponController : MonoBehaviour
 
         if (Time.time > nextReloadTime)
         {
-            // reset shotgun ammo
-            ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
-            
-            // reset rocket ammo
-            RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
-             
+            refillAmmo();
             setWeaponUI(equippedGun);
             if (equippedGun == GunTypes.ShotGun)
             {
@@ -194,6 +195,17 @@ public class WeaponController : MonoBehaviour
             return Tuple.Create(x, y);
         }
     }
+    public void refillAmmo()
+    {
+        // reset shotgun ammo
+        ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
+        // reset rocket ammo
+        RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
+        // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
+        nextReloadTime = float.MaxValue;
+
+        updateAmmoText(getWeaponDataForUI(equippedGun).ammoCount, getWeaponDataForUI(equippedGun).ammoCount);
+    }
 
 
     // set weapon UI methods
@@ -225,7 +237,7 @@ public class WeaponController : MonoBehaviour
         Debug.Log("Ammo reduced");
         if (getWeaponDataForUI(equippedGun) != null)
         {
-            WeaponUIData.updateAmmoText(ammo, maxAmmo);
+            WeaponUIData.updateAmmoText(ammo, getWeaponDataForUI(equippedGun).ammoCount);
         }
     }
 }
