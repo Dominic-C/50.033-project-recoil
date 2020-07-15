@@ -48,7 +48,10 @@ public class PlayerController2D : MonoBehaviour
 
         if (isGrounded && !isJustGrounded)
         {
-            WeaponController.onGroundReload();
+            if (WeaponController.isEnabled)
+            {
+                WeaponController.onGroundReload();
+            }
         }
 
         // move player horizontally based on input

@@ -38,9 +38,16 @@ public class WeaponController : MonoBehaviour
     private float onGroundReloadInterval = 3.0f;
     public static float nextReloadTime = 0.0f;
 
+    public static bool isEnabled = false;
     public delegate void GroundReload();
     public static event GroundReload groundReload;
     public static void onGroundReload() { groundReload(); }
+    
+    void onEnable()
+    {
+        groundReload += delegate { refillAmmo(); };
+        isEnabled = true;
+    }
 
     private void Start()
     {
@@ -48,7 +55,6 @@ public class WeaponController : MonoBehaviour
         rb2d = PlayerPrefab.GetComponent<Rigidbody2D>();
         equippedGun = GunTypes.ShotGun;
         shotgunRecoilForce = ShotgunProjectileController.recoilForce;
-        groundReload += delegate { refillAmmo(); };
 
         // weapon UI setup
         WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
