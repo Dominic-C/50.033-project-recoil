@@ -98,7 +98,7 @@ public class LevelManager : MonoBehaviour
     }
 
     // Progress UI related functions
-    private float maxDistance;
+    private float maxDistance = 0;
     private float currentDistance = 0; // affected by how much player moves from starting point of the level.
     public Slider progressSlider; // UI to show how much the player has progressed in the level.
     public Image progressFill;
