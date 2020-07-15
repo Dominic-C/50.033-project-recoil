@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/TutorialStage4 - JumpAcrossGaps.unity
     guid: 1f6b421852f1a6b46be13c65aca13427
   - enabled: 1
-    path: Assets/Scenes/TutorialStage5 - Enemy.unity
+    path: Assets/Scenes/TutorialStage5 - EnergyCore.unity
     guid: 3e276896419618c40acde35ccbd299ac
   m_configObjects: {}
