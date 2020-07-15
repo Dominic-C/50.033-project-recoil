@@ -9,8 +9,15 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
+    // game attributes
+    public static bool GameIsPaused = false;
+    public GameObject PauseMenuUI;
+
+    // level attributes
     public static LevelManager Instance;
     public static int currentLevel;
+
+    // player attributes
     private GameObject player;
     public Vector3 playerSpawnPosition;
     public delegate void PlayerDeath();
@@ -30,13 +37,36 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         updateLevel();
         SceneManager.sceneLoaded += delegate { updateLevel(); };
         PlayerDie += delegate { respawn(); };
+        PauseMenuUI.SetActive(false);
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!GameIsPaused) PauseGame();
+            else ResumeGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        PauseMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GameIsPaused = !GameIsPaused;
+    }
+
+    public void ResumeGame()
+    {
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = !GameIsPaused;
     }
 
     public void PlayGame()
