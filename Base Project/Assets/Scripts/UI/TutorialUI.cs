@@ -12,22 +12,15 @@ public class TutorialUI : MonoBehaviour
     public bool fadeIn;
     public bool fadeOut;
     public float waitTimeBeforeAnimation = 2.0f;
-    private bool readyToAnimate;
-
-    void onDisabled()
-    {
-        readyToAnimate = false;
-    }
 
     void OnEnable()
     {
-            StartCoroutine(WaitBeforeAnimation());
+        StartCoroutine(WaitBeforeAnimation());
     }
 
     IEnumerator WaitBeforeAnimation()
     {
         yield return new WaitForSeconds(waitTimeBeforeAnimation);
-        readyToAnimate = true;
         foreach (Transform t in gameObject.transform)
         {
             if (fadeIn)
