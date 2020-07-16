@@ -96,12 +96,12 @@ public class Enemy : MonoBehaviour
         if (!val)
         {
             // cannot see player
-            Debug.DrawLine(eyes.position, eyes.position + Vector3.right * castDist, Color.blue);
+            Debug.DrawLine(eyes.position, endPos, Color.blue);
         }
         else
         {
             // can see player
-            Debug.DrawLine(eyes.position, eyes.position + Vector3.right * castDist, Color.yellow);
+            Debug.DrawLine(eyes.position, endPos, Color.yellow);
         }
         return val;
 
