@@ -42,24 +42,21 @@ public class WeaponController : MonoBehaviour
     public delegate void GroundReload();
     public static event GroundReload groundReload;
     public static void onGroundReload() { groundReload(); }
-    
-    void onEnable()
-    {
-        groundReload += delegate { refillAmmo(); };
-        isEnabled = true;
-    }
 
     private void Start()
     {
         // set up gun and delegate for PlayerController to call event to trigger
         rb2d = PlayerPrefab.GetComponent<Rigidbody2D>();
         equippedGun = GunTypes.ShotGun;
-        shotgunRecoilForce = ShotgunProjectileController.recoilForce;
+        shotgunRecoilForce = ShotgunWeaponData.recoilForce;
 
         // weapon UI setup
         WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
         WeaponUI.SetActive(true);
         setWeaponUI(equippedGun);
+
+        groundReload += delegate { refillAmmo(); };
+        isEnabled = true;
     }
 
     void FixedUpdate()
@@ -90,11 +87,11 @@ public class WeaponController : MonoBehaviour
             setWeaponUI(equippedGun);
             if (equippedGun == GunTypes.ShotGun)
             {
-                updateAmmoText(ShotgunProjectileController.maxAmmo, ShotgunProjectileController.maxAmmo);
+                updateAmmoText(ShotgunWeaponData.maxAmmo, ShotgunWeaponData.maxAmmo);
             }
             else if (equippedGun == GunTypes.Rocket)
             {
-                updateAmmoText(RocketProjectileController.maxAmmo, RocketProjectileController.maxAmmo);
+                updateAmmoText(RocketWeaponData.maxAmmo, RocketWeaponData.maxAmmo);
             }
             
             // ensure that ammo will only be reloaded once (esp in combination with the reload when landing on the ground)
@@ -108,7 +105,7 @@ public class WeaponController : MonoBehaviour
         {
             if (equippedGun == GunTypes.ShotGun)
             {
-                if (ShotgunProjectileController.ammoCount > 0 && Time.time > shotgunNextFireTime)
+                if (ShotgunWeaponData.ammoCount > 0 && Time.time > shotgunNextFireTime)
                 {
                     // Generate projectile for shotgun
                     Tuple<float, float> recoilVals = getRecoilValues(shotgunRecoilForce);
@@ -139,11 +136,11 @@ public class WeaponController : MonoBehaviour
                     }
 
                     // update ammoCount and change UI
-                    ShotgunProjectileController.ammoCount -= 1;
-                    updateAmmoText(ShotgunProjectileController.ammoCount, ShotgunProjectileController.maxAmmo);
+                    ShotgunWeaponData.ammoCount -= 1;
+                    updateAmmoText(ShotgunWeaponData.ammoCount, ShotgunWeaponData.maxAmmo);
                     
                     // update next fire time to control fire rate of gun
-                    shotgunNextFireTime = Time.time + ShotgunProjectileController.fireInterval;
+                    shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
 
                     // update next reload time
                     if (PlayerController2D.isGrounded)
@@ -154,7 +151,7 @@ public class WeaponController : MonoBehaviour
             }
             else if (equippedGun == GunTypes.Rocket)
             {
-                if (RocketProjectileController.ammoCount > 0 && Time.time > rocketNextFireTime)
+                if (RocketWeaponData.ammoCount > 0 && Time.time > rocketNextFireTime)
                 {
                     // Generate projectile for rocket
                     projectile = ObjectPooler.Instance.SpawnFromPool("rocket");
@@ -163,11 +160,11 @@ public class WeaponController : MonoBehaviour
                     projectile.SetActive(true);
 
                     // update ammoCount and change UI
-                    RocketProjectileController.ammoCount -= 1;
-                    updateAmmoText(RocketProjectileController.ammoCount, RocketProjectileController.maxAmmo);
+                    RocketWeaponData.ammoCount -= 1;
+                    updateAmmoText(RocketWeaponData.ammoCount, RocketWeaponData.maxAmmo);
                     
                     // update next fire time to control fire rate of gun
-                    rocketNextFireTime = Time.time + RocketProjectileController.fireInterval;
+                    rocketNextFireTime = Time.time + RocketWeaponData.fireInterval;
                 }
             }
         }
@@ -204,9 +201,9 @@ public class WeaponController : MonoBehaviour
     public void refillAmmo()
     {
         // reset shotgun ammo
-        ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
+        ShotgunWeaponData.ammoCount = ShotgunWeaponData.maxAmmo;
         // reset rocket ammo
-        RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
+        RocketWeaponData.ammoCount = RocketWeaponData.maxAmmo;
         // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
         nextReloadTime = float.MaxValue;
 
