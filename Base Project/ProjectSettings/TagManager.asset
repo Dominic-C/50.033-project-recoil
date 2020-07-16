@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - PlayerProjectile
   - EnemyProjectile
+  - WeaponPickup
+  - NextLevelDoor
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - 
   - Ground
   - Action
-  - 
+  - DEATH
   - 
   - 
   - 
@@ -47,6 +49,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3103077775
+    locked: 0
+  - name: DEATH
+    uniqueID: 183714263
     locked: 0
   - name: Platform
     uniqueID: 3220689259
