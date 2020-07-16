@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 
-public class BasicEnemy : Enemy
+public class ArmoredEnemy : Enemy
 {
-    // Start is called before the first frame update
     private Material matWhite;
     private Material matDefault;
 
+    // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -26,36 +24,26 @@ public class BasicEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (canSeePlayer(rangeOfSight))
-        {
-            spriteRenderer.color = Color.red;
-            chasePlayer();
-        }
-        else
-        {
-            spriteRenderer.color = Color.white;
-            patrol();
-        }
-
+        patrol();
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerProjectile"))
+        if (collision.CompareTag("PlayerProjectileRocket"))
         {
             collision.gameObject.SetActive(false); // send back to object pooler
-            health--; // 1 damage
-            spriteRenderer.material = matWhite;
-            Debug.Log("remaining HP: " + health);
+            health--;
             if (health <= 0)
             {
                 KillSelf();
             }
-            else
-            {
-                Invoke("ResetMaterial", 0.1f);
-            }
         }
+        else if (collision.CompareTag("PlayerProjectile"))
+        {
+            collision.gameObject.SetActive(false); // send back to object pooler
+            spriteRenderer.material = matWhite;
+            Invoke("ResetMaterial", 0.1f);
+        }
+
     }
 
     private void ResetMaterial()
