@@ -130,11 +130,35 @@ public class PlayerController2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "NextLevelDoor")
+        if (col.gameObject.CompareTag("NextLevelDoor"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        else if (col.gameObject.tag == "Enemy")
+        else if (col.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Player dies");
+            LevelManager.onPlayerDeath();
+        }
+        else if (col.gameObject.CompareTag("EnemyProjectile"))
+        {
+            Debug.Log("Player dies");
+            Destroy(col.gameObject);
+            LevelManager.onPlayerDeath();
+        }
+        else if (col.gameObject.CompareTag("HomingProjectile"))
+        {
+            Debug.Log("Player dies");
+            Destroy(col.gameObject.transform.parent.gameObject);
+            LevelManager.onPlayerDeath();
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("NextLevelDoor"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Player dies");
             LevelManager.onPlayerDeath();

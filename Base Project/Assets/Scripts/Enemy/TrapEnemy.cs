@@ -13,6 +13,7 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
     public float moveSpeed;
     private bool isGrounded;
     private bool trapTriggered = false;
+    private bool playerTriggered;
     void Start()
     {
         initialPosition = gameObject.transform.position;
@@ -21,8 +22,8 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Player below: " + playerTrigger(activationDistance));
-        if (playerTrigger(activationDistance))
+        playerTriggered = playerTrigger(activationDistance);
+        if (playerTriggered)
         {
             activate();
         }
