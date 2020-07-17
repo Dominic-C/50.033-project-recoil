@@ -28,6 +28,12 @@ public class PlayerController2D : MonoBehaviour
     private GameObject shotgunCount;
     private GameObject rocketCount;
 
+    public AnimationClip idleAnimationClip;
+    public AnimationClip runAnimationClip;
+    public AnimationClip shootBottomAnimationClip;
+    public AnimationClip shootFrontAnimationClip;
+    public AnimationClip shootBackAnimationClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +55,7 @@ public class PlayerController2D : MonoBehaviour
                 // jumpSpeed value is originally 3
                 Vector2 newForce = new Vector2(rb2d.velocity.x, jumpSpeed);
                 rb2d.AddForce(newForce);
-                animator.Play("Player_jump");
+                animator.Play(shootBottomAnimationClip.name);
             }
         }
 
@@ -61,13 +67,13 @@ public class PlayerController2D : MonoBehaviour
 
         // move player horizontally based on input
         float horizontalTranslate = Input.GetAxis("Horizontal");
-        if (horizontalTranslate == 1)  // right button is pressed
+        if (horizontalTranslate == 1 && isGrounded)  // right button is pressed
         {
             // rb2d.AddForce(new Vector2(runSpeed, rb2d.velocity.y));
             rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
             if (isGrounded)
             {
-                animator.Play(AnimationType.PlayerRun);
+                animator.Play(runAnimationClip.name);
             }
 
             // rotate player and gun based on change in direction
@@ -77,12 +83,12 @@ public class PlayerController2D : MonoBehaviour
                 transform.Rotate(0f, 180f, 0f);  // rotating transform instead of flipping spriteRenderer would change the coordinate system of the child elements
             }
         }
-        else if (horizontalTranslate == -1)  // left button is pressed
+        else if (horizontalTranslate == -1 && isGrounded)  // left button is pressed
         {
             rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
             if (isGrounded)
             {
-                animator.Play(AnimationType.PlayerRun);
+                animator.Play(runAnimationClip.name);
             }
 
             // rotate player and gun based on change in direction
@@ -92,9 +98,14 @@ public class PlayerController2D : MonoBehaviour
                 transform.Rotate(0f, 180f, 0f);
             }
         }
-        else
+        else if (isGrounded)
         {
-            animator.Play(AnimationType.PlayerIdle);
+            animator.Play(idleAnimationClip.name);
+        }
+
+        else if (!isGrounded)
+        {
+            animator.Play(shootFrontAnimationClip.name);
         }
 
         // state machine to retain state of previous frame
