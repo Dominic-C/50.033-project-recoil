@@ -47,6 +47,7 @@ public class PlayerController2D : MonoBehaviour
 
     void Update()
     {
+        /*
         if (isGrounded)
         {
             // jump logic
@@ -58,19 +59,20 @@ public class PlayerController2D : MonoBehaviour
                 animator.Play(shootBottomAnimationClip.name);
             }
         }
+        */
 
+        
         if (isGrounded && !isJustGrounded)
         {
             // refill Ammo
             if (shotgunCount && rocketCount) refillAmmo();
         }
-
         // move player horizontally based on input
         float horizontalTranslate = Input.GetAxis("Horizontal");
         if (horizontalTranslate == 1 && isGrounded)  // right button is pressed
         {
             // rb2d.AddForce(new Vector2(runSpeed, rb2d.velocity.y));
-            rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y); // this line causing weird behaviour (player stops and slows down mid air)
             if (isGrounded)
             {
                 animator.Play(runAnimationClip.name);

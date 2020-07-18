@@ -112,6 +112,7 @@ public class Enemy : MonoBehaviour
         // ====================================== Patrol Logic ========================================
         // move towards x position only, ignoring y positions
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveSpots[randomSpot].position.x, transform.position.y), moveSpeed * Time.deltaTime);
+
         // check if it has reached the spot (with some error margin), if yes, then move to another random location
         if (Vector2.Distance(transform.position, new Vector2(moveSpots[randomSpot].position.x, transform.position.y)) < 0.02f)
         {

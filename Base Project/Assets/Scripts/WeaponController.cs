@@ -107,7 +107,7 @@ public class WeaponController : MonoBehaviour
                     Tuple<float, float> recoilVals = getRecoilValues(shotgunRecoilForce);
                     float horizontalForce = rb2d.velocity.x + recoilVals.Item1;
                     float verticalForce = rb2d.velocity.y + recoilVals.Item2;
-                    rb2d.AddForce(new Vector2(horizontalForce, verticalForce));
+                    rb2d.AddForce(new Vector2(horizontalForce, verticalForce)); // this conflicts with player's running velocity
                     
                     projectile0 = ObjectPooler.Instance.SpawnFromPool("shotgun");
                     if (projectile0 != null)
