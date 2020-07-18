@@ -6,6 +6,7 @@ public class ArmoredEnemy : Enemy
 {
     private Material matWhite;
     private Material matDefault;
+    private UnityEngine.Object explosionRef;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,9 @@ public class ArmoredEnemy : Enemy
         health = 1;
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material; // cast as material. By default, Resources.Load returns Object
         matDefault = spriteRenderer.material;
+        explosionRef = Resources.Load("Explosion");
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
     }
 
     // Update is called once per frame
@@ -53,7 +57,9 @@ public class ArmoredEnemy : Enemy
 
     private void KillSelf()
     {
-        // TODO: add death animation (particle burst? ghost come out?)
+        GameObject explosion = (GameObject)Instantiate(explosionRef);
+        explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
+        Destroy(explosion, 5.0f);
         Destroy(transform.parent.gameObject);
     }
 }

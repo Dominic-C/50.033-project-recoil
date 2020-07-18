@@ -25,6 +25,7 @@ public class BasicEnemy : Enemy
         matDefault = spriteRenderer.material;
         explosionRef = Resources.Load("Explosion");
         isHit = false;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
