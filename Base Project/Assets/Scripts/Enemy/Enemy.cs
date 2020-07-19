@@ -5,14 +5,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform player;
+    protected Transform player;
     public Transform eyes;
     public float moveSpeed;
     public float chaseSpeed;
     public float rangeOfSight;
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
-    public AnimationClip deathAnimationClip;
     public int health;
 
     // initialize protected variables in child classes
@@ -166,12 +165,5 @@ public class Enemy : MonoBehaviour
             rb2d.velocity = new Vector2(-chaseSpeed, 0);
         }
 
-    }
-
-    protected void die()
-    {
-        animator.Play(deathAnimationClip.name);
-        // todo add coroutine
-        Destroy(this.gameObject); //destroys the object after animation ended
     }
 }

@@ -9,6 +9,9 @@ public class EnemyShooter : Enemy
     public float startTimeBetweenShots; // seconds
     public GameObject projectile;
     private bool playerInSight;
+    private bool isHit;
+    private UnityEngine.Object explosionRef;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,9 @@ public class EnemyShooter : Enemy
         spriteRenderer = GetComponent<SpriteRenderer>();
         isFacingLeft = false;
         timeBetweenShots = 0;
+        explosionRef = Resources.Load("Explosion");
+        isHit = false;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -57,6 +63,32 @@ public class EnemyShooter : Enemy
             timeBetweenShots -= Time.deltaTime;
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PlayerProjectile") && !isHit)
+        {
+            collision.gameObject.SetActive(false); // send back to object pooler
+            health--; // 1 damage
+            isHit = true;
+            Debug.Log("remaining HP: " + health);
+            if (health <= 0)
+            {
+                KillSelf();
+            }
+            else
+            {
+                Invoke("ResetMaterial", 0.1f);
+            }
+        }
+    }
+
+    private void KillSelf()
+    {
+        GameObject explosion = (GameObject)Instantiate(explosionRef);
+        explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
+        Destroy(explosion, 5.0f);
+        Destroy(transform.parent.gameObject);
     }
 }
 
