@@ -61,7 +61,11 @@ public class PlayerController2D : MonoBehaviour
                 {
                     // move
                     animator.Play(runAnimationClip.name);
-                    rb2d.velocity = new Vector2(runSpeed, 0.0f);
+                    // rb2d.velocity = new Vector2(runSpeed, 0.0f);
+                    if (rb2d.velocity.x < runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
                 }
                 else
                 {
@@ -72,7 +76,7 @@ public class PlayerController2D : MonoBehaviour
                 if (Input.GetKey("space"))
                 {
                     isGrounded = false; // prevent double jumping
-                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0.0f); // prevent inconsistent jumps
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0.0f); // prevent inconsistent jump height
                     rb2d.AddForce(new Vector2(0.0f, 5.0f), ForceMode2D.Impulse);
                     animator.Play(shootFrontAnimationClip.name);
                 }
@@ -110,8 +114,11 @@ public class PlayerController2D : MonoBehaviour
                 {
                     // move
                     animator.Play(runAnimationClip.name);
-                    rb2d.velocity = new Vector2(-runSpeed, 0.0f);
-
+                    //rb2d.velocity = new Vector2(-runSpeed, 0.0f);
+                    if (rb2d.velocity.x > -runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
                 }
                 else
                 {
@@ -140,7 +147,7 @@ public class PlayerController2D : MonoBehaviour
                 // if didnt already press up in air (remove if causes issue with gun recoil)
                 if (!leftPressedInAir)
                 {
-                    rb2d.velocity = new Vector2(rb2d.velocity.x + 1f, rb2d.velocity.y);
+                    //rb2d.velocity = new Vector2(rb2d.velocity.x + 1f, rb2d.velocity.y);
                     leftPressedInAir = true;
                     rightPressedInAir = false;
                 }
@@ -152,6 +159,7 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
             */
+            
             else if (Input.GetKey("space") && isGrounded) // temporary to test removing of controls when jumping
             {
                 isGrounded = false; // prevent double jumping
@@ -168,6 +176,7 @@ public class PlayerController2D : MonoBehaviour
             else if (isGrounded)
             {
                 // play idle animation
+                rb2d.velocity = Vector2.zero;
                 animator.Play(idleAnimationClip.name);
             }
 
