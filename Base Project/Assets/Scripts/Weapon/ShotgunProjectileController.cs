@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class ShotgunProjectileController : MonoBehaviour
 {
-    // public static float projectileSpeed = 10.0f;
-    // public static float recoilForce = 300.0f;
-    // public static float fireInterval = 0.3f;
-    // public static int ammoCount = 2;
-    // public static int maxAmmo = 2;
     public WeaponData ShotgunWeaponData;
     private Rigidbody2D rb2d;
     

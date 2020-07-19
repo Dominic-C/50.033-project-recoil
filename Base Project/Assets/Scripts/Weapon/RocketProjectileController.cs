@@ -5,12 +5,6 @@ using UnityEngine;
 public class RocketProjectileController : MonoBehaviour
 {
     private Rigidbody2D rb2d;
-    // public static float projectileSpeed = 3.0f;
-    // public static float recoilForce = 300.0f;
-    // public static float fireInterval = 1.0f;
-    // public static int ammoCount = 1;
-    // public static int maxAmmo = 1;
-
     private GameObject playerPrefab;
     private Rigidbody2D playerRb2d;
     public WeaponData RocketWeaponData;

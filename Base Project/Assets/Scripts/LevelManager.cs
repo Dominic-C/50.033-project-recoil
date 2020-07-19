@@ -13,6 +13,9 @@ public class LevelManager : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject PauseMenuUI;
 
+    public static bool InputSettingIsOn = false;
+    public GameObject InputSettingUI;
+
     // level attributes
     public static LevelManager Instance;
     public static int currentLevel;
@@ -43,6 +46,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded += delegate { updateLevel(); };
         PlayerDie += delegate { respawn(); };
         PauseMenuUI.SetActive(false);
+        InputSettingUI.SetActive(false);
 
     }
 
@@ -67,6 +71,18 @@ public class LevelManager : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = !GameIsPaused;
+    }
+
+    public void OpenInputSetting()
+    {
+        PauseMenuUI.SetActive(false);
+        InputSettingUI.SetActive(true);
+        InputSettingIsOn = true;
+    }
+
+    IEnumerator TimesleepCoroutine(int duration)
+    {
+        yield return new WaitForSecondsRealtime(duration);
     }
 
     public void PlayGame()
