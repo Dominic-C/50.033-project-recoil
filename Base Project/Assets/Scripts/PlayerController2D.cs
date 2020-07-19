@@ -13,7 +13,8 @@ public class PlayerController2D : MonoBehaviour
     public static bool isFacingRight;
     public static bool isGrounded;
     public static bool isJustGrounded;
-
+    private bool leftPressedInAir;
+    private bool rightPressedInAir;
 
     [SerializeField]
     Transform groundCheck;
@@ -54,60 +55,122 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
-            // move player horizontally based on input
-            float horizontalTranslate = Input.GetAxis("Horizontal");
-
-            if (horizontalTranslate == 1 && isGrounded)  // right button is pressed
+            if (Input.GetKey("d") && isGrounded)
             {
-                // rb2d.AddForce(new Vector2(runSpeed, rb2d.velocity.y));
-                rb2d.velocity = new Vector2(runSpeed, rb2d.velocity.y);
                 if (isGrounded)
                 {
+                    // move
                     animator.Play(runAnimationClip.name);
+                    rb2d.velocity = new Vector2(runSpeed, 0.0f);
+                }
+                else
+                {
+                    // play jump animation
+                    animator.Play(shootFrontAnimationClip.name);
                 }
 
-                // rotate player and gun based on change in direction
+                if (Input.GetKey("space"))
+                {
+                    isGrounded = false; // prevent double jumping
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0.0f); // prevent inconsistent jumps
+                    rb2d.AddForce(new Vector2(0.0f, 5.0f), ForceMode2D.Impulse);
+                    animator.Play(shootFrontAnimationClip.name);
+                }
+
+                // flipping game object logic
                 if (!isFacingRight)
                 {
                     isFacingRight = true;
                     transform.Rotate(0f, 180f, 0f);  // rotating transform instead of flipping spriteRenderer would change the coordinate system of the child elements
                 }
             }
-            else if (horizontalTranslate == -1)  // left button is pressed
+
+            /*
+            else if (Input.GetKey("d") && !isGrounded)
             {
-                rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
+                if (!rightPressedInAir)
+                {
+                    rb2d.velocity = new Vector2(rb2d.velocity.x - 1f, rb2d.velocity.y);
+                    rightPressedInAir = true;
+                    leftPressedInAir = false;
+                }
+                
+                // flipping game object logic
+                if (!isFacingRight)
+                {
+                    isFacingRight = true;
+                    transform.Rotate(0f, 180f, 0f);
+                }
+            }
+            */
+
+            else if (Input.GetKey("a") && isGrounded)
+            {
                 if (isGrounded)
                 {
-                    animator.Play(AnimationType.PlayerRun);
+                    // move
+                    animator.Play(runAnimationClip.name);
+                    rb2d.velocity = new Vector2(-runSpeed, 0.0f);
+
+                }
+                else
+                {
+                    // play jump animation
+                    animator.Play(shootFrontAnimationClip.name);
+                }
+                
+                if (Input.GetKey("space"))
+                {
+                    isGrounded = false; // prevent double jumping
+                    rb2d.velocity = new Vector2(rb2d.velocity.x, 0.0f); // prevent inconsistent jumps
+                    rb2d.AddForce(new Vector2(0.0f, 5.0f), ForceMode2D.Impulse);
+                    animator.Play(shootFrontAnimationClip.name);
                 }
 
-                // rotate player and gun based on change in direction
                 if (isFacingRight)
                 {
                     isFacingRight = false;
                     transform.Rotate(0f, 180f, 0f);
                 }
             }
-            else if (horizontalTranslate == -1 && isGrounded)  // left button is pressed
+
+            /*
+            else if (Input.GetKey("a") && !isGrounded)
             {
-                rb2d.velocity = new Vector2(-runSpeed, rb2d.velocity.y);
-                if (isGrounded)
+                // if didnt already press up in air (remove if causes issue with gun recoil)
+                if (!leftPressedInAir)
                 {
-                    animator.Play(runAnimationClip.name);
+                    rb2d.velocity = new Vector2(rb2d.velocity.x + 1f, rb2d.velocity.y);
+                    leftPressedInAir = true;
+                    rightPressedInAir = false;
                 }
 
-                // state machine to retain state of previous frame
-                isJustGrounded = isGrounded;
+                if (isFacingRight)
+                {
+                    isFacingRight = false;
+                    transform.Rotate(0f, 180f, 0f);
+                }
+            }
+            */
+            else if (Input.GetKey("space") && isGrounded) // temporary to test removing of controls when jumping
+            {
+                isGrounded = false; // prevent double jumping
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 0.0f); // prevent inconsistent jumps
+                rb2d.AddForce(new Vector2(0.0f, 5.0f), ForceMode2D.Impulse);
+                animator.Play(shootFrontAnimationClip.name);
+            }
+            else if (!isGrounded) // not grounded and no player input
+            {
+                // play jump animation
+                animator.Play(shootFrontAnimationClip.name);
+
             }
             else if (isGrounded)
             {
+                // play idle animation
                 animator.Play(idleAnimationClip.name);
             }
 
-            else if (!isGrounded)
-            {
-                animator.Play(shootFrontAnimationClip.name);
-            }
 
             // state machine to retain state of previous frame
             isJustGrounded = isGrounded;
@@ -120,6 +183,9 @@ public class PlayerController2D : MonoBehaviour
         {
 
             isGrounded = true;
+            leftPressedInAir = false;
+            rightPressedInAir = false;
+            
         }
         else
         {
