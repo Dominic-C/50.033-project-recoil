@@ -89,12 +89,12 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
-            /*
+            
             else if (Input.GetKey("d") && !isGrounded)
             {
                 if (!rightPressedInAir)
                 {
-                    rb2d.velocity = new Vector2(rb2d.velocity.x - 1f, rb2d.velocity.y);
+                    if (rb2d.velocity.x < runSpeed) rb2d.AddForce(new Vector2(0.4f, 0.0f), ForceMode2D.Impulse);
                     rightPressedInAir = true;
                     leftPressedInAir = false;
                 }
@@ -106,7 +106,7 @@ public class PlayerController2D : MonoBehaviour
                     transform.Rotate(0f, 180f, 0f);
                 }
             }
-            */
+            
 
             else if (Input.GetKey("a") && isGrounded)
             {
@@ -141,13 +141,13 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
-            /*
+            
             else if (Input.GetKey("a") && !isGrounded)
             {
                 // if didnt already press up in air (remove if causes issue with gun recoil)
                 if (!leftPressedInAir)
                 {
-                    //rb2d.velocity = new Vector2(rb2d.velocity.x + 1f, rb2d.velocity.y);
+                    if (rb2d.velocity.x > -runSpeed) rb2d.AddForce(new Vector2(-0.4f, 0.0f), ForceMode2D.Impulse);
                     leftPressedInAir = true;
                     rightPressedInAir = false;
                 }
@@ -158,7 +158,7 @@ public class PlayerController2D : MonoBehaviour
                     transform.Rotate(0f, 180f, 0f);
                 }
             }
-            */
+            
             
             else if (Input.GetKey("space") && isGrounded) // temporary to test removing of controls when jumping
             {
