@@ -55,6 +55,7 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
+            // press right and is grounded
             if (Input.GetKey("d") && isGrounded)
             {
                 if (isGrounded)
@@ -89,7 +90,7 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
-            
+            // press right but not grounded
             else if (Input.GetKey("d") && !isGrounded)
             {
                 if (!rightPressedInAir)
@@ -107,7 +108,7 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
             
-
+            // press left and is grounded
             else if (Input.GetKey("a") && isGrounded)
             {
                 if (isGrounded)
@@ -141,7 +142,7 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
-            
+            // press left but not grounded
             else if (Input.GetKey("a") && !isGrounded)
             {
                 // if didnt already press up in air (remove if causes issue with gun recoil)
@@ -159,19 +160,39 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
             
-            
+            // temporary jump button via add force
             else if (Input.GetKey("space") && isGrounded) // temporary to test removing of controls when jumping
             {
                 isGrounded = false; // prevent double jumping
-                rb2d.velocity = new Vector2(rb2d.velocity.x, 0.0f); // prevent inconsistent jumps
+                rb2d.velocity = new Vector2(rb2d.velocity.x, 0.0f); // prevent inconsistent jumps (need to add velocity = 0,0 for all shots?)
                 rb2d.AddForce(new Vector2(0.0f, 5.0f), ForceMode2D.Impulse);
                 animator.Play(shootFrontAnimationClip.name);
             }
-            else if (!isGrounded) // not grounded and no player input
+            else if (!isGrounded) // not grounded and no player movement input
             {
-                // play jump animation
-                animator.Play(shootFrontAnimationClip.name);
+                if (isFacingRight && rb2d.velocity.x > 0)
+                {
+                    animator.Play(shootBackAnimationClip.name);
+                }
 
+                else if (isFacingRight && rb2d.velocity.x < 0)
+                {
+                    animator.Play(shootFrontAnimationClip.name);
+                }
+
+                else if (!isFacingRight && rb2d.velocity.x > 0)
+                {
+                    animator.Play(shootFrontAnimationClip.name);
+                }
+
+                else if (!isFacingRight && rb2d.velocity.x < 0)
+                {
+                    animator.Play(shootBackAnimationClip.name);
+                }
+                else
+                {
+                    animator.Play(shootBottomAnimationClip.name);
+                }
             }
             else if (isGrounded)
             {
@@ -180,9 +201,31 @@ public class PlayerController2D : MonoBehaviour
                 animator.Play(idleAnimationClip.name);
             }
 
+            // simulation for weapon controller forces
+            if (Input.GetKey("i"))
+            {
+                rb2d.AddForce(new Vector2(0.0f, 0.5f), ForceMode2D.Impulse);
+            }
+
+            if (Input.GetKey("j"))
+            {
+                rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
+            }
+
+            if (Input.GetKey("l"))
+            {
+                rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
+            }
+
+            if (Input.GetKey("k"))
+            {
+                rb2d.AddForce(new Vector2(0.0f, -1.0f), ForceMode2D.Impulse);
+            }
 
             // state machine to retain state of previous frame
             isJustGrounded = isGrounded;
+
+
         }
     }
 
