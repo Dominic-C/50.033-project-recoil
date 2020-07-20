@@ -10,7 +10,7 @@ public class PlayerController2D : MonoBehaviour
     private Rigidbody2D rb2d;
 
     // states
-    public static bool isFacingRight;
+    public static bool isFacingRight, prevFaceRight;
     public static bool isGrounded;
     public static bool isJustGrounded;
     private bool leftPressedInAir;
@@ -48,12 +48,20 @@ public class PlayerController2D : MonoBehaviour
         animator = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
+        prevFaceRight = true;
     }
 
     void Update()
     {
+        // Controller Mode
+        // Check For Pause State
         if (!LevelManager.GameIsPaused)
         {
+            // Get Inputs;
+            bool rightPressed = Input.GetKey("d");
+            bool leftPressed = Input.GetKey("a");
+
+            // Reload Loop
             if (isGrounded && !isJustGrounded)
             {
                 if (WeaponController.isEnabled)
@@ -61,133 +69,82 @@ public class PlayerController2D : MonoBehaviour
                     WeaponController.onGroundReload();
                 }
             }
-
-            // press right and is grounded
-            if (Input.GetKey("d") && isGrounded)
+            // Check for Grounded State
+            if (isGrounded)
             {
-                if (isGrounded)
+                // Move Right on ground
+                if (rightPressed)
                 {
-                    // move
                     animator.Play(runAnimationClip.name);
-                    // rb2d.velocity = new Vector2(runSpeed, 0.0f);
                     if (rb2d.velocity.x < runSpeed)
                     {
                         rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
                     }
-                }
-                else
-                {
-                    // play jump animation
-                    animator.Play(shootFrontAnimationClip.name);
-                }
-
-                // flipping game object logic
-                if (!isFacingRight)
-                {
                     isFacingRight = true;
-                    transform.Rotate(0f, 180f, 0f);  // rotating transform instead of flipping spriteRenderer would change the coordinate system of the child elements
                 }
-            }
-
-            // press right but not grounded
-            else if (Input.GetKey("d") && !isGrounded)
-            {
-                if (!rightPressedInAir)
+                // Move Left on ground
+                else if (leftPressed)
                 {
-                    if (rb2d.velocity.x < runSpeed) rb2d.AddForce(new Vector2(airControlImpulse, 0.0f), ForceMode2D.Impulse);
-                    rightPressedInAir = true;
-                    leftPressedInAir = false;
-                }
-
-                animationLogicNotGrounded();
-                // flipping game object logic
-                if (!isFacingRight)
-                {
-                    isFacingRight = true;
-                    transform.Rotate(0f, 180f, 0f);
-                }
-            }
-            
-            // press left and is grounded
-            else if (Input.GetKey("a") && isGrounded)
-            {
-                if (isGrounded)
-                {
-                    // move
                     animator.Play(runAnimationClip.name);
-                    //rb2d.velocity = new Vector2(-runSpeed, 0.0f);
                     if (rb2d.velocity.x > -runSpeed)
                     {
                         rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
                     }
-                }
-                else
-                {
-                    // play jump animation
-                    animator.Play(shootFrontAnimationClip.name);
-                }
-
-                if (isFacingRight)
-                {
                     isFacingRight = false;
-                    transform.Rotate(0f, 180f, 0f);
+                }
+                else // Idle Animation
+                {
+                    animator.Play(idleAnimationClip.name);
                 }
             }
-
-            // press left but not grounded
-            else if (Input.GetKey("a") && !isGrounded)
+            else // Not Grounded
             {
-                // if didnt already press up in air (remove if causes issue with gun recoil)
-                if (!leftPressedInAir)
-                {
-                    if (rb2d.velocity.x > -runSpeed) rb2d.AddForce(new Vector2(-airControlImpulse, 0.0f), ForceMode2D.Impulse);
-                    leftPressedInAir = true;
-                    rightPressedInAir = false;
-                }
                 animationLogicNotGrounded();
 
-                if (isFacingRight)
+                // Press Right in Air
+                if (rightPressed)
                 {
+                    if (rb2d.velocity.x < runSpeed)
+                    { rb2d.AddForce(new Vector2(airControlImpulse, 0.0f), ForceMode2D.Impulse); }
+                    isFacingRight = true;
+                }
+                // Left Press in Air
+                else if (leftPressed)
+                {
+                    if (rb2d.velocity.x > -runSpeed)
+                    { rb2d.AddForce(new Vector2(-airControlImpulse, 0.0f), ForceMode2D.Impulse); }
                     isFacingRight = false;
-                    transform.Rotate(0f, 180f, 0f);
                 }
             }
-            
-            else if (!isGrounded) // not grounded and no player movement input
+            // Rotate Direction of GameObject Sprite
+            // IFF we change directions now
+            if (isFacingRight != prevFaceRight)
             {
-                animationLogicNotGrounded();
-            }
-            else if (isGrounded)
-            {
-                // play idle animation
-                // TODO: change line below to only work if recoil is not expected. (OR, use friction on materials to simulate)
-                // rb2d.velocity = Vector2.zero;
-                animator.Play(idleAnimationClip.name);
+                transform.Rotate(0f, 180f, 0f);
             }
 
             // state machine to retain state of previous frame
             isJustGrounded = isGrounded;
-
-
+            prevFaceRight = isFacingRight;
         }
     }
 
     private void FixedUpdate()
     {
+        // Setup Physics State
         if (Physics2D.Linecast(transform.position, groundCheck1.position, 1 << LayerMask.NameToLayer("Ground"))
             || Physics2D.Linecast(transform.position, groundCheck2.position, 1 << LayerMask.NameToLayer("Ground"))
             || Physics2D.Linecast(transform.position, groundCheck3.position, 1 << LayerMask.NameToLayer("Ground")))
         {
-
             isGrounded = true;
             leftPressedInAir = false;
             rightPressedInAir = false;
-            
         }
         else
         {
             isGrounded = false;
         }
+
     }
 
     private void animationLogicNotGrounded()

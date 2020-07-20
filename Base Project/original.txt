@@ -1,0 +1,102 @@
+// press right and is grounded
+            if (Input.GetKey("d") && isGrounded)
+            {
+                if (isGrounded)
+                {
+                    // move
+                    animator.Play(runAnimationClip.name);
+                    // rb2d.velocity = new Vector2(runSpeed, 0.0f);
+                    if (rb2d.velocity.x < runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
+                }
+                else
+                {
+                    // play jump animation
+                    animator.Play(shootFrontAnimationClip.name);
+                }
+
+                // flipping game object logic
+                if (!isFacingRight)
+                {
+                    isFacingRight = true;
+                    transform.Rotate(0f, 180f, 0f);  // rotating transform instead of flipping spriteRenderer would change the coordinate system of the child elements
+                }
+            }
+
+            // press right but not grounded
+            else if (Input.GetKey("d") && !isGrounded)
+            {
+                if (!rightPressedInAir)
+                {
+                    if (rb2d.velocity.x < runSpeed) rb2d.AddForce(new Vector2(airControlImpulse, 0.0f), ForceMode2D.Impulse);
+                    rightPressedInAir = true;
+                    leftPressedInAir = false;
+                }
+
+
+                // flipping game object logic
+                if (!isFacingRight)
+                {
+
+                    transform.Rotate(0f, 180f, 0f);
+                }
+            }
+
+            // press left and is grounded
+            else if (Input.GetKey("a") && isGrounded)
+            {
+                if (isGrounded)
+                {
+                    // move
+                    animator.Play(runAnimationClip.name);
+                    //rb2d.velocity = new Vector2(-runSpeed, 0.0f);
+                    if (rb2d.velocity.x > -runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
+                }
+                else
+                {
+                    // play jump animation
+                    animator.Play(shootFrontAnimationClip.name);
+                }
+
+                if (isFacingRight)
+                {
+                    isFacingRight = false;
+                    transform.Rotate(0f, 180f, 0f);
+                }
+            }
+
+            // press left but not grounded
+            else if (Input.GetKey("a") && !isGrounded)
+            {
+                // if didnt already press up in air (remove if causes issue with gun recoil)
+                if (!leftPressedInAir)
+                {
+                    if (rb2d.velocity.x > -runSpeed) rb2d.AddForce(new Vector2(-airControlImpulse, 0.0f), ForceMode2D.Impulse);
+                    leftPressedInAir = true;
+                    rightPressedInAir = false;
+                }
+                animationLogicNotGrounded();
+
+                if (isFacingRight)
+                {
+                    isFacingRight = false;
+                    transform.Rotate(0f, 180f, 0f);
+                }
+            }
+
+            else if (!isGrounded) // not grounded and no player movement input
+            {
+                animationLogicNotGrounded();
+            }
+            else if (isGrounded)
+            {
+                // play idle animation
+                // TODO: change line below to only work if recoil is not expected. (OR, use friction on materials to simulate)
+                // rb2d.velocity = Vector2.zero;
+                animator.Play(idleAnimationClip.name);
+            }
