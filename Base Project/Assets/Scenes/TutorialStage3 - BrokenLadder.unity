@@ -1645,6 +1645,11 @@ PrefabInstance:
       propertyPath: WeaponUI
       value: 
       objectReference: {fileID: 742165028}
+    - target: {fileID: 7774105931475348264, guid: a47df02acc85bae449f59da618a21e11,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a47df02acc85bae449f59da618a21e11, type: 3}
 --- !u!1 &1966194538
