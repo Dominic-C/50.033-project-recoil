@@ -99,7 +99,7 @@ public class LevelManager : MonoBehaviour
         currentLevel = SceneManager.GetActiveScene().buildIndex;
         if (currentLevel >= 0)
         {
-            player = GameObject.Find("Player");
+            player = GameObject.FindGameObjectWithTag("Player");
             playerSpawnPosition = player.transform.position;
             Debug.Log("updated level, now level: " + currentLevel);
         }
