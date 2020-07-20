@@ -10,6 +10,8 @@ TagManager:
   - EnemyProjectile
   - WeaponPickup
   - NextLevelDoor
+  - HomingProjectile
+  - PlayerProjectileRocket
   layers:
   - Default
   - TransparentFX
@@ -61,6 +63,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 3512748085
+    locked: 0
+  - name: PlayerHands
+    uniqueID: 3643723693
     locked: 0
   - name: Weapon
     uniqueID: 972492851

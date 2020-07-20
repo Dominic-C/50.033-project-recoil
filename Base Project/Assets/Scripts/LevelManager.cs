@@ -13,6 +13,9 @@ public class LevelManager : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject PauseMenuUI;
 
+    public static bool InputSettingIsOn = false;
+    public GameObject InputSettingUI;
+
     // level attributes
     public static LevelManager Instance;
     public static int currentLevel;
@@ -30,7 +33,6 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
-            // DontDestroyOnLoad(player);
         } else
         {
             Destroy(this);
@@ -43,7 +45,6 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded += delegate { updateLevel(); };
         PlayerDie += delegate { respawn(); };
         PauseMenuUI.SetActive(false);
-
     }
 
     void Update()
@@ -60,6 +61,7 @@ public class LevelManager : MonoBehaviour
         PauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = !GameIsPaused;
+        savePlayerData();
     }
 
     public void ResumeGame()
@@ -67,6 +69,18 @@ public class LevelManager : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = !GameIsPaused;
+    }
+
+    public void OpenInputSetting()
+    {
+        PauseMenuUI.SetActive(false);
+        InputSettingUI.SetActive(true);
+        InputSettingIsOn = true;
+    }
+
+    IEnumerator TimesleepCoroutine(int duration)
+    {
+        yield return new WaitForSecondsRealtime(duration);
     }
 
     public void PlayGame()
@@ -83,7 +97,7 @@ public class LevelManager : MonoBehaviour
     void updateLevel()
     {
         currentLevel = SceneManager.GetActiveScene().buildIndex;
-        if (currentLevel > 0)
+        if (currentLevel >= 0)
         {
             player = GameObject.Find("Player");
             playerSpawnPosition = player.transform.position;
@@ -91,11 +105,25 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void respawn()
+    public void respawn()
     {
         Debug.Log("Respawning");
         player.transform.position = playerSpawnPosition;
     }
+
+    public void savePlayerData()
+    {
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void loadPlayerData()
+    {
+        PlayerData playerData = SaveSystem.LoadPlayer();
+        int levelToLoad = playerData.level;
+        SceneManager.LoadScene(levelToLoad);
+    }
+
+    #region UI Related Functions
 
     // Progress UI related functions
     private float maxDistance = 0;
@@ -128,4 +156,5 @@ public class LevelManager : MonoBehaviour
         progressFill.color = progressColorGradient.Evaluate(currentDistance / maxDistance);
     }
 
+    #endregion 
 }

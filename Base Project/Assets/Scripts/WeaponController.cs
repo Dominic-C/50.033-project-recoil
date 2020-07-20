@@ -8,6 +8,7 @@ static class GunTypes
 {
     public const string Rocket = "rocket";
     public const string ShotGun = "shotgun";
+    public const string Flamethrower = "flamethrower";
 }
 
 public class WeaponController : MonoBehaviour
@@ -19,6 +20,7 @@ public class WeaponController : MonoBehaviour
     private CurrWeaponUI WeaponUIData;
     public WeaponData ShotgunWeaponData;
     public WeaponData RocketWeaponData;
+    public WeaponData FlamethrowerWeaponData;
 
     private GameObject projectile;
     private GameObject projectile0;
@@ -29,11 +31,10 @@ public class WeaponController : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private string equippedGun;
-    
-    private float shotgunRecoilForce;
 
     private float shotgunNextFireTime = 0.0f;  // in seconds
     private float rocketNextFireTime = 0.0f;
+    private float flamethrowerNextFireTime = 0.0f;
 
     private float onGroundReloadInterval = 3.0f;
     public static float nextReloadTime = 0.0f;
@@ -42,24 +43,20 @@ public class WeaponController : MonoBehaviour
     public delegate void GroundReload();
     public static event GroundReload groundReload;
     public static void onGroundReload() { groundReload(); }
-    
-    void onEnable()
-    {
-        groundReload += delegate { refillAmmo(); };
-        isEnabled = true;
-    }
 
     private void Start()
     {
         // set up gun and delegate for PlayerController to call event to trigger
         rb2d = PlayerPrefab.GetComponent<Rigidbody2D>();
         equippedGun = GunTypes.ShotGun;
-        shotgunRecoilForce = ShotgunProjectileController.recoilForce;
 
         // weapon UI setup
         WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
         WeaponUI.SetActive(true);
         setWeaponUI(equippedGun);
+
+        groundReload += delegate { refillAmmo(); };
+        isEnabled = true;
     }
 
     void FixedUpdate()
@@ -90,11 +87,15 @@ public class WeaponController : MonoBehaviour
             setWeaponUI(equippedGun);
             if (equippedGun == GunTypes.ShotGun)
             {
-                updateAmmoText(ShotgunProjectileController.maxAmmo, ShotgunProjectileController.maxAmmo);
+                updateAmmoText(ShotgunWeaponData.maxAmmo, ShotgunWeaponData.maxAmmo);
             }
             else if (equippedGun == GunTypes.Rocket)
             {
-                updateAmmoText(RocketProjectileController.maxAmmo, RocketProjectileController.maxAmmo);
+                updateAmmoText(RocketWeaponData.maxAmmo, RocketWeaponData.maxAmmo);
+            }
+            else if (equippedGun == GunTypes.Flamethrower)
+            {
+                updateAmmoText(FlamethrowerWeaponData.maxAmmo, FlamethrowerWeaponData.maxAmmo);
             }
             
             // ensure that ammo will only be reloaded once (esp in combination with the reload when landing on the ground)
@@ -104,17 +105,18 @@ public class WeaponController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        // only take in input when game is not paused
+        if (!LevelManager.GameIsPaused)
         {
-            if (equippedGun == GunTypes.ShotGun)
+            if (equippedGun == GunTypes.ShotGun && Input.GetButtonDown("Fire1"))
             {
-                if (ShotgunProjectileController.ammoCount > 0 && Time.time > shotgunNextFireTime)
+                if (ShotgunWeaponData.ammoCount > 0 && Time.time > shotgunNextFireTime)
                 {
                     // Generate projectile for shotgun
-                    Tuple<float, float> recoilVals = getRecoilValues(shotgunRecoilForce);
+                    Tuple<float, float> recoilVals = getRecoilValues(ShotgunWeaponData.recoilForce);
                     float horizontalForce = rb2d.velocity.x + recoilVals.Item1;
                     float verticalForce = rb2d.velocity.y + recoilVals.Item2;
-                    rb2d.AddForce(new Vector2(horizontalForce, verticalForce));
+                    rb2d.AddForce(new Vector2(horizontalForce, verticalForce)); // this conflicts with player's running velocity
                     
                     projectile0 = ObjectPooler.Instance.SpawnFromPool("shotgun");
                     if (projectile0 != null)
@@ -139,11 +141,11 @@ public class WeaponController : MonoBehaviour
                     }
 
                     // update ammoCount and change UI
-                    ShotgunProjectileController.ammoCount -= 1;
-                    updateAmmoText(ShotgunProjectileController.ammoCount, ShotgunProjectileController.maxAmmo);
+                    ShotgunWeaponData.ammoCount -= 1;
+                    updateAmmoText(ShotgunWeaponData.ammoCount, ShotgunWeaponData.maxAmmo);
                     
                     // update next fire time to control fire rate of gun
-                    shotgunNextFireTime = Time.time + ShotgunProjectileController.fireInterval;
+                    shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
 
                     // update next reload time
                     if (PlayerController2D.isGrounded)
@@ -152,9 +154,9 @@ public class WeaponController : MonoBehaviour
                     }
                 }
             }
-            else if (equippedGun == GunTypes.Rocket)
+            else if (equippedGun == GunTypes.Rocket && Input.GetButtonDown("Fire1"))
             {
-                if (RocketProjectileController.ammoCount > 0 && Time.time > rocketNextFireTime)
+                if (RocketWeaponData.ammoCount > 0 && Time.time > rocketNextFireTime)
                 {
                     // Generate projectile for rocket
                     projectile = ObjectPooler.Instance.SpawnFromPool("rocket");
@@ -163,50 +165,69 @@ public class WeaponController : MonoBehaviour
                     projectile.SetActive(true);
 
                     // update ammoCount and change UI
-                    RocketProjectileController.ammoCount -= 1;
-                    updateAmmoText(RocketProjectileController.ammoCount, RocketProjectileController.maxAmmo);
+                    RocketWeaponData.ammoCount -= 1;
+                    updateAmmoText(RocketWeaponData.ammoCount, RocketWeaponData.maxAmmo);
                     
                     // update next fire time to control fire rate of gun
-                    rocketNextFireTime = Time.time + RocketProjectileController.fireInterval;
+                    rocketNextFireTime = Time.time + RocketWeaponData.fireInterval;
                 }
             }
-        }
+            else if (equippedGun == GunTypes.Flamethrower && Input.GetButton("Fire1"))
+            {
+                if (FlamethrowerWeaponData.ammoCount > 0 && Time.time > flamethrowerNextFireTime)
+                {
+                    Tuple<float, float> recoilVals = getRecoilValues(FlamethrowerWeaponData.recoilForce);
+                    float horizontalForce = rb2d.velocity.x + recoilVals.Item1;
+                    float verticalForce = rb2d.velocity.y + recoilVals.Item2;
 
-        if (Input.GetButtonDown("weapon 1"))
-        {
-            equippedGun = GunTypes.ShotGun;
-            setWeaponUI(equippedGun);
+                    rb2d.AddForce(new Vector2(horizontalForce, verticalForce));
+                    FlamethrowerWeaponData.ammoCount -= 1;
+                    updateAmmoText(FlamethrowerWeaponData.ammoCount, FlamethrowerWeaponData.maxAmmo);
+                    flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
+                }
+            }
+
+            if (Input.GetButtonDown("weapon 1"))
+            {
+                equippedGun = GunTypes.ShotGun;
+                setWeaponUI(equippedGun);
+            }
+            else if (Input.GetButtonDown("weapon 2"))
+            {
+                equippedGun = GunTypes.Rocket;
+                setWeaponUI(equippedGun);
+            }
+            else if (Input.GetButtonDown("weapon 3"))
+            {
+                equippedGun = GunTypes.Flamethrower;
+                setWeaponUI(equippedGun);
+            }
         }
-        else if (Input.GetButtonDown("weapon 2"))
-        {
-            equippedGun = GunTypes.Rocket;
-            setWeaponUI(equippedGun);
-        }
+        
     }
 
-    public Tuple<float, float> getRecoilValues(float shotgunRecoilForce)
+    public Tuple<float, float> getRecoilValues(float recoilForce)
     {
         if (PlayerController2D.isFacingRight)
         {
             // Debug.Log("transform.eulerAngles: " + transform.eulerAngles.ToString());
-            float x = shotgunRecoilForce * Mathf.Cos((transform.eulerAngles.z + 180)* Mathf.Deg2Rad);
-            float y = shotgunRecoilForce * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
+            float x = recoilForce * Mathf.Cos((transform.eulerAngles.z + 180)* Mathf.Deg2Rad);
+            float y = recoilForce * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
             return Tuple.Create(x, y);
         }
         else
         {
             // Debug.Log("transform.eulerAngles: " + transform.eulerAngles.ToString());
-            float x = shotgunRecoilForce * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
-            float y = shotgunRecoilForce * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
+            float x = recoilForce * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
+            float y = recoilForce * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
             return Tuple.Create(x, y);
         }
     }
     public void refillAmmo()
     {
-        // reset shotgun ammo
-        ShotgunProjectileController.ammoCount = ShotgunProjectileController.maxAmmo;
-        // reset rocket ammo
-        RocketProjectileController.ammoCount = RocketProjectileController.maxAmmo;
+        ShotgunWeaponData.ammoCount = ShotgunWeaponData.maxAmmo;
+        RocketWeaponData.ammoCount = RocketWeaponData.maxAmmo;
+        FlamethrowerWeaponData.ammoCount = FlamethrowerWeaponData.maxAmmo;
         // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
         nextReloadTime = float.MaxValue;
 
@@ -224,6 +245,10 @@ public class WeaponController : MonoBehaviour
         else if (gunName == GunTypes.Rocket)
         {
             return RocketWeaponData;
+        }
+        else if (gunName == GunTypes.Flamethrower)
+        {
+            return FlamethrowerWeaponData;
         }
         return null;
     }
@@ -247,4 +272,5 @@ public class WeaponController : MonoBehaviour
         }
     }
 }
+
 

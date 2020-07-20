@@ -16,3 +16,7 @@ MonoBehaviour:
   ammoCount: 1
   weaponImage: {fileID: 4703747577020556893, guid: 1c5215f15c5c4694d82ff88fae48fa72,
     type: 3}
+  projectileSpeed: 5
+  recoilForce: 300
+  fireInterval: 1
+  maxAmmo: 1

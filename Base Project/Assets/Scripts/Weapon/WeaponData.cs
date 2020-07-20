@@ -9,4 +9,8 @@ public class WeaponData : ScriptableObject
     public string weaponName;
     public int ammoCount;
     public Sprite weaponImage;
+    public float projectileSpeed;
+    public float recoilForce;
+    public float fireInterval;
+    public int maxAmmo;
 }
