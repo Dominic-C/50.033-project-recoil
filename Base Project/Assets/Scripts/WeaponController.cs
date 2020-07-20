@@ -268,7 +268,7 @@ public class WeaponController : MonoBehaviour
         Debug.Log("Ammo reduced");
         if (getWeaponDataForUI(equippedGun) != null)
         {
-            WeaponUIData.updateAmmoText(ammo, getWeaponDataForUI(equippedGun).ammoCount);
+            WeaponUIData.updateAmmoText(ammo, getWeaponDataForUI(equippedGun).maxAmmo);
         }
     }
 }
