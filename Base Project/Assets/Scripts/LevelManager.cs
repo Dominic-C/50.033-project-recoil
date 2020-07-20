@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject PauseMenuUI;
 
+    public static bool audioIsPlaying = false;
     public static bool InputSettingIsOn = false;
     public GameObject InputSettingUI;
 
@@ -33,10 +34,13 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
+            
+            
         } else
         {
             Destroy(this);
         }
+        
     }
 
     void Start()
@@ -44,6 +48,13 @@ public class LevelManager : MonoBehaviour
         updateLevel();
         SceneManager.sceneLoaded += delegate { updateLevel(); };
         PlayerDie += delegate { respawn(); };
+        if (!audioIsPlaying)
+        {
+            print("playing audio");
+            audioIsPlaying = true;
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.Play();
+        }
         PauseMenuUI.SetActive(false);
     }
 

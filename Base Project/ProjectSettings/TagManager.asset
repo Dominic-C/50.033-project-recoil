@@ -46,11 +46,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Background
     uniqueID: 3103077775
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: DEATH
     uniqueID: 183714263
