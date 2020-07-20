@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TutorialStage5 - EnergyCore.unity
     guid: 3e276896419618c40acde35ccbd299ac
+  - enabled: 1
+    path: Assets/Scenes/Stage1-1.unity
+    guid: aaca1ccde88bd154993ee392e9544407
+  - enabled: 1
+    path: Assets/Scenes/Stage1-2.unity
+    guid: 187582a90a206044a8b6e537516a6113
   m_configObjects: {}
