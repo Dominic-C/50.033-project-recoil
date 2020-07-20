@@ -26,6 +26,30 @@ TextureImporter:
   - first:
       213: 1021479961133493118
     second: Flying enemy 1_7
+  - first:
+      213: -1602321485790809573
+    second: Flying enemy 1_0
+  - first:
+      213: 8657215098318583016
+    second: Flying enemy 1_1
+  - first:
+      213: 212457584550750440
+    second: Flying enemy 1_2
+  - first:
+      213: 8835026601561103137
+    second: Flying enemy 1_3
+  - first:
+      213: 5898608307087486160
+    second: Flying enemy 1_4
+  - first:
+      213: -5093859656164394232
+    second: Flying enemy 1_5
+  - first:
+      213: -2664264768383939631
+    second: Flying enemy 1_6
+  - first:
+      213: -3188737024502699434
+    second: Flying enemy 1_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,19 +150,19 @@ TextureImporter:
       name: Flying enemy 1_0
       rect:
         serializedVersion: 2
-        x: 39
+        x: 552
         y: 135
         width: 50
         height: 24
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f170c3e00ec6bd500800000000000000
-      internalID: 422050699656562463
+      spriteID: b12767f191963c9e0800000000000000
+      internalID: -1602321485790809573
       vertices: []
       indices: 
       edges: []
@@ -147,19 +171,19 @@ TextureImporter:
       name: Flying enemy 1_1
       rect:
         serializedVersion: 2
-        x: 13
-        y: 17
+        x: 6
+        y: 11
         width: 128
-        height: 145
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17edeeacdbd582d90800000000000000
-      internalID: -7122339740951585167
+      spriteID: 8e47d67934b942870800000000000000
+      internalID: 8657215098318583016
       vertices: []
       indices: 
       edges: []
@@ -168,19 +192,19 @@ TextureImporter:
       name: Flying enemy 1_2
       rect:
         serializedVersion: 2
-        x: 175
-        y: 15
-        width: 148
-        height: 114
+        x: 114
+        y: 113
+        width: 9
+        height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3192d6263e5a58900800000000000000
-      internalID: 686136914271349011
+      spriteID: 8e82cf82c0dc2f200800000000000000
+      internalID: 212457584550750440
       vertices: []
       indices: 
       edges: []
@@ -189,19 +213,19 @@ TextureImporter:
       name: Flying enemy 1_3
       rect:
         serializedVersion: 2
-        x: 343
-        y: 11
-        width: 131
-        height: 118
+        x: 120
+        y: 107
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cc3484c7bb1994d0800000000000000
-      internalID: -3127437990142133051
+      spriteID: 12b1d2752e15c9a70800000000000000
+      internalID: 8835026601561103137
       vertices: []
       indices: 
       edges: []
@@ -210,19 +234,19 @@ TextureImporter:
       name: Flying enemy 1_4
       rect:
         serializedVersion: 2
-        x: 505
-        y: 107
-        width: 16
-        height: 16
+        x: 167
+        y: 11
+        width: 131
+        height: 118
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb0f4bc1a7f5d8750800000000000000
-      internalID: 6308803631088201918
+      spriteID: 0dc2e1dc0011cd150800000000000000
+      internalID: 5898608307087486160
       vertices: []
       indices: 
       edges: []
@@ -231,19 +255,19 @@ TextureImporter:
       name: Flying enemy 1_5
       rect:
         serializedVersion: 2
-        x: 494
-        y: 11
-        width: 140
-        height: 125
+        x: 318
+        y: 15
+        width: 148
+        height: 114
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89b0aace849f99ce0800000000000000
-      internalID: -1397812117718299752
+      spriteID: 80bb0a291a9fe49b0800000000000000
+      internalID: -5093859656164394232
       vertices: []
       indices: 
       edges: []
@@ -252,19 +276,19 @@ TextureImporter:
       name: Flying enemy 1_6
       rect:
         serializedVersion: 2
-        x: 518
-        y: 113
-        width: 9
-        height: 20
+        x: 500
+        y: 17
+        width: 128
+        height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f42a5fd829bc6b80800000000000000
-      internalID: -8400135619755760391
+      spriteID: 1db03ec1f41a60bd0800000000000000
+      internalID: -2664264768383939631
       vertices: []
       indices: 
       edges: []
@@ -273,19 +297,19 @@ TextureImporter:
       name: Flying enemy 1_7
       rect:
         serializedVersion: 2
-        x: 494
+        x: 127
         y: 96
         width: 20
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7baa84dc960d2e00800000000000000
-      internalID: 1021479961133493118
+      spriteID: 65a616422945fb3d0800000000000000
+      internalID: -3188737024502699434
       vertices: []
       indices: 
       edges: []

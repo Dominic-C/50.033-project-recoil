@@ -1,0 +1,482 @@
+fileFormatVersion: 2
+guid: a25b76dfa09019c4bbdc96fa06178d7f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8039796890695470627
+    second: Stage 2_0
+  - first:
+      213: -5088983587740498340
+    second: Stage 2_1
+  - first:
+      213: 7567502254671564399
+    second: Stage 2_2
+  - first:
+      213: 4552924764659946687
+    second: Stage 2_3
+  - first:
+      213: 492279280674699966
+    second: Stage 2_4
+  - first:
+      213: 5694578284107980482
+    second: Stage 2_5
+  - first:
+      213: 8119085125387273890
+    second: Stage 2_6
+  - first:
+      213: 8590312632780402314
+    second: Stage 2_7
+  - first:
+      213: 5813834027236413374
+    second: Stage 2_8
+  - first:
+      213: -917087315828115196
+    second: Stage 2_9
+  - first:
+      213: -1479119058885080156
+    second: Stage 2_10
+  - first:
+      213: -7983323876993597495
+    second: Stage 2_11
+  - first:
+      213: 5607127333891585753
+    second: Stage 2_12
+  - first:
+      213: 781905256800051002
+    second: Stage 2_13
+  - first:
+      213: -3479594500116888148
+    second: Stage 2_14
+  - first:
+      213: 4950600452830466647
+    second: Stage 2_15
+  - first:
+      213: 8904149327507409394
+    second: Stage 2_16
+  - first:
+      213: -1637026097611478220
+    second: Stage 2_17
+  - first:
+      213: 5343172385139573634
+    second: Stage 2_18
+  - first:
+      213: 3033076612140083705
+    second: Stage 2_19
+  - first:
+      213: -5518968846024894325
+    second: Stage 2_20
+  - first:
+      213: -6827085353606572771
+    second: Stage 2_21
+  - first:
+      213: 7085255604353724403
+    second: Stage 2_22
+  - first:
+      213: -8104578012483614667
+    second: Stage 2_23
+  - first:
+      213: 8551755833336746211
+    second: Stage 2_24
+  - first:
+      213: -2996697568436594621
+    second: Stage 2_25
+  - first:
+      213: 694230619788432052
+    second: Stage 2_26
+  - first:
+      213: -103295090038512637
+    second: Stage 2_27
+  - first:
+      213: -6769680898217192909
+    second: Stage 2_28
+  - first:
+      213: 6432998774701659801
+    second: Stage 2_29
+  - first:
+      213: -8484966399702451849
+    second: Stage 2_30
+  - first:
+      213: -5905740444396779189
+    second: Stage 2_31
+  - first:
+      213: 7796052033851663199
+    second: Stage 2_32
+  - first:
+      213: -5013223959296749837
+    second: Stage 2_33
+  - first:
+      213: 4139143039434394286
+    second: Stage 2_34
+  - first:
+      213: 5091416564915419846
+    second: Stage 2_35
+  - first:
+      213: 27254160795484721
+    second: Stage 2_36
+  - first:
+      213: 1153270743560664046
+    second: Stage 2_37
+  - first:
+      213: 8706573609077971422
+    second: Stage 2_38
+  - first:
+      213: -7429388678879018978
+    second: Stage 2_39
+  - first:
+      213: 8972780462137622176
+    second: Stage 2_0
+  - first:
+      213: 615953429337087550
+    second: Stage 2_1
+  - first:
+      213: 9035535912682150871
+    second: Stage 2_2
+  - first:
+      213: -6903220709769647498
+    second: Stage 2_3
+  - first:
+      213: -5242576774274106678
+    second: Stage 2_4
+  - first:
+      213: -7608525782722331231
+    second: Stage 2_5
+  - first:
+      213: -3169326267034751740
+    second: Stage 2_6
+  - first:
+      213: 1421597663088158368
+    second: Stage 2_7
+  - first:
+      213: 4723177444991086762
+    second: Stage 2_8
+  - first:
+      213: -5066546164721009131
+    second: Stage 2_9
+  - first:
+      213: 4704133501479727769
+    second: Stage 2_10
+  - first:
+      213: 4940108091113069751
+    second: Stage 2_11
+  - first:
+      213: 8114986394386575335
+    second: Stage 2_12
+  - first:
+      213: 5858072490392605856
+    second: Stage 2_13
+  - first:
+      213: 2878674139752856929
+    second: Stage 2_14
+  - first:
+      213: 4678428669973638580
+    second: Stage 2_15
+  - first:
+      213: -5047320747695799678
+    second: Stage 2_16
+  - first:
+      213: -1691863033400056110
+    second: Stage 2_17
+  - first:
+      213: 1249832014973088255
+    second: Stage 2_18
+  - first:
+      213: -2972969076375066973
+    second: Stage 2_19
+  - first:
+      213: -1657323231645500845
+    second: Stage 2_20
+  - first:
+      213: -2423712849138159013
+    second: Stage 2_21
+  - first:
+      213: 2237000000069587664
+    second: Stage 2_22
+  - first:
+      213: 7104375976703143363
+    second: Stage 2_23
+  - first:
+      213: -620449959236704638
+    second: Stage 2_24
+  - first:
+      213: 8994527557564284760
+    second: Stage 2_25
+  - first:
+      213: -3983584466314473179
+    second: Stage 2_26
+  - first:
+      213: 4032600000402183083
+    second: Stage 2_27
+  - first:
+      213: -243160778557053913
+    second: Stage 2_28
+  - first:
+      213: -234920350860176077
+    second: Stage 2_29
+  - first:
+      213: 4739269376609114620
+    second: Stage 2_30
+  - first:
+      213: -4804800862237401673
+    second: Stage 2_31
+  - first:
+      213: 4861929130418277970
+    second: Stage 2_32
+  - first:
+      213: -3247622760420815326
+    second: Stage 2_33
+  - first:
+      213: 8566441317938912411
+    second: Stage 2_34
+  - first:
+      213: -7824597790289707171
+    second: Stage 2_35
+  - first:
+      213: -3426747621344396365
+    second: Stage 2_36
+  - first:
+      213: -1583772151303972093
+    second: Stage 2_37
+  - first:
+      213: 4920624881593101925
+    second: Stage 2_38
+  - first:
+      213: 7786441708933723121
+    second: Stage 2_39
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 47, y: 0, z: 39, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Stage 2_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 82
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae374d5a48b58c70800000000000000
+      internalID: 8972780462137622176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 2_1
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 82
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3e12d9616e4c8800800000000000000
+      internalID: 615953429337087550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 2_2
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 82
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db54be4a0ca46d70800000000000000
+      internalID: 9035535912682150871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 2_3
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 22
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67a6f0cd655d230a0800000000000000
+      internalID: -6903220709769647498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 2_4
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 22
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acabdad3330ae37b0800000000000000
+      internalID: -5242576774274106678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stage 2_5
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 22
+        width: 60
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ad3f60cc16196690800000000000000
+      internalID: -7608525782722331231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
