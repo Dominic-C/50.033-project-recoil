@@ -114,12 +114,12 @@ TextureImporter:
       name: Shooter_enemy_0
       rect:
         serializedVersion: 2
-        x: 26
-        y: 129
+        x: 32
+        y: 128
         width: 68
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -135,12 +135,12 @@ TextureImporter:
       name: Shooter_enemy_1
       rect:
         serializedVersion: 2
-        x: 137
+        x: 142
         y: 129
         width: 68
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -156,12 +156,12 @@ TextureImporter:
       name: Shooter_enemy_2
       rect:
         serializedVersion: 2
-        x: 23
+        x: 35
         y: 42
-        width: 67
+        width: 70
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -177,12 +177,12 @@ TextureImporter:
       name: Shooter_enemy_3
       rect:
         serializedVersion: 2
-        x: 132
+        x: 146
         y: 43
         width: 68
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
