@@ -27,12 +27,12 @@ public class PlayerController2D : MonoBehaviour
     Transform groundCheck3;
 
     [SerializeField]
-    Transform wallCheck;
+    Transform wallCheck1;
 
     [SerializeField]
+    Transform wallCheck2;
+    
     public float runSpeed;
-
-    [SerializeField]
     public float jumpSpeed;
 
     // UI for shotgun and rocket count. 
@@ -148,8 +148,8 @@ public class PlayerController2D : MonoBehaviour
         }
 
         // right wall check
-        if (Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Wall"))
-            || Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground")))
+        if (Physics2D.Linecast(transform.position, wallCheck1.position, 1 << LayerMask.NameToLayer("Ground"))
+            || Physics2D.Linecast(transform.position, wallCheck2.position, 1 << LayerMask.NameToLayer("Ground")))
         {
             hitWall = true;
         }
