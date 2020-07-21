@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmoredEnemy : Enemy
+public class FlyingEnemy : Enemy
 {
+    // Start is called before the first frame update
     private Material matWhite;
     private Material matDefault;
     private UnityEngine.Object explosionRef;
+    private bool isHit;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -21,33 +22,35 @@ public class ArmoredEnemy : Enemy
         matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material; // cast as material. By default, Resources.Load returns Object
         matDefault = spriteRenderer.material;
         explosionRef = Resources.Load("Explosion");
+        isHit = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        spriteRenderer.color = Color.white;
         patrol();
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerProjectileRocket"))
+        if (collision.CompareTag("PlayerProjectile") && !isHit)
         {
             collision.gameObject.SetActive(false); // send back to object pooler
-            health--;
+            health--; // 1 damage
+            isHit = true;
+            spriteRenderer.material = matWhite;
+            Debug.Log("remaining HP: " + health);
             if (health <= 0)
             {
                 KillSelf();
             }
+            else
+            {
+                Invoke("ResetMaterial", 0.1f);
+            }
         }
-        else if (collision.CompareTag("PlayerProjectile"))
-        {
-            collision.gameObject.SetActive(false); // send back to object pooler
-            spriteRenderer.material = matWhite;
-            Invoke("ResetMaterial", 0.1f);
-        }
-
     }
 
     private void ResetMaterial()
