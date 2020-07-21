@@ -14,9 +14,15 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
     private bool isGrounded;
     private bool trapTriggered = false;
     private bool playerTriggered;
+    private Animator animator;
+    // public AnimationClip untriggeredAnimation;
+    // public AnimationClip triggeredAnimation;
+
     void Start()
     {
         initialPosition = gameObject.transform.position;
+        animator = GetComponent<Animator>();
+        // animator.Play(untriggeredAnimation.name);
     }
 
     // Update is called once per frame
@@ -26,10 +32,13 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
         if (playerTriggered)
         {
             activate();
+            // animator.Play(triggeredAnimation.name);
         }
         else
         {
             resetTrap();
+            // animator.Play(untriggeredAnimation.name);
+
         }
     }
 
