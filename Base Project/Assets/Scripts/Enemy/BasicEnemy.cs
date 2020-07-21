@@ -74,6 +74,6 @@ public class BasicEnemy : Enemy
         GameObject explosion = (GameObject)Instantiate(explosionRef);
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
         Destroy(explosion, 5.0f);
-        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 }
