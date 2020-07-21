@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 287155514719831846}
   - component: {fileID: 2509296139747132720}
   - component: {fileID: 3967379425348179425}
+  - component: {fileID: 3028492519806191761}
   m_Layer: 0
-  m_Name: Shooter_enemy_2
+  m_Name: Shooter_enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8581951195056106076, guid: cc09e6e466bd2af42ad85cfe75205b26,
+  m_Sprite: {fileID: 3394957274237305773, guid: 3a56c470bbf378048b1896ac8cb90da5,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -102,3 +103,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &3028492519806191761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950472971389882617}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.60506606, y: 0.76, z: 0.2}
+  m_Center: {x: -0.023590446, y: 0, z: 0}
