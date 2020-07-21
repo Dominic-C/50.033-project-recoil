@@ -16,6 +16,8 @@ public class PlayerController2D : MonoBehaviour
     private bool leftPressedInAir;
     private bool rightPressedInAir;
 
+    public static int unlockedGuns;  // 0 for no guns, 1 for shotgun only, 2 for shotgun + rocket, 3 for shotgun + rocket + flamethrower
+
     [SerializeField]
     Transform groundCheck1;
 
@@ -31,16 +33,13 @@ public class PlayerController2D : MonoBehaviour
     [SerializeField]
     public float jumpSpeed;
 
-    // UI for shotgun and rocket count. 
-    private GameObject shotgunCount;
-    private GameObject rocketCount;
-
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
     public AnimationClip shootBottomAnimationClip;
     public AnimationClip shootFrontAnimationClip;
     public AnimationClip shootBackAnimationClip;
     public float airControlImpulse;
+    public GameObject weaponPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +48,9 @@ public class PlayerController2D : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
         prevFaceRight = true;
+
+        // set as 3 to ensure all guns can be accessed for debugging for now
+        unlockedGuns = 3;
     }
 
     void Update()
@@ -145,6 +147,14 @@ public class PlayerController2D : MonoBehaviour
             isGrounded = false;
         }
 
+        if (unlockedGuns == 0)
+        {
+            weaponPrefab.SetActive(false);
+        }
+        else
+        {
+            weaponPrefab.SetActive(true);
+        }
     }
 
     private void animationLogicNotGrounded()
