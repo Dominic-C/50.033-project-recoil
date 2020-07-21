@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3293034550184242643, guid: 2070e5281fd1ed8438b3c61aca0da96a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361353398659306791, guid: 2070e5281fd1ed8438b3c61aca0da96a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7444106880674258561, guid: 2070e5281fd1ed8438b3c61aca0da96a,
         type: 3}
       propertyPath: airControlImpulse

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7288655147318556872}
   - component: {fileID: 7288655147318556873}
   m_Layer: 9
-  m_Name: Player 1
+  m_Name: Player_nogun
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c21d04b8bd358c4c803c344828389e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: {fileID: 7288655146196116873}
+  groundCheck1: {fileID: 0}
+  groundCheck2: {fileID: 0}
+  groundCheck3: {fileID: 0}
+  leftWallCheck: {fileID: 0}
+  rightWallCheck: {fileID: 0}
   runSpeed: 3
   jumpSpeed: 1
   idleAnimationClip: {fileID: 7400000, guid: 6827f4b6893d2e44ca612561577be22e, type: 2}
@@ -159,6 +163,7 @@ MonoBehaviour:
     type: 2}
   shootBackAnimationClip: {fileID: 7400000, guid: d0cf6f7d303f1ea42b6ace9c19ffabf5,
     type: 2}
+  airControlImpulse: 0
 --- !u!50 &7288655147318556872
 Rigidbody2D:
   serializedVersion: 4

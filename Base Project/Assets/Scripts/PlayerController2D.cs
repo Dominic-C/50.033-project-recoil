@@ -13,8 +13,9 @@ public class PlayerController2D : MonoBehaviour
     public static bool isFacingRight, prevFaceRight;
     public static bool isGrounded;
     public static bool isJustGrounded;
-    private bool leftPressedInAir;
-    private bool rightPressedInAir;
+    private bool leftPressed;
+    private bool rightPressed;
+    private bool hitWall;
 
     [SerializeField]
     Transform groundCheck1;
@@ -24,6 +25,9 @@ public class PlayerController2D : MonoBehaviour
 
     [SerializeField]
     Transform groundCheck3;
+
+    [SerializeField]
+    Transform wallCheck;
 
     [SerializeField]
     public float runSpeed;
@@ -58,8 +62,8 @@ public class PlayerController2D : MonoBehaviour
         if (!LevelManager.GameIsPaused)
         {
             // Get Inputs;
-            bool rightPressed = Input.GetKey("d");
-            bool leftPressed = Input.GetKey("a");
+            rightPressed = Input.GetKey("d");
+            leftPressed = Input.GetKey("a");
 
             // Reload Loop
             if (isGrounded && !isJustGrounded)
@@ -104,14 +108,14 @@ public class PlayerController2D : MonoBehaviour
                 // Press Right in Air
                 if (rightPressed)
                 {
-                    if (rb2d.velocity.x < runSpeed)
+                    if (rb2d.velocity.x < runSpeed && !hitWall)
                     { rb2d.AddForce(new Vector2(airControlImpulse, 0.0f), ForceMode2D.Impulse); }
                     isFacingRight = true;
                 }
                 // Left Press in Air
                 else if (leftPressed)
                 {
-                    if (rb2d.velocity.x > -runSpeed)
+                    if (rb2d.velocity.x > -runSpeed && !hitWall)
                     { rb2d.AddForce(new Vector2(-airControlImpulse, 0.0f), ForceMode2D.Impulse); }
                     isFacingRight = false;
                 }
@@ -137,12 +141,21 @@ public class PlayerController2D : MonoBehaviour
             || Physics2D.Linecast(transform.position, groundCheck3.position, 1 << LayerMask.NameToLayer("Ground")))
         {
             isGrounded = true;
-            leftPressedInAir = false;
-            rightPressedInAir = false;
         }
         else
         {
             isGrounded = false;
+        }
+
+        // right wall check
+        if (Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Wall"))
+            || Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground")))
+        {
+            hitWall = true;
+        }
+        else
+        {
+            hitWall = false;
         }
 
     }
