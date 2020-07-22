@@ -157,6 +157,17 @@ public class PlayerController2D : MonoBehaviour
         {
             weaponPrefab.SetActive(true);
         }
+
+        // right wall check
+        if (Physics2D.Linecast(transform.position, wallCheck1.position, 1 << LayerMask.NameToLayer("Ground"))
+            || Physics2D.Linecast(transform.position, wallCheck2.position, 1 << LayerMask.NameToLayer("Ground")))
+        {
+            hitWall = true;
+        }
+        else
+        {
+            hitWall = false;
+        }
     }
 
     private void animationLogicNotGrounded()
