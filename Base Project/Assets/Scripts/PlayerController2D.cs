@@ -12,6 +12,7 @@ public class PlayerController2D : MonoBehaviour
     // states
     public static bool isFacingRight, prevFaceRight;
     public static bool isGrounded;
+    public static bool isOnIce;
     public static bool isJustGrounded;
     private bool leftPressed;
     private bool rightPressed;
@@ -42,6 +43,7 @@ public class PlayerController2D : MonoBehaviour
     public AnimationClip shootBottomAnimationClip;
     public AnimationClip shootFrontAnimationClip;
     public AnimationClip shootBackAnimationClip;
+    public AnimationClip slidingAnimation;
     public float airControlImpulse;
     public GameObject weaponPrefab;
 
@@ -103,6 +105,33 @@ public class PlayerController2D : MonoBehaviour
                     animator.Play(idleAnimationClip.name);
                 }
             }
+
+            else if (isOnIce)
+            {
+                if (rightPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x < runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
+                    isFacingRight = true;
+                }
+                // Move Left on ground
+                else if (leftPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x > -runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
+                    isFacingRight = false;
+                }
+                else // Idle Animation
+                {
+                    animator.Play(slidingAnimation.name);
+                }
+            }
             else // Not Grounded
             {
                 animationLogicNotGrounded();
@@ -147,6 +176,17 @@ public class PlayerController2D : MonoBehaviour
         else
         {
             isGrounded = false;
+        }
+
+        if (Physics2D.Linecast(transform.position, groundCheck1.position, 1 << LayerMask.NameToLayer("Ice"))
+        || Physics2D.Linecast(transform.position, groundCheck2.position, 1 << LayerMask.NameToLayer("Ice"))
+        || Physics2D.Linecast(transform.position, groundCheck3.position, 1 << LayerMask.NameToLayer("Ice")))
+        {
+            isOnIce = true;
+        }
+        else
+        {
+            isOnIce = false;
         }
 
         if (unlockedGuns == 0)
