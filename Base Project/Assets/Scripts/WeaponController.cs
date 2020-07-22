@@ -49,6 +49,16 @@ public class WeaponController : MonoBehaviour
 
     private Animator animator;
 
+    private void OnEnable()
+    {
+        isEnabled = true;
+    }
+
+    private void onDisable()
+    {
+        isEnabled = false;
+    }
+
     private void Start()
     {
         // set up gun and delegate for PlayerController to call event to trigger
@@ -57,12 +67,9 @@ public class WeaponController : MonoBehaviour
 
         // weapon UI setup
         WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
-        WeaponUI.SetActive(true);
-        setWeaponUI(equippedGun);
+        if (WeaponUI != null) setWeaponUI(equippedGun);
 
         groundReload += delegate { refillAmmo(); };
-        isEnabled = true;
-
         flamethrowerProjectile = FlamethrowerParticleSystem.GetComponent<ParticleSystem>();
     }
 
@@ -109,7 +116,7 @@ public class WeaponController : MonoBehaviour
 
                     rb2d.AddForce(new Vector2(horizontalForce, verticalForce));
                     FlamethrowerWeaponData.ammoCount -= 1;
-                    setWeaponUI(equippedGun);
+                    if (WeaponUI != null) setWeaponUI(equippedGun);
                     flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
 
                     // update next reload time
@@ -167,8 +174,8 @@ public class WeaponController : MonoBehaviour
 
                         // update ammoCount and change UI
                         ShotgunWeaponData.ammoCount -= 1;
-                        setWeaponUI(equippedGun);
-                        
+                        if (WeaponUI != null) setWeaponUI(equippedGun);
+
                         // update next fire time to control fire rate of gun
                         shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
 
@@ -191,8 +198,8 @@ public class WeaponController : MonoBehaviour
 
                         // update ammoCount and change UI
                         RocketWeaponData.ammoCount -= 1;
-                        setWeaponUI(equippedGun);
-                        
+                        if (WeaponUI != null) setWeaponUI(equippedGun);
+
                         // update next fire time to control fire rate of gun
                         nextReloadTime = Time.time + RocketWeaponData.fireInterval;
 
@@ -205,17 +212,17 @@ public class WeaponController : MonoBehaviour
                 }
             }
 
-            if (Input.GetButtonDown("weapon 1") && PlayerController2D.unlockedGuns >= 1)
+            if (Input.GetButtonDown("weapon 1") && LevelManager.unlockedGuns >= 1)
             {
                 equippedGun = GunTypes.ShotGun;
                 setWeaponUI(equippedGun);
             }
-            else if (Input.GetButtonDown("weapon 2") && PlayerController2D.unlockedGuns >= 2)
+            else if (Input.GetButtonDown("weapon 2") && LevelManager.unlockedGuns >= 2)
             {
                 equippedGun = GunTypes.Rocket;
                 setWeaponUI(equippedGun);
             }
-            else if (Input.GetButtonDown("weapon 3") && PlayerController2D.unlockedGuns >= 3)
+            else if (Input.GetButtonDown("weapon 3") && LevelManager.unlockedGuns >= 3)
             {
                 equippedGun = GunTypes.Flamethrower;
                 setWeaponUI(equippedGun);
@@ -249,7 +256,7 @@ public class WeaponController : MonoBehaviour
         // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
         nextReloadTime = float.MaxValue;
 
-        setWeaponUI(equippedGun);
+        if (WeaponUI != null) setWeaponUI(equippedGun);
     }
 
 
@@ -273,7 +280,6 @@ public class WeaponController : MonoBehaviour
 
     private void setWeaponUI(string equippedGun)
     {
-        Debug.Log("Setting Weapon UI from Weaponcontroller");
         if (getWeaponDataForUI(equippedGun) != null)
         {
             WeaponData weaponData = getWeaponDataForUI(equippedGun);

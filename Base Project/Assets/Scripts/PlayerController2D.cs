@@ -18,8 +18,8 @@ public class PlayerController2D : MonoBehaviour
     private bool rightPressed;
     private bool hitWall;
 
-    public static int unlockedGuns;  // 0 for no guns, 1 for shotgun only, 2 for shotgun + rocket, 3 for shotgun + rocket + flamethrower
-
+    public bool DebugMode = false;
+    
     [SerializeField]
     Transform groundCheck1;
 
@@ -54,9 +54,10 @@ public class PlayerController2D : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
         prevFaceRight = true;
-
-        // set as 3 to ensure all guns can be accessed for debugging for now
-        unlockedGuns = 3;
+        if (DebugMode)
+        {
+            LevelManager.unlockedGuns = 3;
+        }
     }
 
     void Update()
@@ -189,7 +190,7 @@ public class PlayerController2D : MonoBehaviour
             isOnIce = false;
         }
 
-        if (unlockedGuns == 0)
+        if (LevelManager.unlockedGuns == 0)
         {
             weaponPrefab.SetActive(false);
         }

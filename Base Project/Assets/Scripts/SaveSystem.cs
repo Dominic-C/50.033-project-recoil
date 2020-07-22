@@ -9,6 +9,7 @@ public class PlayerData
     public int level;
     public Dictionary<string, float> timeTakenPerStage;
     public List<string> mobsDestroyed;
+    public int unlockedGuns;
 
     public PlayerData()
     {
@@ -22,6 +23,7 @@ public class PlayerData
         {
             Debug.Log(key + ":" + timeTakenPerStage[key]);
         }
+        unlockedGuns = LevelManager.unlockedGuns;
     }
 }
 

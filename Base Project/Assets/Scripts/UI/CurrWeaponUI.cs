@@ -19,10 +19,4 @@ public class CurrWeaponUI : MonoBehaviour
         GunName.text = data.weaponName;
         GunSprite.sprite = data.weaponImage;
     }
-
-    // junde: i'm replacing all uses of updateAmmoText with setWeaponData
-    // public void updateAmmoText(int currAmmoCount, int totalAmmoCount)
-    // {
-    //     AmmoCounter.text = currAmmoCount.ToString() + " / " + totalAmmoCount.ToString();
-    // }
 }

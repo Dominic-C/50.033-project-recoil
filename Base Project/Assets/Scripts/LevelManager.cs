@@ -4,6 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+public enum UnlockGunState
+{
+    NO_GUN,
+    SHOTGUN_ONLY,
+    SHOTGUN_AND_ROCKET,
+    ALL_WEAPONS
+}
 
 public class LevelManager : MonoBehaviour
 {
@@ -22,12 +29,13 @@ public class LevelManager : MonoBehaviour
 
     // SaveSystem attributes
     public static Dictionary<string, float> timeTakenPerStage = new Dictionary<string, float>();
-    public static Dictionary<string, List<string>> PickUpsCollected;
+    public static List<int> EggsCollected = new List<int>();
     public static List<string> mobsDestroyed; // TODO: monsters onDestroy should add to this list.
 
     // Player attributes
     private GameObject player;
     private Vector3 playerSpawnPosition;
+    public static int unlockedGuns;  // 0 for no guns, 1 for shotgun only, 2 for shotgun + rocket, 3 for shotgun + rocket + flamethrower
     public delegate void PlayerDeath();
     public static event PlayerDeath PlayerDie;
     public static void onPlayerDeath() { PlayerDie(); }
@@ -60,11 +68,6 @@ public class LevelManager : MonoBehaviour
             audio.Play();
         }
 
-        PickUpsCollected = new Dictionary<string, List<string>>()
-        {
-            {"Weapons", new List<string>() },
-            {"Easter Eggs", new List<string>() }
-        };
     }
 
     void Update()
@@ -97,6 +100,7 @@ public class LevelManager : MonoBehaviour
     public void PlayGame()
     {
         LoadNextScene();
+        unlockedGuns = (int)UnlockGunState.NO_GUN;
         SaveSystem.SavePlayer();
     }
 
@@ -167,9 +171,11 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("loading player data");
         PlayerData playerData = SaveSystem.LoadPlayer();
+
         int levelToLoad = playerData.level;
         timeTakenPerStage = playerData.timeTakenPerStage;
         SceneManager.LoadScene(levelToLoad);
+        unlockedGuns = playerData.unlockedGuns;
         foreach (string key in timeTakenPerStage.Keys)
         {
             Debug.Log(key+":"+ timeTakenPerStage[key]);
