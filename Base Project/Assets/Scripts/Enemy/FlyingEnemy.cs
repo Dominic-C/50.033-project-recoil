@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
 
-public class BasicEnemy : Enemy
+public class FlyingEnemy : Enemy
 {
     // Start is called before the first frame update
     private Material matWhite;
@@ -31,17 +29,8 @@ public class BasicEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (canSeePlayer(rangeOfSight))
-        {
-            spriteRenderer.color = Color.red;
-            chasePlayer();
-        }
-        else
-        {
-            spriteRenderer.color = Color.white;
-            patrol();
-        }
-
+        spriteRenderer.color = Color.white;
+        patrol();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

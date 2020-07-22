@@ -100,7 +100,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 972492851
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: -4440242183763085551, guid: fd91ce36dcb9b734ba90e9b1d0a6dd6a,
     type: 3}
@@ -131,3 +131,5 @@ MonoBehaviour:
   WeaponUI: {fileID: 0}
   ShotgunWeaponData: {fileID: 11400000, guid: a6468055445ce334f8e587795ab4d48b, type: 2}
   RocketWeaponData: {fileID: 11400000, guid: be4fcaf5a9354254485fefa30f1bd74a, type: 2}
+  FlamethrowerWeaponData: {fileID: 11400000, guid: 364bf6c2d4de8284f9221218ad9e0649,
+    type: 2}
