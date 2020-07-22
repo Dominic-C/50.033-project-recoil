@@ -225,7 +225,7 @@ public class PlayerController2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("NextLevelDoor"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            LevelManager.LoadNextScene();
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {

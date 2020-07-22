@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 378178325}
   - component: {fileID: 378178324}
   m_Layer: 0
-  m_Name: Platformgrid
+  m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1807,22 +1807,22 @@ PrefabInstance:
     - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 244.26862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -130.1501
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591067093767, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
@@ -1847,27 +1847,27 @@ PrefabInstance:
     - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 244.26862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -51.78972
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591661650783, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0406a3a6b76fdf4b8d1823f11542319, type: 3}
@@ -1883,6 +1883,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 834466113}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1875189410 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8185723449413858167, guid: c0406a3a6b76fdf4b8d1823f11542319,
+    type: 3}
+  m_PrefabInstance: {fileID: 1604294170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966194538
 GameObject:
   m_ObjectHideFlags: 0
@@ -3740,6 +3752,11 @@ PrefabInstance:
       propertyPath: PauseMenuUI
       value: 
       objectReference: {fileID: 1712470826}
+    - target: {fileID: 4680686100437927909, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: timeDebugText
+      value: 
+      objectReference: {fileID: 1875189410}
     - target: {fileID: 4680686100437927915, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_Name

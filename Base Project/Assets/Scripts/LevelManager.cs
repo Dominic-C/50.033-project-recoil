@@ -1,29 +1,33 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal.VR;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    // game attributes
-    public static bool GameIsPaused = false;
-    public GameObject PauseMenuUI;
+    // UI gameObjects, found dynamically everytime loadNextScene is called.
+    private GameObject PauseMenuUI;
+    private TextMeshProUGUI timeDebugText;
 
-    public static bool audioIsPlaying = false;
-    public static bool InputSettingIsOn = false;
-    public GameObject InputSettingUI;
-
-    // level attributes
+    // Level attributes
     public static LevelManager Instance;
     public static int currentLevel;
+    private string currentSceneName;
+    public static bool GameIsPaused = false;
+    public static bool audioIsPlaying = false;
+    private bool toUpdateTime = false;
+    private float timeTakenCurrentStage = 0f;
 
-    // player attributes
+    // SaveSystem attributes
+    public static Dictionary<string, float> timeTakenPerStage = new Dictionary<string, float>();
+    public static Dictionary<string, List<string>> PickUpsCollected;
+    public static List<string> mobsDestroyed; // TODO: monsters onDestroy should add to this list.
+
+    // Player attributes
     private GameObject player;
-    public Vector3 playerSpawnPosition;
+    private Vector3 playerSpawnPosition;
     public delegate void PlayerDeath();
     public static event PlayerDeath PlayerDie;
     public static void onPlayerDeath() { PlayerDie(); }
@@ -55,7 +59,12 @@ public class LevelManager : MonoBehaviour
             AudioSource audio = GetComponent<AudioSource>();
             audio.Play();
         }
-        PauseMenuUI.SetActive(false);
+
+        PickUpsCollected = new Dictionary<string, List<string>>()
+        {
+            {"Weapons", new List<string>() },
+            {"Easter Eggs", new List<string>() }
+        };
     }
 
     void Update()
@@ -65,42 +74,44 @@ public class LevelManager : MonoBehaviour
             if (!GameIsPaused) PauseGame();
             else ResumeGame();
         }
+
+        if (toUpdateTime)
+        {
+            timeTakenCurrentStage += Time.deltaTime;
+            timeTakenPerStage[currentSceneName] = timeTakenCurrentStage;
+        }
     }
 
     public void PauseGame()
     {
         PauseMenuUI.SetActive(true);
+        Debug.Log(timeTakenCurrentStage);
+        timeDebugText.text = "Time: " + timeTakenCurrentStage;
+        timeTakenPerStage[currentSceneName] = timeTakenCurrentStage;
         Time.timeScale = 0f;
+        toUpdateTime = false;
         GameIsPaused = !GameIsPaused;
-        savePlayerData();
-    }
-
-    public void ResumeGame()
-    {
-        PauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
-        GameIsPaused = !GameIsPaused;
-    }
-
-    public void OpenInputSetting()
-    {
-        PauseMenuUI.SetActive(false);
-        InputSettingUI.SetActive(true);
-        InputSettingIsOn = true;
-    }
-
-    IEnumerator TimesleepCoroutine(int duration)
-    {
-        yield return new WaitForSecondsRealtime(duration);
+        SaveSystem.SavePlayer();
     }
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LoadNextScene();
+        SaveSystem.SavePlayer();
+    }
+
+    public void ResumeGame()
+    {
+        toUpdateTime = true;
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = !GameIsPaused;
+        SaveSystem.SavePlayer();
     }
 
     public void QuitGame()
     {
+        toUpdateTime = false;
         Debug.Log("QUIT!");
         Application.Quit();
     }
@@ -108,12 +119,35 @@ public class LevelManager : MonoBehaviour
     void updateLevel()
     {
         currentLevel = SceneManager.GetActiveScene().buildIndex;
-        if (currentLevel >= 0)
+        mobsDestroyed = new List<string>();
+        Debug.Log("now level: " + currentLevel);
+
+        if (currentLevel >= 1)
         {
+            currentSceneName = SceneManager.GetSceneByBuildIndex(currentLevel).name;
+            if (!timeTakenPerStage.ContainsKey(currentSceneName))
+            {
+                timeTakenPerStage.Add(currentSceneName, 0f); // key may already exist if loaded from savefile.
+            }
+
+            toUpdateTime = true;
+
+            // set pause menu ui and time debug text
+            PauseMenuUI = GameObject.Find("PauseMenu");
+            if (PauseMenuUI != null) PauseMenuUI.SetActive(false);
+            timeDebugText = PauseMenuUI.gameObject.transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
+
+            // set player spawn position
             player = GameObject.FindGameObjectWithTag("Player");
-            playerSpawnPosition = player.transform.position;
-            Debug.Log("updated level, now level: " + currentLevel);
+            if (player != null) playerSpawnPosition = player.transform.position;
         }
+        
+        if (!timeTakenPerStage.ContainsKey(currentSceneName))
+        {
+            timeTakenCurrentStage = 0f; // this value may be loaded from savefile.
+        }
+
+        SaveSystem.SavePlayer();
     }
 
     public void respawn()
@@ -122,19 +156,44 @@ public class LevelManager : MonoBehaviour
         player.transform.position = playerSpawnPosition;
     }
 
-    public void savePlayerData()
+    #region Save, Load functions
+
+    public static void LoadNextScene()
     {
-        SaveSystem.SavePlayer(this);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void loadPlayerData()
     {
+        Debug.Log("loading player data");
         PlayerData playerData = SaveSystem.LoadPlayer();
         int levelToLoad = playerData.level;
+        timeTakenPerStage = playerData.timeTakenPerStage;
         SceneManager.LoadScene(levelToLoad);
+        foreach (string key in timeTakenPerStage.Keys)
+        {
+            Debug.Log(key+":"+ timeTakenPerStage[key]);
+        }
+
+        timeTakenCurrentStage = playerData.timeTakenPerStage[timeTakenPerStage.Keys.ToList().Last()];
+
+        /* TODO: Accomodate Checkpoint implementation
+         * Mobs that are destroyed should stay dead when reloading from a checkpoint.
+         * Pickups that are already picked up should not be shown.
+         */
+        if (mobsDestroyed != null)
+        {
+            foreach (string mobObjName in mobsDestroyed)
+            {
+                Destroy(GameObject.Find(mobObjName));
+            }
+        }
+
     }
 
-    #region UI Related Functions
+    #endregion
+
+    #region Progress Slider UI Functions (currently unused)
 
     // Progress UI related functions
     private float maxDistance = 0;
@@ -167,5 +226,5 @@ public class LevelManager : MonoBehaviour
         progressFill.color = progressColorGradient.Evaluate(currentDistance / maxDistance);
     }
 
-    #endregion 
+    #endregion  
 }
