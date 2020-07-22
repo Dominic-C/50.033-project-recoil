@@ -16,6 +16,7 @@ public class WeaponController : MonoBehaviour
     public GameObject PlayerPrefab;
     public GameObject FirepointPrefab;
     public GameObject FlamethrowerParticleSystem;
+    public GameObject PlayerArm;
 
     public GameObject WeaponUI;
     private CurrWeaponUI WeaponUIData;
@@ -70,21 +71,21 @@ public class WeaponController : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         // calc direction of aim
-        Vector3 aimDirection = (mouseWorldPosition - transform.position).normalized;
+        Vector3 aimDirection = (mouseWorldPosition - PlayerArm.transform.position).normalized;
         
         // apply transformation based on whether its flipped
         if (PlayerController2D.isFacingRight)
         {
             // convert to euler angles
             float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
+            PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
         }
         else
         {
             // convert to euler angles
             float angle = Mathf.Atan2(aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
             angle = angle + 90;  // i forgot the math, not sure why need to +90 degrees in this case
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
+            PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
         }
 
         if (Time.time > nextReloadTime)
