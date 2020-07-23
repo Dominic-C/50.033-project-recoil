@@ -7,7 +7,7 @@ using UnityEngine;
 static class GunTypes
 {
     public const string Rocket = "rocket";
-    public const string ShotGun = "shotgun";
+    public const string Shotgun = "shotgun";
     public const string Flamethrower = "flamethrower";
 }
 
@@ -42,6 +42,9 @@ public class WeaponController : MonoBehaviour
     private float onGroundReloadInterval = 3.0f;
     public static float nextReloadTime = 0.0f;
 
+    public float xCorrection = 0.75f;
+    public float yCorrection = 1.25f;
+
     public static bool isEnabled = false;
     public delegate void GroundReload();
     public static event GroundReload groundReload;
@@ -63,7 +66,7 @@ public class WeaponController : MonoBehaviour
     {
         // set up gun and delegate for PlayerController to call event to trigger
         rb2d = PlayerPrefab.GetComponent<Rigidbody2D>();
-        equippedGun = GunTypes.ShotGun;
+        equippedGun = GunTypes.Shotgun;
 
         // weapon UI setup
         WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
@@ -79,7 +82,7 @@ public class WeaponController : MonoBehaviour
 
         // calc direction of aim
         Vector3 aimDirection = (mouseWorldPosition - PlayerArm.transform.position).normalized;
-        
+
         // apply transformation based on whether its flipped
         if (PlayerController2D.isFacingRight)
         {
@@ -106,30 +109,95 @@ public class WeaponController : MonoBehaviour
         // only take in input when game is not paused
         if (!LevelManager.GameIsPaused)
         {
-            if (equippedGun == GunTypes.Flamethrower && Input.GetButton("Fire1") && FlamethrowerWeaponData.ammoCount > 0)
+            bool shootClicked = Input.GetButton("Fire1");
+            if (shootClicked)
             {
-                if (Time.time > flamethrowerNextFireTime)
+                switch (equippedGun)
                 {
-                    Tuple<float, float> recoilVals = getRecoilValues(FlamethrowerWeaponData.recoilForce);
-                    float horizontalForce = rb2d.velocity.x + recoilVals.Item1;
-                    float verticalForce = rb2d.velocity.y + recoilVals.Item2;
+                    case (GunTypes.Flamethrower):
+                        // Check if we have Flamethrower Ammo and can fire it.
+                        if (FlamethrowerWeaponData.ammoCount > 0 && Time.time > flamethrowerNextFireTime)
+                        {
+                            // Generate Force, set ammo count, update UI
+                            shootRecoilForce(FlamethrowerWeaponData.recoilForce);
+                            FlamethrowerWeaponData.ammoCount -= 1;
+                            if (WeaponUI != null) setWeaponUI(equippedGun);
 
-                    rb2d.AddForce(new Vector2(horizontalForce, verticalForce));
-                    FlamethrowerWeaponData.ammoCount -= 1;
-                    if (WeaponUI != null) setWeaponUI(equippedGun);
-                    flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
+                            // update next reload time
+                            flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
+                            if (PlayerController2D.isGrounded) nextReloadTime = Time.time + onGroundReloadInterval;
 
-                    // update next reload time
-                    if (PlayerController2D.isGrounded)
-                    {
-                        nextReloadTime = Time.time + onGroundReloadInterval;
-                    }
+                            // start flame animation
+                            if (!flamethrowerProjectile.isPlaying) flamethrowerProjectile.Play();
+                        }
+                        break;
+                    case (GunTypes.Shotgun):
+                        // Check if we have Shotgun Ammo and can fire it.
+                        if (ShotgunWeaponData.ammoCount > 0 && Time.time > shotgunNextFireTime)
+                        {
+                            shootRecoilForce(ShotgunWeaponData.recoilForce);
 
-                    // start flame animation
-                    if (!flamethrowerProjectile.isPlaying)
-                    {
-                        flamethrowerProjectile.Play();
-                    }
+                            // TODO: MORE REFACTORING NEEDED.
+                            // I REFUSE TO BELIEVE THIS CAN'T BE FIXED.
+                            projectile0 = ObjectPooler.Instance.SpawnFromPool(GunTypes.Shotgun);
+                            if (projectile0 != null)
+                            {
+                                projectile0.transform.position = FirepointPrefab.transform.position;
+                                projectile0.transform.eulerAngles = FirepointPrefab.transform.eulerAngles + new Vector3(0, 0, 5);
+                                projectile0.SetActive(true);
+                            }
+                            projectile1 = ObjectPooler.Instance.SpawnFromPool(GunTypes.Shotgun);
+                            if (projectile1 != null)
+                            {
+                                projectile1.transform.position = FirepointPrefab.transform.position;
+                                projectile1.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
+                                projectile1.SetActive(true);
+                            }
+                            projectile2 = ObjectPooler.Instance.SpawnFromPool(GunTypes.Shotgun);
+                            if (projectile2 != null)
+                            {
+                                projectile2.transform.position = FirepointPrefab.transform.position;
+                                projectile2.transform.eulerAngles = FirepointPrefab.transform.eulerAngles + new Vector3(0, 0, -5);
+                                projectile2.SetActive(true);
+                            }
+
+                            // update ammoCount and change UI
+                            ShotgunWeaponData.ammoCount -= 1;
+                            if (WeaponUI != null) setWeaponUI(equippedGun);
+
+                            // update next fire time to control fire rate of gun
+                            shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
+
+                            // update next reload time
+                            if (PlayerController2D.isGrounded) nextReloadTime = Time.time + onGroundReloadInterval;
+                        }
+                        break;
+                    case (GunTypes.Rocket):
+                        // Check if we have Rocket Ammo and can fire it.
+                        if (RocketWeaponData.ammoCount > 0 && Time.time > rocketNextFireTime)
+                        {
+                            // Generate projectile for rocket
+                            projectile = ObjectPooler.Instance.SpawnFromPool("rocket");
+                            projectile.transform.position = FirepointPrefab.transform.position;
+                            projectile.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
+                            projectile.SetActive(true);
+
+                            // update ammoCount and change UI
+                            RocketWeaponData.ammoCount -= 1;
+                            if (WeaponUI != null) setWeaponUI(equippedGun);
+
+                            // update next fire time to control fire rate of gun
+                            nextReloadTime = Time.time + RocketWeaponData.fireInterval;
+
+                            // update next reload time
+                            if (PlayerController2D.isGrounded)
+                            {
+                                nextReloadTime = Time.time + onGroundReloadInterval;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
             else
@@ -139,82 +207,11 @@ public class WeaponController : MonoBehaviour
                 {
                     flamethrowerProjectile.Stop();
                 }
-
-                if (equippedGun == GunTypes.ShotGun && Input.GetButtonDown("Fire1"))
-                {
-                    if (ShotgunWeaponData.ammoCount > 0 && Time.time > shotgunNextFireTime)
-                    {
-                        // Generate projectile for shotgun
-                        Tuple<float, float> recoilVals = getRecoilValues(ShotgunWeaponData.recoilForce);
-                        float horizontalForce = rb2d.velocity.x + recoilVals.Item1;
-                        float verticalForce = rb2d.velocity.y + recoilVals.Item2;
-                        rb2d.AddForce(new Vector2(horizontalForce, verticalForce)); // this conflicts with player's running velocity
-                        
-                        projectile0 = ObjectPooler.Instance.SpawnFromPool("shotgun");
-                        if (projectile0 != null)
-                        {
-                            projectile0.transform.position = FirepointPrefab.transform.position;
-                            projectile0.transform.eulerAngles = FirepointPrefab.transform.eulerAngles + new Vector3(0,0,5);
-                            projectile0.SetActive(true);
-                        }
-                        projectile1 = ObjectPooler.Instance.SpawnFromPool(GunTypes.ShotGun);
-                        if (projectile1 != null)
-                        {
-                            projectile1.transform.position = FirepointPrefab.transform.position;
-                            projectile1.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
-                            projectile1.SetActive(true);
-                        }
-                        projectile2 = ObjectPooler.Instance.SpawnFromPool(GunTypes.ShotGun);
-                        if (projectile2 != null)
-                        {
-                            projectile2.transform.position = FirepointPrefab.transform.position;
-                            projectile2.transform.eulerAngles = FirepointPrefab.transform.eulerAngles + new Vector3(0,0,-5);
-                            projectile2.SetActive(true);
-                        }
-
-                        // update ammoCount and change UI
-                        ShotgunWeaponData.ammoCount -= 1;
-                        if (WeaponUI != null) setWeaponUI(equippedGun);
-
-                        // update next fire time to control fire rate of gun
-                        shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
-
-                        // update next reload time
-                        if (PlayerController2D.isGrounded)
-                        {
-                            nextReloadTime = Time.time + onGroundReloadInterval;
-                        }
-                    }
-                }
-                else if (equippedGun == GunTypes.Rocket && Input.GetButtonDown("Fire1"))
-                {
-                    if (RocketWeaponData.ammoCount > 0 && Time.time > rocketNextFireTime)
-                    {
-                        // Generate projectile for rocket
-                        projectile = ObjectPooler.Instance.SpawnFromPool("rocket");
-                        projectile.transform.position = FirepointPrefab.transform.position;
-                        projectile.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
-                        projectile.SetActive(true);
-
-                        // update ammoCount and change UI
-                        RocketWeaponData.ammoCount -= 1;
-                        if (WeaponUI != null) setWeaponUI(equippedGun);
-
-                        // update next fire time to control fire rate of gun
-                        nextReloadTime = Time.time + RocketWeaponData.fireInterval;
-
-                        // update next reload time
-                        if (PlayerController2D.isGrounded)
-                        {
-                            nextReloadTime = Time.time + onGroundReloadInterval;
-                        }
-                    }
-                }
             }
 
             if (Input.GetButtonDown("weapon 1") && LevelManager.unlockedGuns >= 1)
             {
-                equippedGun = GunTypes.ShotGun;
+                equippedGun = GunTypes.Shotgun;
                 setWeaponUI(equippedGun);
             }
             else if (Input.GetButtonDown("weapon 2") && LevelManager.unlockedGuns >= 2)
@@ -228,25 +225,27 @@ public class WeaponController : MonoBehaviour
                 setWeaponUI(equippedGun);
             }
         }
-        
+
     }
 
-    public Tuple<float, float> getRecoilValues(float recoilForce)
+    public void shootRecoilForce(float recoilForce)
     {
+        float x, y;
         if (PlayerController2D.isFacingRight)
         {
             // Debug.Log("transform.eulerAngles: " + transform.eulerAngles.ToString());
-            float x = recoilForce * Mathf.Cos((transform.eulerAngles.z + 180)* Mathf.Deg2Rad);
-            float y = recoilForce * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
-            return Tuple.Create(x, y);
+            x = recoilForce * xCorrection * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
+            y = recoilForce * yCorrection * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
         }
         else
         {
             // Debug.Log("transform.eulerAngles: " + transform.eulerAngles.ToString());
-            float x = recoilForce * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
-            float y = recoilForce * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
-            return Tuple.Create(x, y);
+            x = recoilForce * xCorrection * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
+            y = recoilForce * yCorrection * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
         }
+        rb2d.velocity = new Vector2(0, 0);
+        rb2d.AddForce(new Vector2(x, y));
+        return;
     }
     public void refillAmmo()
     {
@@ -261,21 +260,23 @@ public class WeaponController : MonoBehaviour
 
 
     // set weapon UI methods
-    public WeaponData getWeaponDataForUI(string gunName) 
+    public WeaponData getWeaponDataForUI(string gunName)
     {
-        if (gunName == GunTypes.ShotGun)
+        switch (gunName)
         {
-            return ShotgunWeaponData;
+            case GunTypes.Shotgun:
+                return ShotgunWeaponData;
+                break;
+            case GunTypes.Rocket:
+                return RocketWeaponData;
+                break;
+            case GunTypes.Flamethrower:
+                return FlamethrowerWeaponData;
+                break;
+            default:
+                return null;
+                break;
         }
-        else if (gunName == GunTypes.Rocket)
-        {
-            return RocketWeaponData;
-        }
-        else if (gunName == GunTypes.Flamethrower)
-        {
-            return FlamethrowerWeaponData;
-        }
-        return null;
     }
 
     private void setWeaponUI(string equippedGun)

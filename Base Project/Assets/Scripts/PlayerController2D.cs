@@ -19,7 +19,7 @@ public class PlayerController2D : MonoBehaviour
     private bool hitWall;
 
     public bool DebugMode = false;
-    
+
     [SerializeField]
     Transform groundCheck1;
 
@@ -34,7 +34,7 @@ public class PlayerController2D : MonoBehaviour
 
     [SerializeField]
     Transform wallCheck2;
-    
+
     public float runSpeed;
     public float jumpSpeed;
 
