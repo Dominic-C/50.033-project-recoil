@@ -193,6 +193,16 @@ PrefabInstance:
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
       objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_Name
@@ -5303,6 +5313,16 @@ PrefabInstance:
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
       objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_Name
@@ -5382,6 +5402,16 @@ PrefabInstance:
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
       objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_Name
@@ -5460,6 +5490,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -5740,6 +5780,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591067093760, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1763585591067093767, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -5759,6 +5819,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591216563774, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8185723449413858167, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
@@ -5866,6 +5946,16 @@ PrefabInstance:
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
       objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_Name
@@ -5956,6 +6046,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -6229,6 +6329,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -6557,6 +6667,16 @@ PrefabInstance:
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
       objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_Name
@@ -6635,6 +6755,16 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: respawnDelay
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}

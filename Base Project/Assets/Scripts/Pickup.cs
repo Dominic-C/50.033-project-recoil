@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public enum PickupType
 {
-    Weapon, 
+    Weapon,
     Hint,
     EasterEgg,
     AmmoRefill
@@ -24,15 +24,40 @@ public class Pickup : MonoBehaviour
 {
     public PickupType type;
     public UnityEvent onEnter;
+    public bool canRespawn = false;
+    public float respawnDelay = 0.0f;
+    private float timer = 0.0f;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
-            gameObject.SetActive(false); // to be replaced with some animation of disappearing
+            if (!canRespawn)
+            {
+                gameObject.SetActive(false); // to be replaced with some animation of disappearing
+            }
+            else
+            {
+                // In this case, we have 'respawning powerups' which can reappear again when the time is right.
+                GetComponent<Renderer>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+                StartCoroutine(CountdownRespawn());
+            }
             if (onEnter != null) onEnter.Invoke();
         }
     }
+
+    IEnumerator CountdownRespawn()
+    {
+        timer = respawnDelay;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            yield return null;
+        }
+        respawnPickup();
+    }
+
 
     public void showUI(GameObject obj)
     {
@@ -41,7 +66,7 @@ public class Pickup : MonoBehaviour
 
     public void getShotgun()
     {
-        LevelManager.unlockedGuns = (int) UnlockGunState.SHOTGUN_ONLY;
+        LevelManager.unlockedGuns = (int)UnlockGunState.SHOTGUN_ONLY;
     }
 
     public void getRocket()
@@ -54,10 +79,16 @@ public class Pickup : MonoBehaviour
         LevelManager.unlockedGuns = (int)UnlockGunState.ALL_WEAPONS;
     }
 
-    
+
     public void getEgg(EggType type)
     {
-        LevelManager.EggsCollected.Add((int) type);
+        LevelManager.EggsCollected.Add((int)type);
+    }
+
+    void respawnPickup()
+    {
+        GetComponent<Renderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
     }
 
 }
