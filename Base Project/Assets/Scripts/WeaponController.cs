@@ -42,8 +42,8 @@ public class WeaponController : MonoBehaviour
     private float onGroundReloadInterval = 3.0f;
     public static float nextReloadTime = 0.0f;
 
-    public float xCorrection = 0.75f;
-    public float yCorrection = 1.25f;
+    public float xCorrection = 0.70f;
+    public float yCorrection = 0.9f;
 
     public static bool isEnabled = false;
     public delegate void GroundReload();
