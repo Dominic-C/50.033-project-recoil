@@ -80,9 +80,9 @@ public class Pickup : MonoBehaviour
     }
 
 
-    public void getEgg(EggType type)
+    public void getEgg(int eggType)
     {
-        LevelManager.EggsCollected.Add((int)type);
+        LevelManager.EggsCollected.Add(eggType);
     }
 
     void respawnPickup()
