@@ -212,16 +212,19 @@ public class WeaponController : MonoBehaviour
             if (Input.GetButtonDown("weapon 1") && LevelManager.unlockedGuns >= 1)
             {
                 equippedGun = GunTypes.Shotgun;
+                FirepointPrefab.transform.localPosition = ShotgunWeaponData.firePosition;
                 setWeaponUI(equippedGun);
             }
             else if (Input.GetButtonDown("weapon 2") && LevelManager.unlockedGuns >= 2)
             {
                 equippedGun = GunTypes.Rocket;
+                FirepointPrefab.transform.localPosition = RocketWeaponData.firePosition;
                 setWeaponUI(equippedGun);
             }
             else if (Input.GetButtonDown("weapon 3") && LevelManager.unlockedGuns >= 3)
             {
                 equippedGun = GunTypes.Flamethrower;
+                FirepointPrefab.transform.localPosition = FlamethrowerWeaponData.firePosition;
                 setWeaponUI(equippedGun);
             }
         }
@@ -266,16 +269,12 @@ public class WeaponController : MonoBehaviour
         {
             case GunTypes.Shotgun:
                 return ShotgunWeaponData;
-                break;
             case GunTypes.Rocket:
                 return RocketWeaponData;
-                break;
             case GunTypes.Flamethrower:
                 return FlamethrowerWeaponData;
-                break;
             default:
                 return null;
-                break;
         }
     }
 
