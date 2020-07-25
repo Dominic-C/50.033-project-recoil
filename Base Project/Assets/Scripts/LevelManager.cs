@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
 {
     // UI gameObjects, found dynamically everytime loadNextScene is called.
     private GameObject PauseMenuUI;
+    public bool debugMode = false;
     private TextMeshProUGUI timeDebugText;
 
     // Level attributes
@@ -88,8 +89,10 @@ public class LevelManager : MonoBehaviour
     public void PauseGame()
     {
         PauseMenuUI.SetActive(true);
-        Debug.Log(timeTakenCurrentStage);
-        timeDebugText.text = "Time: " + timeTakenCurrentStage;
+        if (debugMode)
+        {
+            timeDebugText.text = "Time: " + timeTakenCurrentStage;
+        }
         timeTakenPerStage[currentSceneName] = timeTakenCurrentStage;
         Time.timeScale = 0f;
         toUpdateTime = false;
@@ -139,11 +142,18 @@ public class LevelManager : MonoBehaviour
             // set pause menu ui and time debug text
             PauseMenuUI = GameObject.Find("PauseMenu");
             if (PauseMenuUI != null) PauseMenuUI.SetActive(false);
-            timeDebugText = PauseMenuUI.gameObject.transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
+            
+            if (debugMode)
+            {
+                timeDebugText = PauseMenuUI.gameObject.transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
+                timeDebugText.gameObject.SetActive(true);
+            }
 
             // set player spawn position
             player = GameObject.FindGameObjectWithTag("Player");
+            print(player);
             if (player != null) playerSpawnPosition = player.transform.position;
+            print(playerSpawnPosition);
         }
         
         if (!timeTakenPerStage.ContainsKey(currentSceneName))
