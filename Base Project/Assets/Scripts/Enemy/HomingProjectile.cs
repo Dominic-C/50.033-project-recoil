@@ -12,13 +12,17 @@ public class HomingProjectile : MonoBehaviour
     public float radius;
     public int lifetime;
     private Animator animator;
+    private UnityEngine.Object explosionRef;
+
     void Start()
     {
         lockedOn = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         gameObject.GetComponent<CircleCollider2D>().radius = radius;
         animator = GetComponent<Animator>();
-        
+        explosionRef = Resources.Load("Explosion");
+
+
     }
 
     // Update is called once per frame
@@ -40,7 +44,16 @@ public class HomingProjectile : MonoBehaviour
         {
             animator.Play("HomingProjectile_lockedon");
             lockedOn = true;
-            Destroy(gameObject, lifetime);
+            Invoke("KillSelf", lifetime);
         }
+    }
+
+
+    private void KillSelf()
+    {
+        GameObject explosion = (GameObject)Instantiate(explosionRef);
+        explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
+        Destroy(explosion, 5.0f);
+        Destroy(gameObject);
     }
 }
