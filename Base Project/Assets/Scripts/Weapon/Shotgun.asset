@@ -19,4 +19,5 @@ MonoBehaviour:
   projectileSpeed: 10
   recoilForce: 300
   fireInterval: 0.5
+  firePosition: {x: 0.092, y: 0.016, z: 0}
   maxAmmo: 2
