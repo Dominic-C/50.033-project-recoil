@@ -141,6 +141,7 @@ public class LevelManager : MonoBehaviour
 
             // set pause menu ui and time debug text
             PauseMenuUI = GameObject.Find("PauseMenu");
+            
             if (PauseMenuUI != null) PauseMenuUI.SetActive(false);
             
             if (debugMode)
