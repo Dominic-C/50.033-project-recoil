@@ -16740,42 +16740,42 @@ PrefabInstance:
     - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 244.26862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -130.1501
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 244.26862
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -51.78972
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4680686100437927908, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
@@ -16840,7 +16840,7 @@ PrefabInstance:
     - target: {fileID: 4680686100437927915, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 083854405516b974dbb62641d23a2a7f, type: 3}
@@ -16903,8 +16903,8 @@ MonoBehaviour:
   - {fileID: 1028283875}
   - {fileID: 1108003524}
   target: {fileID: 0}
-  moveSpeed: 3
-  waitTime: 0
+  moveSpeed: 0.75
+  waitTime: 3
 --- !u!251 &2144060493
 PlatformEffector2D:
   m_ObjectHideFlags: 0
