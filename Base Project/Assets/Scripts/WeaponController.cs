@@ -18,7 +18,7 @@ public class WeaponController : MonoBehaviour
     public GameObject FlamethrowerParticleSystem;
     public GameObject PlayerArm;
 
-    public GameObject WeaponUI;
+    private GameObject WeaponUI;
     private CurrWeaponUI WeaponUIData;
     public WeaponData ShotgunWeaponData;
     public WeaponData RocketWeaponData;
@@ -69,8 +69,12 @@ public class WeaponController : MonoBehaviour
         equippedGun = GunTypes.Shotgun;
 
         // weapon UI setup
-        WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
-        if (WeaponUI != null) setWeaponUI(equippedGun);
+        WeaponUI = GameObject.Find("WeaponUI");
+        if (WeaponUI!= null)
+        {
+            WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
+            setWeaponUI(equippedGun);
+        }
 
         groundReload += delegate { refillAmmo(); };
         flamethrowerProjectile = FlamethrowerParticleSystem.GetComponent<ParticleSystem>();
@@ -184,7 +188,6 @@ public class WeaponController : MonoBehaviour
 
                             // update ammoCount and change UI
                             RocketWeaponData.ammoCount -= 1;
-                            if (WeaponUI != null) setWeaponUI(equippedGun);
 
                             // update next fire time to control fire rate of gun
                             nextReloadTime = Time.time + RocketWeaponData.fireInterval;
@@ -213,20 +216,19 @@ public class WeaponController : MonoBehaviour
             {
                 equippedGun = GunTypes.Shotgun;
                 FirepointPrefab.transform.localPosition = ShotgunWeaponData.firePosition;
-                setWeaponUI(equippedGun);
             }
             else if (Input.GetButtonDown("weapon 2") && LevelManager.unlockedGuns >= 2)
             {
                 equippedGun = GunTypes.Rocket;
                 FirepointPrefab.transform.localPosition = RocketWeaponData.firePosition;
-                setWeaponUI(equippedGun);
             }
             else if (Input.GetButtonDown("weapon 3") && LevelManager.unlockedGuns >= 3)
             {
                 equippedGun = GunTypes.Flamethrower;
                 FirepointPrefab.transform.localPosition = FlamethrowerWeaponData.firePosition;
-                setWeaponUI(equippedGun);
             }
+
+            if (WeaponUI != null) setWeaponUI(equippedGun);
         }
 
     }
