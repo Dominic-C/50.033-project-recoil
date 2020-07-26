@@ -22,7 +22,6 @@ public class HomingChild : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Child hit");
             KillSelf();
         }
     }

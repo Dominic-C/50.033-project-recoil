@@ -18,18 +18,18 @@ public class HomingProjectile : MonoBehaviour
     {
         lockedOn = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        gameObject.GetComponent<CircleCollider2D>().radius = radius;
         animator = GetComponent<Animator>();
         explosionRef = Resources.Load("Explosion");
-
-
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
+        DetectPlayer(radius);
         if (lockedOn)
         {
+            animator.Play("HomingProjectile_lockedon");
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
         else
@@ -38,16 +38,22 @@ public class HomingProjectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void DetectPlayer(float radius)
     {
-        if (collision.CompareTag("Player"))
+        if (Vector2.Distance(transform.position, player.transform.position) <= radius)
         {
-            animator.Play("HomingProjectile_lockedon");
             lockedOn = true;
             Invoke("KillSelf", lifetime);
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            KillSelf();
+        }
+    }
 
     private void KillSelf()
     {

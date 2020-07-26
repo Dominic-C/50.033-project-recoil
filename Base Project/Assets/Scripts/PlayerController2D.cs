@@ -258,7 +258,6 @@ public class PlayerController2D : MonoBehaviour
         else if (col.gameObject.CompareTag("HomingProjectile"))
         {
             Debug.Log("Player dies");
-            Destroy(col.gameObject.transform.parent.gameObject);
             LevelManager.onPlayerDeath();
         }
     }

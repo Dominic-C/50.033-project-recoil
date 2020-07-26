@@ -17,6 +17,7 @@ MonoBehaviour:
   weaponImage: {fileID: -4493391353744132287, guid: fd91ce36dcb9b734ba90e9b1d0a6dd6a,
     type: 3}
   projectileSpeed: 10
-  recoilForce: 75
+  recoilForce: 125
   fireInterval: 0.1
+  firePosition: {x: 0, y: 0, z: 0}
   maxAmmo: 10
