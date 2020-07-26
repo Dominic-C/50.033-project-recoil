@@ -15,12 +15,13 @@ public enum UnlockGunState
 public class LevelManager : MonoBehaviour
 {
     // UI gameObjects, found dynamically everytime loadNextScene is called.
-    private GameObject PauseMenuUI;
+    public static GameObject PauseMenuUI;
     public bool debugMode = false;
     private TextMeshProUGUI timeDebugText;
 
     // Level attributes
-    public static LevelManager Instance;
+    private bool loadingFromSaveData = false;
+    private static LevelManager Instance;
     public static int currentLevel;
     private string currentSceneName;
     public static bool GameIsPaused = false;
@@ -47,11 +48,11 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
-            
-            
         } else
         {
+            Destroy(gameObject);
             Destroy(this);
+            Debug.Log("Destroying");
         }
         
     }
@@ -132,16 +133,40 @@ public class LevelManager : MonoBehaviour
         if (currentLevel >= 1)
         {
             currentSceneName = SceneManager.GetSceneByBuildIndex(currentLevel).name;
-            if (!timeTakenPerStage.ContainsKey(currentSceneName))
+
+            // update timeTakenPerStage
+            if (!timeTakenPerStage.ContainsKey(currentSceneName) && !loadingFromSaveData)
             {
+                Debug.Log("not loading from save data");
                 timeTakenPerStage.Add(currentSceneName, 0f); // key may already exist if loaded from savefile.
+                timeTakenCurrentStage = 0f;
             }
 
             toUpdateTime = true;
 
             // set pause menu ui and time debug text
-            PauseMenuUI = GameObject.Find("PauseMenu");
-            if (PauseMenuUI != null) PauseMenuUI.SetActive(false);
+            PauseMenuUI = gameObject.transform.Find("PauseCanvas/PauseMenu").gameObject;
+            if (PauseMenuUI != null)
+            {
+                PauseMenuUI.SetActive(false);
+                Button pauseButton = GetComponentInChildren<Button>();
+                Debug.Log("pauseButton Found " + pauseButton);
+                pauseButton.onClick.AddListener(delegate { PauseGame(); });
+                Button[] buttons = PauseMenuUI.GetComponentsInChildren<Button>();
+                foreach(Button button in buttons)
+                {
+                    switch (button.name)
+                    {
+                        case "ResumeButton":
+                            button.onClick.AddListener(delegate { ResumeGame(); });
+                            break;
+                        case "QuitButton":
+                            button.onClick.AddListener(delegate { QuitGame(); });
+                            break;
+                    }
+                }
+            }
+            
             
             if (debugMode)
             {
@@ -154,11 +179,6 @@ public class LevelManager : MonoBehaviour
             print(player);
             if (player != null) playerSpawnPosition = player.transform.position;
             print(playerSpawnPosition);
-        }
-        
-        if (!timeTakenPerStage.ContainsKey(currentSceneName))
-        {
-            timeTakenCurrentStage = 0f; // this value may be loaded from savefile.
         }
 
         SaveSystem.SavePlayer();
@@ -180,6 +200,7 @@ public class LevelManager : MonoBehaviour
     public void loadPlayerData()
     {
         Debug.Log("loading player data");
+        loadingFromSaveData = true;
         PlayerData playerData = SaveSystem.LoadPlayer();
 
         int levelToLoad = playerData.level;
