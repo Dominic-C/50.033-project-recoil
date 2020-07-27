@@ -69,15 +69,20 @@ public class WeaponController : MonoBehaviour
         equippedGun = GunTypes.Shotgun;
 
         // weapon UI setup
+        findWeaponUI();
+
+        groundReload += delegate { refillAmmo(); };
+        flamethrowerProjectile = FlamethrowerParticleSystem.GetComponent<ParticleSystem>();
+    }
+
+    public void findWeaponUI()
+    {
         WeaponUI = GameObject.Find("WeaponUI");
-        if (WeaponUI!= null)
+        if (WeaponUI != null)
         {
             WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
             setWeaponUI(equippedGun);
         }
-
-        groundReload += delegate { refillAmmo(); };
-        flamethrowerProjectile = FlamethrowerParticleSystem.GetComponent<ParticleSystem>();
     }
 
     void FixedUpdate()
