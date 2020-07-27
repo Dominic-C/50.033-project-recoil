@@ -11,6 +11,7 @@ public class EnemyShooter : Enemy
     private bool playerInSight;
     private bool isHit;
     private UnityEngine.Object explosionRef;
+    public AnimationClip shootAnimationClip;
 
     // Start is called before the first frame update
     void Start()
@@ -32,20 +33,23 @@ public class EnemyShooter : Enemy
         playerInSight = canSeePlayer(rangeOfSight);
         if (playerInSight)
         {
-            spriteRenderer.color = Color.red;
+            // spriteRenderer.color = Color.red;
             shootProjectile();
+            animator.Play(shootAnimationClip.name);
         }
         else
         {
-            spriteRenderer.color = Color.white;
+            // spriteRenderer.color = Color.white;
             timeBetweenShots -= Time.deltaTime; // this is to reload even though the player is out of sight
             patrol();
+            animator.Play(idleAnimationClip.name);
+
         }
     }
 
     // Helper methods
     void shootProjectile()
-    {        
+    {
         // timed shots
         if (timeBetweenShots <= 0)
         {
@@ -55,6 +59,7 @@ public class EnemyShooter : Enemy
                 GameObject projectileObject = Instantiate(projectile, eyes.position, Quaternion.identity); // instantiate with initial position and rotation
                 // projectileObject.GetComponent<EnemyProjectile>().isFacingLeft = isFacingLeft;
                 timeBetweenShots = startTimeBetweenShots;
+                
             }
         }
         else
@@ -78,7 +83,7 @@ public class EnemyShooter : Enemy
             }
             else
             {
-                Invoke("ResetMaterial", 0.1f);
+                Invoke("ResetMaterial", 0.2f);
             }
         }
     }
@@ -89,6 +94,12 @@ public class EnemyShooter : Enemy
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
         Destroy(explosion, 5.0f);
         Destroy(transform.gameObject);
+    }
+
+    private IEnumerator playShootAnim()
+    {
+        animator.Play(shootAnimationClip.name);
+        yield return new WaitForSeconds(0.2f);
     }
 }
 
