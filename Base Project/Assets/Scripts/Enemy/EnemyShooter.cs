@@ -12,7 +12,7 @@ public class EnemyShooter : Enemy
     private bool isHit;
     private UnityEngine.Object explosionRef;
     public AnimationClip shootAnimationClip;
-
+    private AudioSource deathSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,7 @@ public class EnemyShooter : Enemy
         explosionRef = Resources.Load("Explosion");
         isHit = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -90,6 +91,7 @@ public class EnemyShooter : Enemy
 
     private void KillSelf()
     {
+        AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
         GameObject explosion = (GameObject)Instantiate(explosionRef);
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
         Destroy(explosion, 5.0f);

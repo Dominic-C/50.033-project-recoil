@@ -14,4 +14,6 @@ public class WeaponData : ScriptableObject
     public float fireInterval;
     public Vector3 firePosition;
     public int maxAmmo;
+    public AudioClip fireSound;
+    public AudioClip switchToSound;
 }

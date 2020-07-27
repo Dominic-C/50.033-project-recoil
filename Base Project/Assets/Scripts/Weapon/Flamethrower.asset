@@ -21,3 +21,6 @@ MonoBehaviour:
   fireInterval: 0.1
   firePosition: {x: 0, y: 0, z: 0}
   maxAmmo: 10
+  fireSound: {fileID: 8300000, guid: 898decdb8d0cbb04b93ec8dda929076a, type: 3}
+  switchToSound: {fileID: 8300000, guid: ec1e18aa1331e7041ac36eda34963513, type: 3}
+  ammoLandingSound: {fileID: 0}

@@ -17,6 +17,7 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
     private Animator animator;
     public AnimationClip idleAnimation;
     public AnimationClip attackAnimation;
+    private AudioSource attackSound;
 
     void Start()
     {
@@ -66,6 +67,7 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
         {
             transform.position += moveSpeed * Vector3.down * Time.deltaTime;
             animator.Play(attackAnimation.name);
+            attackSound.Play();
 
         }
         else

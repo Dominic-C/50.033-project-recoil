@@ -11,6 +11,7 @@ public class BasicEnemy : Enemy
     private Material matDefault;
     private UnityEngine.Object explosionRef;
     private bool isHit;
+    private AudioSource deathSound;
 
     void Start()
     {
@@ -71,6 +72,7 @@ public class BasicEnemy : Enemy
 
     private void KillSelf()
     {
+        AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
         GameObject explosion = (GameObject)Instantiate(explosionRef);
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
         Destroy(explosion, 5.0f);

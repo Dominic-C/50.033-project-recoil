@@ -34,6 +34,8 @@ public class WeaponController : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private string equippedGun;
+    private AudioSource weaponFireAudioSource;
+    private AudioSource weaponSwitchAudioSource;
 
     private float shotgunNextFireTime = 0.0f;  // in seconds
     private float rocketNextFireTime = 0.0f;
@@ -72,6 +74,9 @@ public class WeaponController : MonoBehaviour
         findWeaponUI();
 
         groundReload += delegate { refillAmmo(); };
+        AudioSource[] sources = GetComponents<AudioSource>();
+        weaponFireAudioSource = sources[0];
+        weaponSwitchAudioSource = sources[1];
         flamethrowerProjectile = FlamethrowerParticleSystem.GetComponent<ParticleSystem>();
     }
 
@@ -129,6 +134,7 @@ public class WeaponController : MonoBehaviour
                         {
                             // Generate Force, set ammo count, update UI
                             shootRecoilForce(FlamethrowerWeaponData.recoilForce);
+                            weaponFireAudioSource.PlayOneShot(FlamethrowerWeaponData.fireSound);
                             FlamethrowerWeaponData.ammoCount -= 1;
                             if (WeaponUI != null) setWeaponUI(equippedGun);
 
@@ -172,6 +178,7 @@ public class WeaponController : MonoBehaviour
 
                             // update ammoCount and change UI
                             ShotgunWeaponData.ammoCount -= 1;
+                            weaponFireAudioSource.PlayOneShot(ShotgunWeaponData.fireSound);
                             if (WeaponUI != null) setWeaponUI(equippedGun);
 
                             // update next fire time to control fire rate of gun
@@ -190,9 +197,11 @@ public class WeaponController : MonoBehaviour
                             projectile.transform.position = FirepointPrefab.transform.position;
                             projectile.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
                             projectile.SetActive(true);
+                            
 
                             // update ammoCount and change UI
                             RocketWeaponData.ammoCount -= 1;
+                            weaponFireAudioSource.PlayOneShot(RocketWeaponData.fireSound);
 
                             // update next fire time to control fire rate of gun
                             nextReloadTime = Time.time + RocketWeaponData.fireInterval;
@@ -221,16 +230,20 @@ public class WeaponController : MonoBehaviour
             {
                 equippedGun = GunTypes.Shotgun;
                 FirepointPrefab.transform.localPosition = ShotgunWeaponData.firePosition;
+                weaponSwitchAudioSource.PlayOneShot(ShotgunWeaponData.switchToSound);
+                
             }
             else if (Input.GetButtonDown("weapon 2") && LevelManager.unlockedGuns >= 2)
             {
                 equippedGun = GunTypes.Rocket;
                 FirepointPrefab.transform.localPosition = RocketWeaponData.firePosition;
+                weaponSwitchAudioSource.PlayOneShot(RocketWeaponData.switchToSound);
             }
             else if (Input.GetButtonDown("weapon 3") && LevelManager.unlockedGuns >= 3)
             {
                 equippedGun = GunTypes.Flamethrower;
                 FirepointPrefab.transform.localPosition = FlamethrowerWeaponData.firePosition;
+                weaponSwitchAudioSource.clip = FlamethrowerWeaponData.switchToSound;
             }
 
             if (WeaponUI != null) setWeaponUI(equippedGun);

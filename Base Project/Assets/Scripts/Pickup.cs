@@ -27,11 +27,15 @@ public class Pickup : MonoBehaviour
     public bool canRespawn = false;
     public float respawnDelay = 0.0f;
     private float timer = 0.0f;
+    private AudioSource pickupSound;
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
+            pickupSound = GetComponent<AudioSource>();
+            if (pickupSound != null) AudioSource.PlayClipAtPoint(pickupSound.clip, transform.position);
+            
             if (!canRespawn)
             {
                 gameObject.SetActive(false); // to be replaced with some animation of disappearing
