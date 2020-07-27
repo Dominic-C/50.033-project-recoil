@@ -14,7 +14,7 @@ public class CurrWeaponUI : MonoBehaviour
 
     public void setWeaponData(WeaponData data)
     {
-        Debug.Log("Setting weapon data for UI");
+        // Debug.Log("Setting weapon data for UI");
         AmmoCounter.text = data.ammoCount.ToString() + " / " + data.maxAmmo.ToString();
         GunName.text = data.weaponName;
         GunSprite.sprite = data.weaponImage;

@@ -118,6 +118,8 @@ MonoBehaviour:
   speed: 1
   radius: 3
   lifetime: 5
+  idleAnimationClip: {fileID: 7400000, guid: 2992be27d362e864b83a28a2e5311a6f, type: 2}
+  attackAnimationClip: {fileID: 7400000, guid: 31c5a0d377de76e4cbd02264b109e40f, type: 2}
 --- !u!58 &5686273581691147898
 CircleCollider2D:
   m_ObjectHideFlags: 0

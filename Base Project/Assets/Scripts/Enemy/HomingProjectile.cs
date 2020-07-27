@@ -11,8 +11,12 @@ public class HomingProjectile : MonoBehaviour
     // Start is called before the first frame update
     public float radius;
     public int lifetime;
+    private bool playerOnRight;
     private Animator animator;
     private UnityEngine.Object explosionRef;
+    public AnimationClip idleAnimationClip;
+    public AnimationClip attackAnimationClip;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -20,7 +24,7 @@ public class HomingProjectile : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         explosionRef = Resources.Load("Explosion");
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -29,12 +33,22 @@ public class HomingProjectile : MonoBehaviour
         DetectPlayer(radius);
         if (lockedOn)
         {
-            animator.Play("HomingProjectile_lockedon");
+            checkPlayerPosition();
+            if (playerOnRight)
+            {
+                spriteRenderer.flipX = true;
+                animator.Play(attackAnimationClip.name);
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+                animator.Play(attackAnimationClip.name);
+            }
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
         else
         {
-            animator.Play("HomingProjectile_activated");
+            animator.Play(idleAnimationClip.name); 
         }
     }
 
@@ -44,6 +58,20 @@ public class HomingProjectile : MonoBehaviour
         {
             lockedOn = true;
             Invoke("KillSelf", lifetime);
+        }
+    }
+
+    private void checkPlayerPosition()
+    {
+        if (player.transform.position.x < transform.position.x)
+        {
+            playerOnRight = false;
+            Debug.Log("Player on left");
+        }
+        else
+        {
+            playerOnRight = true;
+            Debug.Log("Player on right");
         }
     }
 

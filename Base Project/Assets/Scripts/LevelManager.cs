@@ -243,7 +243,7 @@ public class LevelManager : MonoBehaviour
     {
         if (distance > currentDistance)
         {
-            Debug.Log("setting level progress");
+            // Debug.Log("setting level progress");
             currentDistance = distance;
             progressSlider.value = currentDistance;
             progressFill.color = progressColorGradient.Evaluate(progressSlider.normalizedValue);
