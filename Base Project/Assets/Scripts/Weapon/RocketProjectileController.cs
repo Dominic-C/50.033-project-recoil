@@ -8,7 +8,7 @@ public class RocketProjectileController : MonoBehaviour
     private GameObject playerPrefab;
     private Rigidbody2D playerRb2d;
     public WeaponData RocketWeaponData;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,19 +24,24 @@ public class RocketProjectileController : MonoBehaviour
         rb2d.velocity = transform.TransformDirection(new Vector2(RocketWeaponData.projectileSpeed, 0));
     }
 
+    void LaunchRecoil()
+    {
+        gameObject.SetActive(false);
+
+        Vector3 recoilVector = playerPrefab.transform.position - transform.position;
+        Vector3 recoilDirection = recoilVector.normalized;
+        float recoilMagnitude = RocketWeaponData.recoilForce;
+
+        Vector2 finalRecoil = new Vector2(recoilDirection.x * recoilMagnitude, recoilDirection.y * recoilMagnitude);
+        playerRb2d.AddForce(finalRecoil);
+        Debug.Log("finalRecoil: " + finalRecoil.ToString());
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("GameBorder"))
         {
-            gameObject.SetActive(false);
-
-            Vector3 recoilVector = playerPrefab.transform.position - transform.position;
-            Vector3 recoilDirection = recoilVector.normalized;
-            float recoilMagnitude = RocketWeaponData.recoilForce;
-
-            Vector2 finalRecoil = new Vector2(recoilDirection.x * recoilMagnitude, recoilDirection.y * recoilMagnitude);
-            playerRb2d.AddForce(finalRecoil);
-            Debug.Log("finalRecoil: " + finalRecoil.ToString());
+            LaunchRecoil();
         }
     }
 }
