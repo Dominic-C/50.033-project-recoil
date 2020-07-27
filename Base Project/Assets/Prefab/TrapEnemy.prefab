@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2045931178581355558}
   - component: {fileID: 2045931178581355559}
   - component: {fileID: 2045931178581355552}
+  - component: {fileID: 6426959566923043735}
   m_Layer: 0
   m_Name: TrapEnemy
   m_TagString: Enemy
@@ -99,6 +100,8 @@ MonoBehaviour:
   activationDistance: 4
   groundCheck: {fileID: 2045931179470842236}
   moveSpeed: 3
+  idleAnimation: {fileID: 7400000, guid: 537bff601eddad04188f992e01ca1d1d, type: 2}
+  attackAnimation: {fileID: 7400000, guid: af994169c2264bb4f891e90597272f51, type: 2}
 --- !u!61 &2045931178581355552
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,6 +128,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6, y: 4.4009924}
   m_EdgeRadius: 0
+--- !u!95 &6426959566923043735
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045931178581355553}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 44862bb6cac956844806e86ac376d847, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2045931179470842237
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,12 +66,10 @@ public class HomingProjectile : MonoBehaviour
         if (player.transform.position.x < transform.position.x)
         {
             playerOnRight = false;
-            Debug.Log("Player on left");
         }
         else
         {
             playerOnRight = true;
-            Debug.Log("Player on right");
         }
     }
 

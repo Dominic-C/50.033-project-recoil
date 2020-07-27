@@ -129,6 +129,7 @@ MonoBehaviour:
   startTimeBetweenShots: 0.5
   projectile: {fileID: 4507134427231319588, guid: c0e69d3da8bb5994a80f3b2f40861418,
     type: 3}
+  shootAnimationClip: {fileID: 7400000, guid: 600735f25142dfe46bc039b9b973f3a1, type: 2}
 --- !u!50 &8520144058430989289
 Rigidbody2D:
   serializedVersion: 4
@@ -163,7 +164,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.04847139}
+  m_Offset: {x: 0, y: -0.006610036}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -174,7 +175,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.96, y: 2.2830572}
+  m_Size: {x: 1.96, y: 2.1993344}
   m_EdgeRadius: 0
 --- !u!1 &8520144059150491288
 GameObject:
@@ -200,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8520144059150491288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.24, y: 0.51, z: 0}
+  m_LocalPosition: {x: 0.454, y: -0.196, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8520144058430989291}
