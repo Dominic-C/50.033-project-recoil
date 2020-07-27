@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public enum UnlockGunState
@@ -22,17 +24,23 @@ public class LevelManager : MonoBehaviour
     // Level attributes
     private bool loadingFromSaveData = false;
     private static LevelManager Instance;
-    public static int currentLevel;
+    public static int currentStage;
+    public static int currentLevel = 0;
     private string currentSceneName;
     public static bool GameIsPaused = false;
     public static bool audioIsPlaying = false;
     private bool toUpdateTime = false;
     private float timeTakenCurrentStage = 0f;
 
+    // Audio attributes
+    public AudioMixer audioMixer;
+    private AudioMixerSnapshot startingSnapshot;
+    private AudioMixerSnapshot pausedSnapshot;
+    private AudioSource[] audioSources;
+
     // SaveSystem attributes
     public static Dictionary<string, float> timeTakenPerStage = new Dictionary<string, float>();
     public static List<int> EggsCollected = new List<int>();
-    public static List<string> mobsDestroyed; // TODO: monsters onDestroy should add to this list.
 
     // Player attributes
     private GameObject player;
@@ -52,24 +60,15 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
             Destroy(this);
-            Debug.Log("Destroying");
         }
         
     }
 
     void Start()
     {
-        updateLevel();
-        SceneManager.sceneLoaded += delegate { updateLevel(); };
+        updateStage();
+        SceneManager.sceneLoaded += delegate { updateStage(); };
         PlayerDie += delegate { respawn(); };
-        if (!audioIsPlaying)
-        {
-            print("playing audio");
-            audioIsPlaying = true;
-            AudioSource audio = GetComponent<AudioSource>();
-            audio.Play();
-        }
-
     }
 
     void Update()
@@ -87,9 +86,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    #region Game Operations : Play, Quit, Pause, Resume
     public void PauseGame()
     {
         PauseMenuUI.SetActive(true);
+        FadeMixerGroup.TransitToSnapshot(pausedSnapshot);
         if (debugMode)
         {
             timeDebugText.text = "Time: " + timeTakenCurrentStage;
@@ -110,6 +111,7 @@ public class LevelManager : MonoBehaviour
 
     public void ResumeGame()
     {
+        FadeMixerGroup.TransitToSnapshot(startingSnapshot);
         toUpdateTime = true;
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
@@ -124,15 +126,32 @@ public class LevelManager : MonoBehaviour
         Application.Quit();
     }
 
-    void updateLevel()
-    {
-        currentLevel = SceneManager.GetActiveScene().buildIndex;
-        mobsDestroyed = new List<string>();
-        Debug.Log("now level: " + currentLevel);
+    #endregion
 
-        if (currentLevel >= 1)
+    #region in-game level mechanics: updateLevel, respawn
+
+    void updateStage()
+    {
+        currentStage = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentStage >= 1)
         {
-            currentSceneName = SceneManager.GetSceneByBuildIndex(currentLevel).name;
+            currentSceneName = SceneManager.GetSceneByBuildIndex(currentStage).name;
+
+            if (!audioIsPlaying) // play audio if it is not playing already
+            {
+                startingSnapshot = audioMixer.FindSnapshot("Starting");
+                pausedSnapshot = audioMixer.FindSnapshot("Paused");
+                audioIsPlaying = true;
+                audioSources = GetComponents<AudioSource>();
+                foreach (AudioSource audioSource in audioSources)
+                {
+                    FadeMixerGroup.TurnOffSound(audioMixer);
+                    audioSource.Play();
+                }
+
+                StartCoroutine(FadeMixerGroup.StartFade(audioMixer, FadeMixerGroup.exposedBGMParams[0], 2f, 1f));
+            }
 
             // update timeTakenPerStage
             if (!timeTakenPerStage.ContainsKey(currentSceneName) && !loadingFromSaveData)
@@ -150,7 +169,6 @@ public class LevelManager : MonoBehaviour
             {
                 PauseMenuUI.SetActive(false);
                 Button pauseButton = GetComponentInChildren<Button>();
-                Debug.Log("pauseButton Found " + pauseButton);
                 pauseButton.onClick.AddListener(delegate { PauseGame(); });
                 Button[] buttons = PauseMenuUI.GetComponentsInChildren<Button>();
                 foreach(Button button in buttons)
@@ -176,12 +194,34 @@ public class LevelManager : MonoBehaviour
 
             // set player spawn position
             player = GameObject.FindGameObjectWithTag("Player");
-            print(player);
             if (player != null) playerSpawnPosition = player.transform.position;
-            print(playerSpawnPosition);
+
+            // play music, TODO: add stage transition animation
+            transitBGM();
         }
 
         SaveSystem.SavePlayer();
+        
+    }
+
+    private void transitBGM()
+    {
+        // yes i know this line is very convoluted, but the scenemanager is not able to call GetSceneAt(index) for unloaded scenes.
+        string prevSceneName = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(SceneManager.GetActiveScene().buildIndex - 1));
+
+        print("Prev Scene: " + prevSceneName);
+        print("Current Scene: " + currentSceneName);
+
+        if (currentSceneName.ElementAt(5) != prevSceneName.ElementAt(5) && prevSceneName != "MainMenu") // a hack done to see if the level the user is at changed
+        {
+            currentLevel += 1;
+            Debug.Log("Level Changed: " + currentLevel);
+            audioSources[currentLevel].volume = 0.1f;
+            string nextSceneMusicParam = FadeMixerGroup.exposedBGMParams[currentLevel];
+            string prevSceneMusicParam = FadeMixerGroup.exposedBGMParams[currentLevel - 1];
+            StartCoroutine(FadeMixerGroup.StartFade(audioMixer, prevSceneMusicParam, 2f, 0f));
+            StartCoroutine(FadeMixerGroup.StartFade(audioMixer, nextSceneMusicParam, 4f, 1f));
+        }
     }
 
     public void respawn()
@@ -189,6 +229,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Respawning");
         player.transform.position = playerSpawnPosition;
     }
+    #endregion
 
     #region Save, Load functions
 
@@ -203,7 +244,7 @@ public class LevelManager : MonoBehaviour
         loadingFromSaveData = true;
         PlayerData playerData = SaveSystem.LoadPlayer();
 
-        int levelToLoad = playerData.level;
+        int levelToLoad = playerData.currentStage;
         timeTakenPerStage = playerData.timeTakenPerStage;
         SceneManager.LoadScene(levelToLoad);
         unlockedGuns = playerData.unlockedGuns;
@@ -213,24 +254,11 @@ public class LevelManager : MonoBehaviour
         }
 
         timeTakenCurrentStage = playerData.timeTakenPerStage[timeTakenPerStage.Keys.ToList().Last()];
-
-        /* TODO: Accomodate Checkpoint implementation
-         * Mobs that are destroyed should stay dead when reloading from a checkpoint.
-         * Pickups that are already picked up should not be shown.
-         */
-        if (mobsDestroyed != null)
-        {
-            foreach (string mobObjName in mobsDestroyed)
-            {
-                Destroy(GameObject.Find(mobObjName));
-            }
-        }
-
     }
 
     #endregion
 
-    #region Progress Slider UI Functions (currently unused)
+    #region Progress Slider UI Functions (currently unused, COULD BE TRANSFERRED TO SHOWING AMMO REFILL COOLDOWN.)
 
     // Progress UI related functions
     private float maxDistance = 0;

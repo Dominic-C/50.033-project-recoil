@@ -6,23 +6,14 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    public int level;
+    public int currentStage;
     public Dictionary<string, float> timeTakenPerStage;
-    public List<string> mobsDestroyed;
     public int unlockedGuns;
 
     public PlayerData()
     {
-        level = LevelManager.currentLevel;
+        currentStage = LevelManager.currentStage;
         timeTakenPerStage = LevelManager.timeTakenPerStage;
-        mobsDestroyed = LevelManager.mobsDestroyed;
-
-        Debug.Log("Creating new PlayerData to be saved...");
-        Debug.Log("Level: " + level);
-        foreach (string key in timeTakenPerStage.Keys)
-        {
-            Debug.Log(key + ":" + timeTakenPerStage[key]);
-        }
         unlockedGuns = LevelManager.unlockedGuns;
     }
 }
@@ -33,7 +24,6 @@ public static class SaveSystem
     public static void SavePlayer()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        
         FileStream stream = new FileStream(path, FileMode.Create);
         PlayerData data = new PlayerData(); // made based on existing LevelManager
         try
