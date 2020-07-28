@@ -19,4 +19,8 @@ MonoBehaviour:
   projectileSpeed: 10
   recoilForce: 300
   fireInterval: 0.5
+  firePosition: {x: 0.092, y: 0.016, z: 0}
   maxAmmo: 2
+  fireSound: {fileID: 8300000, guid: 2332fd67ee67bba469fee19821603b17, type: 3}
+  switchToSound: {fileID: 8300000, guid: 2332fd67ee67bba469fee19821603b17, type: 3}
+  ammoLandingSound: {fileID: 0}

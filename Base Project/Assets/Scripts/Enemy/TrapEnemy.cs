@@ -14,9 +14,16 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
     private bool isGrounded;
     private bool trapTriggered = false;
     private bool playerTriggered;
+    private Animator animator;
+    public AnimationClip idleAnimation;
+    public AnimationClip attackAnimation;
+    private AudioSource attackSound;
+
     void Start()
     {
         initialPosition = gameObject.transform.position;
+        animator = GetComponent<Animator>();
+        // animator.Play(untriggeredAnimation.name);
     }
 
     // Update is called once per frame
@@ -30,6 +37,8 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
         else
         {
             resetTrap();
+            animator.Play(idleAnimation.name);
+
         }
     }
 
@@ -57,6 +66,9 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
         if (!isGrounded)
         {
             transform.position += moveSpeed * Vector3.down * Time.deltaTime;
+            animator.Play(attackAnimation.name);
+            attackSound.Play();
+
         }
         else
         {

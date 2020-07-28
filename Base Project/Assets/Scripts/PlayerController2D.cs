@@ -12,10 +12,13 @@ public class PlayerController2D : MonoBehaviour
     // states
     public static bool isFacingRight, prevFaceRight;
     public static bool isGrounded;
+    public static bool isOnIce;
     public static bool isJustGrounded;
     private bool leftPressed;
     private bool rightPressed;
     private bool hitWall;
+
+    public bool DebugMode = false;
 
     [SerializeField]
     Transform groundCheck1;
@@ -31,20 +34,18 @@ public class PlayerController2D : MonoBehaviour
 
     [SerializeField]
     Transform wallCheck2;
-    
+
     public float runSpeed;
     public float jumpSpeed;
-
-    // UI for shotgun and rocket count. 
-    private GameObject shotgunCount;
-    private GameObject rocketCount;
 
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
     public AnimationClip shootBottomAnimationClip;
     public AnimationClip shootFrontAnimationClip;
     public AnimationClip shootBackAnimationClip;
+    public AnimationClip slidingAnimation;
     public float airControlImpulse;
+    public GameObject weaponPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,10 @@ public class PlayerController2D : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
         prevFaceRight = true;
+        if (DebugMode)
+        {
+            LevelManager.unlockedGuns = 3;
+        }
     }
 
     void Update()
@@ -101,6 +106,33 @@ public class PlayerController2D : MonoBehaviour
                     animator.Play(idleAnimationClip.name);
                 }
             }
+
+            else if (isOnIce)
+            {
+                if (rightPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x < runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
+                    isFacingRight = true;
+                }
+                // Move Left on ground
+                else if (leftPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x > -runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
+                    }
+                    isFacingRight = false;
+                }
+                else // Idle Animation
+                {
+                    animator.Play(slidingAnimation.name);
+                }
+            }
             else // Not Grounded
             {
                 animationLogicNotGrounded();
@@ -147,6 +179,26 @@ public class PlayerController2D : MonoBehaviour
             isGrounded = false;
         }
 
+        if (Physics2D.Linecast(transform.position, groundCheck1.position, 1 << LayerMask.NameToLayer("Ice"))
+        || Physics2D.Linecast(transform.position, groundCheck2.position, 1 << LayerMask.NameToLayer("Ice"))
+        || Physics2D.Linecast(transform.position, groundCheck3.position, 1 << LayerMask.NameToLayer("Ice")))
+        {
+            isOnIce = true;
+        }
+        else
+        {
+            isOnIce = false;
+        }
+
+        if (LevelManager.unlockedGuns == 0)
+        {
+            weaponPrefab.SetActive(false);
+        }
+        else
+        {
+            weaponPrefab.SetActive(true);
+        }
+
         // right wall check
         if (Physics2D.Linecast(transform.position, wallCheck1.position, 1 << LayerMask.NameToLayer("Ground"))
             || Physics2D.Linecast(transform.position, wallCheck2.position, 1 << LayerMask.NameToLayer("Ground")))
@@ -157,7 +209,6 @@ public class PlayerController2D : MonoBehaviour
         {
             hitWall = false;
         }
-
     }
 
     private void animationLogicNotGrounded()
@@ -207,7 +258,6 @@ public class PlayerController2D : MonoBehaviour
         else if (col.gameObject.CompareTag("HomingProjectile"))
         {
             Debug.Log("Player dies");
-            Destroy(col.gameObject.transform.parent.gameObject);
             LevelManager.onPlayerDeath();
         }
     }
@@ -215,7 +265,7 @@ public class PlayerController2D : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("NextLevelDoor"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            LevelManager.LoadNextScene();
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {

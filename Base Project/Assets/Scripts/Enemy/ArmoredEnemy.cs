@@ -7,6 +7,8 @@ public class ArmoredEnemy : Enemy
     private Material matWhite;
     private Material matDefault;
     private UnityEngine.Object explosionRef;
+    private AudioSource deathSound;
+    private AudioSource ineffectiveSound;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,9 @@ public class ArmoredEnemy : Enemy
         matDefault = spriteRenderer.material;
         explosionRef = Resources.Load("Explosion");
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        deathSound = audioSources[0];
+        ineffectiveSound = audioSources[1];
 
     }
 
@@ -39,6 +44,7 @@ public class ArmoredEnemy : Enemy
             if (health <= 0)
             {
                 KillSelf();
+                
             }
         }
         else if (collision.CompareTag("PlayerProjectile"))
@@ -46,6 +52,7 @@ public class ArmoredEnemy : Enemy
             collision.gameObject.SetActive(false); // send back to object pooler
             spriteRenderer.material = matWhite;
             Invoke("ResetMaterial", 0.1f);
+            ineffectiveSound.Play();
         }
 
     }
@@ -57,9 +64,10 @@ public class ArmoredEnemy : Enemy
 
     private void KillSelf()
     {
+        AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
         GameObject explosion = (GameObject)Instantiate(explosionRef);
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
         Destroy(explosion, 5.0f);
-        Destroy(transform.parent.gameObject);
+        Destroy(gameObject);
     }
 }

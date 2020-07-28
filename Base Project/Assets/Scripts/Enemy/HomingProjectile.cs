@@ -11,36 +11,81 @@ public class HomingProjectile : MonoBehaviour
     // Start is called before the first frame update
     public float radius;
     public int lifetime;
+    private bool playerOnRight;
     private Animator animator;
+    private UnityEngine.Object explosionRef;
+    public AnimationClip idleAnimationClip;
+    public AnimationClip attackAnimationClip;
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
         lockedOn = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        gameObject.GetComponent<CircleCollider2D>().radius = radius;
         animator = GetComponent<Animator>();
-        
+        explosionRef = Resources.Load("Explosion");
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        DetectPlayer(radius);
         if (lockedOn)
         {
+            checkPlayerPosition();
+            if (playerOnRight)
+            {
+                spriteRenderer.flipX = true;
+                animator.Play(attackAnimationClip.name);
+            }
+            else
+            {
+                spriteRenderer.flipX = false;
+                animator.Play(attackAnimationClip.name);
+            }
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
         else
         {
-            animator.Play("HomingProjectile_activated");
+            animator.Play(idleAnimationClip.name); 
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void DetectPlayer(float radius)
     {
-        if (collision.CompareTag("Player"))
+        if (Vector2.Distance(transform.position, player.transform.position) <= radius)
         {
-            animator.Play("HomingProjectile_lockedon");
             lockedOn = true;
-            Destroy(gameObject, lifetime);
+            Invoke("KillSelf", lifetime);
         }
+    }
+
+    private void checkPlayerPosition()
+    {
+        if (player.transform.position.x < transform.position.x)
+        {
+            playerOnRight = false;
+        }
+        else
+        {
+            playerOnRight = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            KillSelf();
+        }
+    }
+
+    private void KillSelf()
+    {
+        GameObject explosion = (GameObject)Instantiate(explosionRef);
+        explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
+        Destroy(explosion, 5.0f);
+        Destroy(gameObject);
     }
 }

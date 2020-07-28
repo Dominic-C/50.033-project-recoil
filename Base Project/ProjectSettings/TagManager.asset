@@ -24,7 +24,7 @@ TagManager:
   - Ground
   - Action
   - DEATH
-  - 
+  - Ice
   - 
   - 
   - 
@@ -64,11 +64,11 @@ TagManager:
   - name: Enemy
     uniqueID: 3512748085
     locked: 0
-  - name: PlayerHands
-    uniqueID: 3643723693
-    locked: 0
   - name: Weapon
     uniqueID: 972492851
+    locked: 0
+  - name: PlayerHands
+    uniqueID: 3643723693
     locked: 0
   - name: PlayerProjectile
     uniqueID: 1289279617
