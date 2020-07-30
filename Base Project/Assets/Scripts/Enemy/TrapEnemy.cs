@@ -23,7 +23,7 @@ public class TrapEnemy : MonoBehaviour // dont need to inherit enemy class
     {
         initialPosition = gameObject.transform.position;
         animator = GetComponent<Animator>();
-        // animator.Play(untriggeredAnimation.name);
+        attackSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
