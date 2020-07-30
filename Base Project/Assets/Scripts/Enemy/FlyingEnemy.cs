@@ -37,7 +37,7 @@ public class FlyingEnemy : Enemy
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerProjectile") && !isHit)
+        if ((collision.CompareTag("PlayerProjectile") || collision.CompareTag("PlayerProjectileRocket")) && !isHit)
         {
             collision.gameObject.SetActive(false); // send back to object pooler
             health--; // 1 damage
