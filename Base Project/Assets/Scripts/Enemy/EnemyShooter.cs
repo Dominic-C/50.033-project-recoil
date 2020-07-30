@@ -37,14 +37,13 @@ public class EnemyShooter : Enemy
             // spriteRenderer.color = Color.red;
             shootProjectile();
             animator.Play(shootAnimationClip.name);
+            Debug.Log("shooting animation playing");
         }
         else
         {
             // spriteRenderer.color = Color.white;
             timeBetweenShots -= Time.deltaTime; // this is to reload even though the player is out of sight
             patrol();
-            animator.Play(idleAnimationClip.name);
-
         }
     }
 

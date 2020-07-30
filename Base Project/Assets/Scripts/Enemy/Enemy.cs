@@ -109,6 +109,7 @@ public class Enemy : MonoBehaviour
     // function to patrol randomly between a set of waypoints. To be called in update function of child class
     protected void patrol()
     {
+        Debug.Log("Patrol called");
         // ====================================== Patrol Logic ========================================
         // move towards x position only, ignoring y positions
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(moveSpots[randomSpot].position.x, transform.position.y), moveSpeed * Time.deltaTime);
@@ -131,6 +132,8 @@ public class Enemy : MonoBehaviour
         if (isLeft(transform.position.x, moveSpots[randomSpot].position.x))
         {
             animator.Play(runAnimationClip.name);
+            Debug.Log("running animation playing");
+
             spriteRenderer.flipX = false;
             isFacingLeft = false;
         }
@@ -138,11 +141,15 @@ public class Enemy : MonoBehaviour
         else if (isRight(transform.position.x, moveSpots[randomSpot].position.x))
         {
             animator.Play(runAnimationClip.name);
+            Debug.Log("running animation playing");
+
             spriteRenderer.flipX = true;
             isFacingLeft = true;
         }
         else
         {
+            Debug.Log("idle animation playing");
+
             animator.Play(idleAnimationClip.name);
         }
     }

@@ -188,6 +188,8 @@ public class PlayerController2D : MonoBehaviour
         else
         {
             isOnIce = false;
+
+
         }
 
         if (LevelManager.unlockedGuns == 0)
