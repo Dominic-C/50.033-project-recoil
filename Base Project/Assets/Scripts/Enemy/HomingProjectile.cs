@@ -17,6 +17,7 @@ public class HomingProjectile : MonoBehaviour
     public AnimationClip idleAnimationClip;
     public AnimationClip attackAnimationClip;
     private SpriteRenderer spriteRenderer;
+    private AudioSource deathSound;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class HomingProjectile : MonoBehaviour
         animator = GetComponent<Animator>();
         explosionRef = Resources.Load("Explosion");
         spriteRenderer = GetComponent<SpriteRenderer>();
+        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -83,6 +85,7 @@ public class HomingProjectile : MonoBehaviour
 
     private void KillSelf()
     {
+        AudioSource.PlayClipAtPoint(deathSound.clip, transform.position);
         GameObject explosion = (GameObject)Instantiate(explosionRef);
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
         Destroy(explosion, 5.0f);
