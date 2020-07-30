@@ -27,6 +27,7 @@ public class BasicEnemy : Enemy
         explosionRef = Resources.Load("Explosion");
         isHit = false;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        deathSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -56,6 +57,7 @@ public class BasicEnemy : Enemy
             Debug.Log("remaining HP: " + health);
             if (health <= 0)
             {
+                Debug.Log("Health less than 0");
                 KillSelf();
             }
             else
