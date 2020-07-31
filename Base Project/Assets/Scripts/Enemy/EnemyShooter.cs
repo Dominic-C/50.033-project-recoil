@@ -37,7 +37,6 @@ public class EnemyShooter : Enemy
             // spriteRenderer.color = Color.red;
             shootProjectile();
             animator.Play(shootAnimationClip.name);
-            Debug.Log("shooting animation playing");
         }
         else
         {
@@ -76,7 +75,6 @@ public class EnemyShooter : Enemy
             collision.gameObject.SetActive(false); // send back to object pooler
             health--; // 1 damage
             isHit = true;
-            Debug.Log("remaining HP: " + health);
             if (health <= 0)
             {
                 KillSelf();

@@ -24,9 +24,10 @@ public class BatteryStatus : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PlayerProjectile") && !isHit)
+        if ((collision.gameObject.CompareTag("PlayerProjectile") && !isHit) || (collision.gameObject.CompareTag("PlayerProjectileRocket") && !isHit))
         {
             isHit = true;
+            collision.gameObject.SetActive(false);
             animator.Play(batteryDestroyedClip.name);
         }
     }
