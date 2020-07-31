@@ -3823,12 +3823,12 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.54
+      value: 15.309004
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2
+      value: 18.963633
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -3838,17 +3838,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -3878,7 +3878,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -3894,6 +3904,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -3948,12 +3963,12 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.48
+      value: -9.710996
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.37
+      value: 14.393632
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -3963,17 +3978,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -4003,7 +4018,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -4040,6 +4065,11 @@ PrefabInstance:
       propertyPath: respawnDelay
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_Name
@@ -4057,12 +4087,12 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.03
+      value: 14.799004
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.89
+      value: 21.653631
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -4072,17 +4102,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -4112,7 +4142,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -4128,6 +4168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -24647,7 +24692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823852361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.769004, y: 15.763632, z: -15.322266}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 49691951}
@@ -25868,12 +25913,12 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.13
+      value: -8.360996
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 17.51
+      value: 33.273632
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -25883,17 +25928,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -25923,7 +25968,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -25939,6 +25994,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -26991,12 +27051,12 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.06
+      value: 15.829004
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.36
+      value: 16.123632
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -27006,17 +27066,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855841, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -27046,7 +27106,17 @@ PrefabInstance:
     - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855842, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
@@ -27062,6 +27132,11 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: refillAmmo
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189197126945855852, guid: 60474ca27095f554bba155c3d7d944c3,
+        type: 3}
+      propertyPath: canRespawn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8189197126945855853, guid: 60474ca27095f554bba155c3d7d944c3,
         type: 3}
