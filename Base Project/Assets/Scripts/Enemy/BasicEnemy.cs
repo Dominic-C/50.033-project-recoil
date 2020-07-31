@@ -50,10 +50,8 @@ public class BasicEnemy : Enemy
             health--; // 1 damage
             isHit = true;
             spriteRenderer.material = matWhite;
-            Debug.Log("remaining HP: " + health);
             if (health <= 0)
             {
-                Debug.Log("Health less than 0");
                 KillSelf();
             }
             else
