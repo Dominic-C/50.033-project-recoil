@@ -12,6 +12,7 @@ TagManager:
   - NextLevelDoor
   - HomingProjectile
   - PlayerProjectileRocket
+  - BossProjectile
   layers:
   - Default
   - TransparentFX
