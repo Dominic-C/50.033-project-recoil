@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6404720398806066956}
   m_Layer: 0
   m_Name: Navy Seal
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -186,6 +186,12 @@ MonoBehaviour:
   startWaitTime: 0
   moveSpots: []
   shield: {fileID: 9121752296814693345}
+  attackRadius: 0
+  attackAnimationClip: {fileID: 7400000, guid: c502c836f0fc67f488f34101f623e62d, type: 2}
+  fireballPrefab: {fileID: 3292203176204901235, guid: 21ca8d2fa72210247ba4bf48085ef382,
+    type: 3}
+  BurstShotsInterval: 5
+  aimedShotsInterval: 1
 --- !u!95 &6404720398806066956
 Animator:
   serializedVersion: 3
@@ -219,7 +225,7 @@ GameObject:
   - component: {fileID: 4328542786139528152}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
