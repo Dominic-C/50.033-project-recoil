@@ -257,6 +257,12 @@ public class PlayerController2D : MonoBehaviour
             Destroy(col.gameObject);
             LevelManager.onPlayerDeath();
         }
+        else if (col.gameObject.CompareTag("BossProjectile"))
+        {
+            Debug.Log("Player dies");
+            col.gameObject.SetActive(false);
+            LevelManager.onPlayerDeath();
+        }
         else if (col.gameObject.CompareTag("HomingProjectile"))
         {
             Debug.Log("Player dies");

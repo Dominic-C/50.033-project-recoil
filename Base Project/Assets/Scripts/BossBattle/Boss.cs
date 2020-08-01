@@ -75,7 +75,14 @@ public class Boss : Enemy
 
         if (timeBetweenShots <= 0)
         {
-            var proj = Instantiate(fireballPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            //var proj = Instantiate(fireballPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+            GameObject proj = BossObjectPooler.SharedInstance.GetPooledObject();
+            if (proj != null)
+            {
+                proj.transform.position = transform.position;
+                proj.SetActive(true);
+            }
+            
             Vector2 projectileMoveDirection = (playerObject.transform.position - transform.position).normalized * aimedProjectileMovespeed;
             proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
             timeBetweenShots = aimedShotsInterval;
@@ -103,7 +110,13 @@ public class Boss : Enemy
                 Vector2 projectileVector = new Vector2(projectileDirXPosition, projectileDirYPosition);
                 Vector2 projectileMoveDirection = (projectileVector - new Vector2(transform.position.x, transform.position.y)).normalized * projectileMovespeed;
 
-                var proj = Instantiate(fireballPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
+                GameObject proj = BossObjectPooler.SharedInstance.GetPooledObject();
+                if (proj != null)
+                {
+                    proj.transform.position = transform.position;
+                    proj.SetActive(true);
+                }
+                //var proj = Instantiate(fireballPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
                 proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
 
                 angle += angleStep;
