@@ -18,7 +18,6 @@ public class LevelManager : MonoBehaviour
 {
     // UI gameObjects, found dynamically everytime loadNextScene is called.
     public static GameObject PauseMenuUI;
-    public bool debugMode = false;
     private TextMeshProUGUI timeDebugText;
 
     // Level attributes
@@ -26,7 +25,7 @@ public class LevelManager : MonoBehaviour
     private static LevelManager Instance;
     public static int currentStage;
     public static int currentLevel = 0;
-    private string currentSceneName;
+    public static string currentSceneName;
     public static bool GameIsPaused = false;
     public static bool audioIsPlaying = false;
     private bool toUpdateTime = false;
@@ -91,15 +90,11 @@ public class LevelManager : MonoBehaviour
     {
         PauseMenuUI.SetActive(true);
         FadeMixerGroup.TransitToSnapshot(pausedSnapshot);
-        if (debugMode)
-        {
-            timeDebugText.text = "Time: " + timeTakenCurrentStage;
-        }
+        timeDebugText.text = "Time: " + timeTakenCurrentStage;
         timeTakenPerStage[currentSceneName] = timeTakenCurrentStage;
         Time.timeScale = 0f;
         toUpdateTime = false;
         GameIsPaused = !GameIsPaused;
-        SaveSystem.SavePlayer();
     }
 
     public void PlayGame()
@@ -116,7 +111,6 @@ public class LevelManager : MonoBehaviour
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = !GameIsPaused;
-        SaveSystem.SavePlayer();
     }
 
     public void QuitGame()
@@ -124,6 +118,13 @@ public class LevelManager : MonoBehaviour
         toUpdateTime = false;
         Debug.Log("QUIT!");
         Application.Quit();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        // reset variables before returning to Main Menu
+        toUpdateTime = false;
+        SceneManager.LoadScene("MainMenu");
     }
 
     #endregion
@@ -184,13 +185,9 @@ public class LevelManager : MonoBehaviour
                     }
                 }
             }
-            
-            
-            if (debugMode)
-            {
-                timeDebugText = PauseMenuUI.gameObject.transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
-                timeDebugText.gameObject.SetActive(true);
-            }
+
+            timeDebugText = PauseMenuUI.gameObject.transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
+            timeDebugText.gameObject.SetActive(true);
 
             // set player spawn position
             player = GameObject.FindGameObjectWithTag("Player");
@@ -240,20 +237,24 @@ public class LevelManager : MonoBehaviour
 
     public void loadPlayerData()
     {
-        Debug.Log("loading player data");
         loadingFromSaveData = true;
         PlayerData playerData = SaveSystem.LoadPlayer();
-
-        int levelToLoad = playerData.currentStage;
+        string stageToLoad = playerData.currentStage;
         timeTakenPerStage = playerData.timeTakenPerStage;
-        SceneManager.LoadScene(levelToLoad);
+        Debug.Log("loading player data, stage:" + playerData.currentStage);
         unlockedGuns = playerData.unlockedGuns;
         foreach (string key in timeTakenPerStage.Keys)
         {
             Debug.Log(key+":"+ timeTakenPerStage[key]);
         }
+        timeTakenCurrentStage = 0;
+        SceneManager.LoadScene(stageToLoad);
 
-        timeTakenCurrentStage = playerData.timeTakenPerStage[timeTakenPerStage.Keys.ToList().Last()];
+        // these variables need to be set again if return to Main Menu and load the game
+        toUpdateTime = true;
+        PauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        GameIsPaused = !GameIsPaused;
     }
 
     #endregion

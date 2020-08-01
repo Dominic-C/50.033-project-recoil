@@ -6,13 +6,13 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
-    public int currentStage;
+    public string currentStage;
     public Dictionary<string, float> timeTakenPerStage;
     public int unlockedGuns;
 
     public PlayerData()
     {
-        currentStage = LevelManager.currentStage;
+        currentStage = LevelManager.currentSceneName;
         timeTakenPerStage = LevelManager.timeTakenPerStage;
         unlockedGuns = LevelManager.unlockedGuns;
     }
