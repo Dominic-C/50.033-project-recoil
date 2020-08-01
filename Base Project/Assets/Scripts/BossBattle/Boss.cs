@@ -14,7 +14,7 @@ public class Boss : Enemy
     public GameObject shield;
     public float attackRadius;
     public AnimationClip attackAnimationClip;
-    private GameObject player;
+    private GameObject playerObject;
 
     public GameObject fireballPrefab;
     private float projectileMovespeed;
@@ -34,7 +34,7 @@ public class Boss : Enemy
         isHit = false;
         shieldUp = true;
         animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        playerObject = GameObject.FindGameObjectWithTag("Player");
         projectileMovespeed = 2f;
         aimedProjectileMovespeed = 3f;
 
@@ -76,7 +76,7 @@ public class Boss : Enemy
         if (timeBetweenShots <= 0)
         {
             var proj = Instantiate(fireballPrefab, new Vector2(transform.position.x, transform.position.y), Quaternion.identity);
-            Vector2 projectileMoveDirection = (player.transform.position - transform.position).normalized * aimedProjectileMovespeed;
+            Vector2 projectileMoveDirection = (playerObject.transform.position - transform.position).normalized * aimedProjectileMovespeed;
             proj.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileMoveDirection.x, projectileMoveDirection.y);
             timeBetweenShots = aimedShotsInterval;
         }
@@ -119,7 +119,7 @@ public class Boss : Enemy
 
     private bool playerInRadius(float radius)
     {
-        if (Vector2.Distance(transform.position, player.transform.position) <= radius)
+        if (Vector2.Distance(transform.position, playerObject.transform.position) <= radius)
         {
             return true;
         }
