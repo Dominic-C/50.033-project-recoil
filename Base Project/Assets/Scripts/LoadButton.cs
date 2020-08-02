@@ -20,6 +20,11 @@ public class LoadButton : MonoBehaviour
         }
     }
 
+    public void hideInterface()
+    {
+        LoadInterface.SetActive(false);
+    }
+
     public void ShowLoadInterface()
     {
         // Read the data from the file
