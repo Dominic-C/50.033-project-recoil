@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -31,16 +32,17 @@ public class LoadButton : MonoBehaviour
         byte[] data = File.ReadAllBytes(Application.persistentDataPath + "/" + "lastSave.png");
 
         // Create the texture
-        Texture2D screenshotTexture = new Texture2D(900, 900, TextureFormat.RGB24, false);
+        Texture2D screenshotTexture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
 
         // Load the image
         screenshotTexture.LoadImage(data);
 
         // Create a sprite
-        Sprite screenshotSprite = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height-1), new Vector2(0.5f, 0.5f));
+           Sprite screenshotSprite = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0.5f, 0.5f));
+            lastSaveImage.sprite = screenshotSprite;
+        
 
-        // Set the sprite to the screenshotPreview
-        lastSaveImage.sprite = screenshotSprite;
+        
 
 
         PlayerData playerData = SaveSystem.LoadPlayer();
