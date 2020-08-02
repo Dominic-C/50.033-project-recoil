@@ -65,6 +65,11 @@ public class Pickup : MonoBehaviour
         obj.SetActive(true);
     }
 
+    public void hideUI(GameObject obj)
+    {
+        obj.SetActive(false);
+    }
+
     public void getShotgun()
     {
         LevelManager.unlockedGuns = (int)UnlockGunState.SHOTGUN_ONLY;
