@@ -3211,7 +3211,6 @@ GameObject:
   - component: {fileID: 1035778938}
   - component: {fileID: 1035778942}
   - component: {fileID: 1035778941}
-  - component: {fileID: 1035778940}
   - component: {fileID: 1035778939}
   - component: {fileID: 1035778944}
   - component: {fileID: 1035778943}
@@ -3252,72 +3251,6 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
---- !u!60 &1035778940
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1035778937}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -16.11056, y: -0.015670396}
-      - {x: -16.099052, y: 2.8007112}
-      - {x: -11.207376, y: 2.801023}
-      - {x: -10.52574, y: 3.4954271}
-      - {x: -9.097977, y: 3.5057425}
-      - {x: -8.552205, y: 3.6599398}
-      - {x: -8.396467, y: 4.209735}
-      - {x: -15.374888, y: 4.218388}
-      - {x: -16.122597, y: 4.9257193}
-      - {x: -16.1074, y: 7.7231216}
-      - {x: -15.390174, y: 8.424046}
-      - {x: -8.454821, y: 8.440502}
-      - {x: -7.706581, y: 7.677329}
-      - {x: 2.0947433, y: 7.700666}
-      - {x: 2.0894547, y: 3.4940052}
-      - {x: -1.3991194, y: 3.4995358}
-      - {x: -1.3955098, y: 2.801277}
-      - {x: -0.70706767, y: 2.79705}
-      - {x: -0.0045493245, y: 2.1122851}
-      - {x: 2.0988889, y: 2.1082726}
-      - {x: 2.1133838, y: -2.8085883}
-      - {x: -1.4161934, y: -2.816054}
-      - {x: -1.4063808, y: -1.3987955}
-      - {x: -0.69834733, y: -1.4033202}
-      - {x: -0.6983335, y: -0.6990441}
-      - {x: -6.3075314, y: -0.6969516}
-      - {x: -6.3001065, y: -1.4023349}
-      - {x: -5.6065536, y: -1.382968}
-      - {x: -5.605628, y: -4.2112093}
-      - {x: -3.0214252, y: -4.066405}
-      - {x: 4.205603, y: -4.217458}
-      - {x: 4.1841383, y: 9.793346}
-      - {x: -16.084757, y: 9.810482}
-      - {x: -18.214764, y: 9.824106}
-      - {x: -18.205528, y: -4.1545887}
-      - {x: -9.79579, y: -4.179268}
-      - {x: -9.813349, y: -1.4044982}
-      - {x: -9.287249, y: -1.2593315}
-      - {x: -9.092566, y: -0.7083934}
-      - {x: -9.113841, y: -0.70307434}
-      - {x: -15.410172, y: -0.7009543}
 --- !u!483693784 &1035778941
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -9839,7 +9772,7 @@ PrefabInstance:
     - target: {fileID: 7014333851934916578, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: DebugMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916581, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
