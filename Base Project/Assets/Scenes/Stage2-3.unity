@@ -16290,7 +16290,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 356083963}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3f651248645711b4c8128829d808d6c0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -19775,7 +19775,7 @@ PrefabInstance:
     - target: {fileID: 387753637374154160, guid: cec57c6fca1dcd849bb50c73c45ab57b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.28
+      value: -10.2
       objectReference: {fileID: 0}
     - target: {fileID: 387753637374154160, guid: cec57c6fca1dcd849bb50c73c45ab57b,
         type: 3}
@@ -20343,7 +20343,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 876436004}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3f651248645711b4c8128829d808d6c0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -21195,12 +21195,12 @@ PrefabInstance:
     - target: {fileID: 387753637374154160, guid: cec57c6fca1dcd849bb50c73c45ab57b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.52
+      value: -13.53
       objectReference: {fileID: 0}
     - target: {fileID: 387753637374154160, guid: cec57c6fca1dcd849bb50c73c45ab57b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.8
+      value: 19.76
       objectReference: {fileID: 0}
     - target: {fileID: 387753637374154160, guid: cec57c6fca1dcd849bb50c73c45ab57b,
         type: 3}
