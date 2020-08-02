@@ -39,11 +39,11 @@ public class ObjectPooler : MonoBehaviour  // singleton class
         // implementing ObjectPooler as singleton
         if (instance != null && instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         instance = this;
-        DontDestroyOnLoad(this.gameObject);  // don't destroy this instance of ObjectPooler when changing scenes
+        DontDestroyOnLoad(gameObject);  // don't destroy this instance of ObjectPooler when changing scenes
     }
 
     void Start()

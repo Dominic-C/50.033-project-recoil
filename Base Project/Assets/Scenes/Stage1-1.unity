@@ -510,7 +510,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 146338584}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3f651248645711b4c8128829d808d6c0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -781,7 +781,7 @@ TilemapCollider2D:
   m_GameObject: {fileID: 596039210}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3f651248645711b4c8128829d808d6c0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 694884902}
   - component: {fileID: 694884901}
   - component: {fileID: 694884904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DEATH
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1530,6 +1530,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591512559837, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763585591643127267, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4680686100437927908, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1589,6 +1629,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668666725520663805, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668666725520663805, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668666725520663805, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668666725520663805, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 083854405516b974dbb62641d23a2a7f, type: 3}
@@ -2016,6 +2076,11 @@ PrefabInstance:
       propertyPath: WeaponUI
       value: 
       objectReference: {fileID: 1575839055}
+    - target: {fileID: 7014333851934916577, guid: 9ef2d3391e8919e4ea21599031650491,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916578, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: DebugMode
@@ -9312,7 +9377,7 @@ CompositeCollider2D:
   m_GameObject: {fileID: 1950991343}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3f651248645711b4c8128829d808d6c0, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -9323,23 +9388,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1950991345}
     m_ColliderPaths:
-    - - X: 76475092
-        Y: -55625041
-      - X: 76475092
-        Y: -41674959
-      - X: 76475033
-        Y: -41674900
-      - X: 76474992
-        Y: -41674900
-      - X: 76474992
-        Y: 132075008
-      - X: -208525008
-        Y: 132075008
-      - X: -208525008
-        Y: -55625000
-      - X: -97275000
-        Y: -55625000
-      - X: -97275000
+    - - X: -97275000
         Y: -13925000
       - X: -94425000
         Y: -13925000
@@ -9526,17 +9575,17 @@ CompositeCollider2D:
       - X: -55625000
         Y: -13925000
       - X: -55625000
-        Y: -41674900
-      - X: -55625041
-        Y: -41674900
-      - X: -55625100
-        Y: -41674959
-      - X: -55625100
-        Y: -55625041
-      - X: -55625041
-        Y: -55625100
-      - X: 76475033
-        Y: -55625100
+        Y: -55625000
+      - X: 76474992
+        Y: -55625000
+      - X: 76474992
+        Y: 132075008
+      - X: -208525008
+        Y: 132075008
+      - X: -208525008
+        Y: -55625000
+      - X: -97275000
+        Y: -55625000
     - - X: 13924999
         Y: 83375008
       - X: 14125007
@@ -9623,11 +9672,7 @@ CompositeCollider2D:
         Y: 83174992
   m_CompositePaths:
     m_Paths:
-    - - {x: 7.647474, y: -5.56251}
-      - {x: 7.6474695, y: 13.207501}
-      - {x: -20.8525, y: 13.207471}
-      - {x: -20.852472, y: -5.5625}
-      - {x: -9.7275, y: -5.562471}
+    - - {x: -9.72753, y: -5.5625}
       - {x: -9.72747, y: -1.3925}
       - {x: -9.442498, y: -1.3924998}
       - {x: -9.282494, y: -1.3724959}
@@ -9721,7 +9766,11 @@ CompositeCollider2D:
       - {x: -6.2574925, y: -1.3625077}
       - {x: -6.2274895, y: -1.3925}
       - {x: -5.5625, y: -1.3925294}
-      - {x: -5.5624747, y: -5.56251}
+      - {x: -5.562471, y: -5.5625}
+      - {x: 7.647499, y: -5.562471}
+      - {x: 7.6474695, y: 13.207501}
+      - {x: -20.8525, y: 13.207471}
+      - {x: -20.852472, y: -5.5625}
     - - {x: 1.3925617, y: 8.317562}
       - {x: 1.3925294, y: 8.337501}
       - {x: 1.4124389, y: 8.33744}
@@ -9774,7 +9823,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950991343}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -9785,5 +9834,5 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 3
