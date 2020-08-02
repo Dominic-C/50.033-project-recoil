@@ -25,6 +25,7 @@ public static class SaveSystem
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(path, FileMode.Create);
+        ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/lastSave.png");
         PlayerData data = new PlayerData(); // made based on existing LevelManager
         try
         {

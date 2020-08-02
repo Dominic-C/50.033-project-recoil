@@ -8,8 +8,20 @@ public class RocketProjectileController : MonoBehaviour
     private GameObject playerPrefab;
     private Rigidbody2D playerRb2d;
     public WeaponData RocketWeaponData;
+    public bool toUpdateTime = false;
+    public float timeToDestroyBullet = 5.0f;
+    public float timeElapsed = 0.0f;
 
-    // Start is called before the first frame update
+    void onEnabled()
+    {
+        toUpdateTime = true;
+    }
+
+    void onDisabled()
+    {
+        toUpdateTime = false;
+    }
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -22,6 +34,12 @@ public class RocketProjectileController : MonoBehaviour
     void Update()
     {
         rb2d.velocity = transform.TransformDirection(new Vector2(RocketWeaponData.projectileSpeed, 0));
+        timeElapsed += Time.deltaTime;
+        if (timeElapsed >= timeToDestroyBullet)
+        {
+            gameObject.SetActive(false);
+            timeElapsed = 0f;
+        }
     }
 
     void LaunchRecoil()
@@ -39,7 +57,7 @@ public class RocketProjectileController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("GameBorder"))
+        if (other.gameObject.tag == "GameBorder" || other.gameObject.tag == "Enemy")
         {
             LaunchRecoil();
         }
