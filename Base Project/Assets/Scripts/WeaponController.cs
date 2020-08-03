@@ -197,7 +197,7 @@ public class WeaponController : MonoBehaviour
                             projectile.transform.position = FirepointPrefab.transform.position;
                             projectile.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
                             projectile.SetActive(true);
-                            
+
 
                             // update ammoCount and change UI
                             RocketWeaponData.ammoCount -= 1;
@@ -231,7 +231,7 @@ public class WeaponController : MonoBehaviour
                 equippedGun = GunTypes.Shotgun;
                 FirepointPrefab.transform.localPosition = ShotgunWeaponData.firePosition;
                 weaponSwitchAudioSource.PlayOneShot(ShotgunWeaponData.switchToSound);
-                
+
             }
             else if (Input.GetButtonDown("weapon 2") && LevelManager.unlockedGuns >= 2)
             {
@@ -266,8 +266,15 @@ public class WeaponController : MonoBehaviour
             x = recoilForce * xCorrection * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
             y = recoilForce * yCorrection * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
         }
-        rb2d.velocity = new Vector2(0, 0);
-        rb2d.AddForce(new Vector2(x, y));
+        if (!PlayerController2D.isOnIce)
+        {
+            rb2d.velocity = new Vector2(0, 0);
+            rb2d.AddForce(new Vector2(x, y));
+        }
+        else
+        {
+            rb2d.AddForce(new Vector2(x * 0.5f, y * 0.5f));
+        }
         return;
     }
     public void refillAmmo()
