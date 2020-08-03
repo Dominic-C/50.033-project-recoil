@@ -123,7 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  linkedObject: {fileID: 0}
   onEnter:
     m_PersistentCalls:
       m_Calls: []
+  canRespawn: 0
+  respawnDelay: 0
