@@ -147,13 +147,13 @@ TextureImporter:
       name: Rocket_bullet_selection_0
       rect:
         serializedVersion: 2
-        x: 31
-        y: 23
-        width: 60
-        height: 101
+        x: 23
+        y: 663
+        width: 101
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 3, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -168,19 +168,19 @@ TextureImporter:
       name: Rocket_bullet_selection_1
       rect:
         serializedVersion: 2
-        x: 143
-        y: 23
-        width: 55
-        height: 101
+        x: 23
+        y: 556
+        width: 101
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 4, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a60d9696a655c88b0800000000000000
-      internalID: -5148646358467882902
+      spriteID: 2f472c86aa55415d0800000000000000
+      internalID: -3092752853706312462
       vertices: []
       indices: 
       edges: []
@@ -189,19 +189,19 @@ TextureImporter:
       name: Rocket_bullet_selection_2
       rect:
         serializedVersion: 2
-        x: 250
-        y: 23
-        width: 45
-        height: 97
+        x: 23
+        y: 459
+        width: 97
+        height: 45
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 3, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 04df4869bcc9fd210800000000000000
-      internalID: 1359978010706771264
+      spriteID: d562a61ff71174140800000000000000
+      internalID: 4703747577020556893
       vertices: []
       indices: 
       edges: []
@@ -210,19 +210,19 @@ TextureImporter:
       name: Rocket_bullet_selection_3
       rect:
         serializedVersion: 2
-        x: 347
-        y: 18
-        width: 53
-        height: 102
+        x: 18
+        y: 354
+        width: 102
+        height: 53
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 3, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5810e81ac3307520800000000000000
-      internalID: 2697713119888676958
+      spriteID: 487eee771e87ba1d0800000000000000
+      internalID: -3338441788989970556
       vertices: []
       indices: 
       edges: []
@@ -231,19 +231,19 @@ TextureImporter:
       name: Rocket_bullet_selection_4
       rect:
         serializedVersion: 2
-        x: 452
-        y: 17
-        width: 58
-        height: 103
+        x: 17
+        y: 244
+        width: 103
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 3, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99293eb6be263a670800000000000000
-      internalID: 8548785280946246297
+      spriteID: b9f365d6e1aa72210800000000000000
+      internalID: 1308201264434528155
       vertices: []
       indices: 
       edges: []
@@ -252,19 +252,19 @@ TextureImporter:
       name: Rocket_bullet_selection_5
       rect:
         serializedVersion: 2
-        x: 562
-        y: 17
-        width: 57
-        height: 102
+        x: 17
+        y: 135
+        width: 102
+        height: 57
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 0, y: 3, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c7c4a4e229da9580800000000000000
-      internalID: -8819498176363575352
+      spriteID: 0bf4dc7c58113ade0800000000000000
+      internalID: -1323194599236350032
       vertices: []
       indices: 
       edges: []
@@ -273,10 +273,10 @@ TextureImporter:
       name: Rocket_bullet_selection_6
       rect:
         serializedVersion: 2
-        x: 671
-        y: 23
-        width: 44
-        height: 97
+        x: 23
+        y: 39
+        width: 97
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,29 +284,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aefb10d8350618560800000000000000
-      internalID: 7314233181790650346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rocket_bullet_selection_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 754
-        height: 135
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 757986a4119bfb9e0800000000000000
-      internalID: -1603359458406656169
+      spriteID: 0f46f27dc768be610800000000000000
+      internalID: 1651561559105692912
       vertices: []
       indices: 
       edges: []

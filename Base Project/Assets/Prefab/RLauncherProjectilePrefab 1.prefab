@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8799291202605073808}
   - component: {fileID: 8875309757074784691}
   - component: {fileID: 3123336501727445601}
-  - component: {fileID: 3100729827702397152}
+  - component: {fileID: 4820796273920062676}
   m_Layer: 0
   m_Name: RLauncherProjectilePrefab 1
-  m_TagString: Untagged
+  m_TagString: PlayerProjectileRocket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794749220328565120}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -2.2, y: -0.161, z: 0}
-  m_LocalScale: {x: 2.235625, y: 1.6725188, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8799291202605073808
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1289279617
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 1651561559105692912, guid: 1c5215f15c5c4694d82ff88fae48fa72,
     type: 3}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.25, y: 0.08}
+  m_Size: {x: 0.97, y: 0.44}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -123,8 +123,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.44, y: 0.97}
-    newSize: {x: 0.25, y: 0.08}
+    oldSize: {x: 0.97, y: 0.44}
+    newSize: {x: 0.97, y: 0.44}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.08}
   m_EdgeRadius: 0
---- !u!114 &3100729827702397152
+--- !u!114 &4820796273920062676
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +141,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 794749220328565120}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3ea9f27ec7bb34990c3fc68065d3da, type: 3}
+  m_Script: {fileID: 11500000, guid: 5708bac812a6cc54caf8d6aa35b1c21f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunProjectileSpeed: 3
+  RocketWeaponData: {fileID: 11400000, guid: be4fcaf5a9354254485fefa30f1bd74a, type: 2}
+  toUpdateTime: 0
+  timeToDestroyBullet: 5
+  timeElapsed: 0
