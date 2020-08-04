@@ -8,6 +8,15 @@ TextureImporter:
   - first:
       213: -2244080383998043531
     second: spikes_1
+  - first:
+      213: -7897484793504226396
+    second: spikes_0
+  - first:
+      213: -892633559626428735
+    second: spikes_1
+  - first:
+      213: -7836376798481834204
+    second: mSpikes
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -125,14 +134,14 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ab4a7323c4655470800000000000000
-      internalID: 8382717070696663976
+      spriteID: 4a3a1284c6f766290800000000000000
+      internalID: -7897484793504226396
       vertices: []
       indices: 
       edges: []
@@ -146,14 +155,35 @@ TextureImporter:
         width: 70
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57adf58c7cc6bd0e0800000000000000
-      internalID: -2244080383998043531
+      spriteID: 1cecfd3c18abc93f0800000000000000
+      internalID: -892633559626428735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mSpikes
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 140
+        width: 70
+        height: 70
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42f906812d89f3390800000000000000
+      internalID: -7836376798481834204
       vertices: []
       indices: 
       edges: []
