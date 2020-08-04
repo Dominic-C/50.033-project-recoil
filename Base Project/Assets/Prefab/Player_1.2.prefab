@@ -260,6 +260,7 @@ MonoBehaviour:
   shootBackAnimationClip: {fileID: 7400000, guid: d0cf6f7d303f1ea42b6ace9c19ffabf5,
     type: 2}
   slidingAnimation: {fileID: 7400000, guid: a042566deeccf8d488d8580c98cc30ad, type: 2}
+  deathAnimation: {fileID: 7400000, guid: acb9ecdb98a3fce4a85f0616e77da9c5, type: 2}
   airControlImpulse: 1
   weaponPrefab: {fileID: 579448103523000861}
 --- !u!50 &7014333851934916577
