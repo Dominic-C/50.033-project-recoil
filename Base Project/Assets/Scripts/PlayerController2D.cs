@@ -44,6 +44,7 @@ public class PlayerController2D : MonoBehaviour
     public AnimationClip shootFrontAnimationClip;
     public AnimationClip shootBackAnimationClip;
     public AnimationClip slidingAnimation;
+    public AnimationClip deathAnimation;
     public float airControlImpulse;
     public GameObject weaponPrefab;
 
@@ -239,8 +240,24 @@ public class PlayerController2D : MonoBehaviour
             animator.Play(shootBottomAnimationClip.name);
         }
     }
+    private void KillPlayer()
+    {
+        StartCoroutine(playDeathAnim());
+  
+        LevelManager.onPlayerDeath();
+        animator.Play(idleAnimationClip.name);
 
-    void OnTriggerEnter2D(Collider2D col)
+    }
+
+    private IEnumerator playDeathAnim()
+    {
+        Debug.Log("death animation");
+        animator.Play(deathAnimation.name);
+        //yield return new WaitForSeconds(deathAnimation.length);
+        yield return new WaitForSeconds(3f);
+    }
+
+        void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("NextLevelDoor"))
         {
@@ -248,27 +265,29 @@ public class PlayerController2D : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Player dies");
-            LevelManager.onPlayerDeath();
+            KillPlayer();
+            
         }
         else if (col.gameObject.CompareTag("EnemyProjectile"))
         {
-            Debug.Log("Player dies");
             Destroy(col.gameObject);
-            LevelManager.onPlayerDeath();
+            KillPlayer();
+
         }
         else if (col.gameObject.CompareTag("BossProjectile"))
         {
-            Debug.Log("Player dies");
             col.gameObject.SetActive(false);
-            LevelManager.onPlayerDeath();
+            KillPlayer();
+
         }
         else if (col.gameObject.CompareTag("HomingProjectile"))
         {
-            Debug.Log("Player dies");
-            LevelManager.onPlayerDeath();
+            KillPlayer();
         }
     }
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("NextLevelDoor"))
@@ -277,8 +296,9 @@ public class PlayerController2D : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Player dies");
-            LevelManager.onPlayerDeath();
+            KillPlayer();
         }
     }
+
+    
 }
