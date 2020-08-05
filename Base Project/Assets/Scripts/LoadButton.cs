@@ -11,7 +11,7 @@ public class LoadButton : MonoBehaviour
     public Image lastSaveImage;
     public TextMeshProUGUI stageText;
     public TextMeshProUGUI lastPlayedText;
-    // Start is called before the first frame update
+
     void Start()
     {
         LoadInterface.SetActive(false);
@@ -38,12 +38,14 @@ public class LoadButton : MonoBehaviour
         screenshotTexture.LoadImage(data);
 
         // Create a sprite
-           Sprite screenshotSprite = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0.5f, 0.5f));
+        try
+        {
+            Sprite screenshotSprite = Sprite.Create(screenshotTexture, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0.5f, 0.5f));
             lastSaveImage.sprite = screenshotSprite;
-        
-
-        
-
+        } catch (Exception e) {
+            print(e);
+            print("Cannot get screenshot of previous stage");
+        }
 
         PlayerData playerData = SaveSystem.LoadPlayer();
 

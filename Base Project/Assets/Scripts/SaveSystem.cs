@@ -9,12 +9,16 @@ public class PlayerData
     public string currentStage;
     public Dictionary<string, float> timeTakenPerStage;
     public int unlockedGuns;
+    public List<int> eggsCollected;
+    public List<string> thingsPickedUp;
 
     public PlayerData()
     {
         currentStage = LevelManager.currentSceneName;
         timeTakenPerStage = LevelManager.timeTakenPerStage;
         unlockedGuns = LevelManager.unlockedGuns;
+        eggsCollected = LevelManager.EggsCollected;
+        thingsPickedUp = LevelManager.thingsPickedUp;
     }
 }
 

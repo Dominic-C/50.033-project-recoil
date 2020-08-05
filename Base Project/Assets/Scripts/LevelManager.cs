@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TMPro;
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour
 {
     // UI gameObjects, found dynamically everytime loadNextScene is called.
     public static GameObject PauseMenuUI;
+    private GameObject WeaponUI;
     private TextMeshProUGUI timeDebugText;
 
     // Level attributes
@@ -40,6 +42,7 @@ public class LevelManager : MonoBehaviour
     // SaveSystem attributes
     public static Dictionary<string, float> timeTakenPerStage = new Dictionary<string, float>();
     public static List<int> EggsCollected = new List<int>();
+    public static List<string> thingsPickedUp = new List<string>(); // hack method to make sure egg won't respawn
 
     // Player attributes
     private GameObject player;
@@ -67,6 +70,7 @@ public class LevelManager : MonoBehaviour
     {
         updateStage();
         SceneManager.sceneLoaded += delegate { updateStage(); };
+        SceneManager.activeSceneChanged += delegate { disablePickedUpObjects(); };
         PlayerDie += delegate { respawn(); };
     }
 
@@ -89,11 +93,16 @@ public class LevelManager : MonoBehaviour
     public void PauseGame()
     {
         PauseMenuUI.SetActive(true);
+        if (WeaponUI != null)
+        {
+            WeaponUI.SetActive(false);
+        }
         FadeMixerGroup.TransitToSnapshot(pausedSnapshot);
         timeDebugText.text = "Time: " + timeTakenCurrentStage;
         timeTakenPerStage[currentSceneName] = timeTakenCurrentStage;
         Time.timeScale = 0f;
         toUpdateTime = false;
+        SaveSystem.SavePlayer();
         GameIsPaused = !GameIsPaused;
     }
 
@@ -109,6 +118,11 @@ public class LevelManager : MonoBehaviour
         FadeMixerGroup.TransitToSnapshot(startingSnapshot);
         toUpdateTime = true;
         PauseMenuUI.SetActive(false);
+        if (WeaponUI != null)
+        {
+            WeaponUI.SetActive(true);
+        }
+        SaveSystem.SavePlayer();
         Time.timeScale = 1f;
         GameIsPaused = !GameIsPaused;
     }
@@ -134,9 +148,9 @@ public class LevelManager : MonoBehaviour
     void updateStage()
     {
         currentStage = SceneManager.GetActiveScene().buildIndex;
-
         if (currentStage >= 1)
         {
+            Debug.Log("LevelManager's thingsPickedup when update Stage: " + thingsPickedUp.Count);
             currentSceneName = SceneManager.GetSceneByBuildIndex(currentStage).name;
 
             if (!audioIsPlaying) // play audio if it is not playing already
@@ -160,6 +174,8 @@ public class LevelManager : MonoBehaviour
                 Debug.Log("not loading from save data");
                 timeTakenPerStage.Add(currentSceneName, 0f); // key may already exist if loaded from savefile.
                 timeTakenCurrentStage = 0f;
+                thingsPickedUp = new List<string>();
+                loadingFromSaveData = false;
             }
 
             toUpdateTime = true;
@@ -197,6 +213,11 @@ public class LevelManager : MonoBehaviour
             transitBGM();
         }
 
+        if (currentStage >= 2 && WeaponUI == null)
+        {
+            WeaponUI = GameObject.Find("WeaponUI");
+        }
+
         SaveSystem.SavePlayer();
         
     }
@@ -205,9 +226,6 @@ public class LevelManager : MonoBehaviour
     {
         // yes i know this line is very convoluted, but the scenemanager is not able to call GetSceneAt(index) for unloaded scenes.
         string prevSceneName = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(SceneManager.GetActiveScene().buildIndex - 1));
-
-        print("Prev Scene: " + prevSceneName);
-        print("Current Scene: " + currentSceneName);
 
         if (currentSceneName.ElementAt(5) != prevSceneName.ElementAt(5) && prevSceneName != "MainMenu") // a hack done to see if the level the user is at changed
         {
@@ -239,14 +257,15 @@ public class LevelManager : MonoBehaviour
     {
         loadingFromSaveData = true;
         PlayerData playerData = SaveSystem.LoadPlayer();
+        Debug.Log("loading player data, stage:" + playerData.currentStage);
+
         string stageToLoad = playerData.currentStage;
         timeTakenPerStage = playerData.timeTakenPerStage;
-        Debug.Log("loading player data, stage:" + playerData.currentStage);
+        thingsPickedUp = playerData.thingsPickedUp;
+        Debug.Log("LevelManager's thingsPickedup when loading data : " + thingsPickedUp.Count);
         unlockedGuns = playerData.unlockedGuns;
-        foreach (string key in timeTakenPerStage.Keys)
-        {
-            Debug.Log(key+":"+ timeTakenPerStage[key]);
-        }
+        EggsCollected = playerData.eggsCollected;
+        
         timeTakenCurrentStage = 0;
         SceneManager.LoadScene(stageToLoad);
 
@@ -254,7 +273,25 @@ public class LevelManager : MonoBehaviour
         toUpdateTime = true;
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = !GameIsPaused;
+        GameIsPaused = false;
+    }
+
+    private void disablePickedUpObjects()
+    {
+        Debug.Log("Disabling picked up objects...");
+        if (thingsPickedUp.Count > 0)
+        {
+            // previously got pick up shit, now disable those so player won't pick up again.
+            foreach (string gameObjName in thingsPickedUp)
+            {
+                Debug.Log("Disabled object as it is picked up previously :" + gameObjName);
+                GameObject obj = GameObject.Find(gameObjName);
+                if (obj != null)
+                {
+                    obj.SetActive(false);
+                }
+            }
+        }
     }
 
     #endregion

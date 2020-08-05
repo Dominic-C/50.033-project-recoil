@@ -35,6 +35,7 @@ public class Pickup : MonoBehaviour
             
             if (!canRespawn)
             {
+                LevelManager.thingsPickedUp.Add(gameObject.name);
                 gameObject.SetActive(false); // to be replaced with some animation of disappearing
             }
             else

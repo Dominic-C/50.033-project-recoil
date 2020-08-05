@@ -71,6 +71,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Stage3-5.unity
     guid: c93cf1dcd26bd184da1ba8fbfb97edda
+  - enabled: 0
+    path: Assets/Scenes/TestEgg.unity
+    guid: ab43cc61db6dab64eab42aa246d83348
   - enabled: 1
     path: Assets/Scenes/GameResults.unity
     guid: a35c73a1367593c49a5073443e5f5eb1

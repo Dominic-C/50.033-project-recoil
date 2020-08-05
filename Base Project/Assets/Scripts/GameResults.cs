@@ -11,27 +11,44 @@ public class GameResults : MonoBehaviour
     public Sprite BlueEgg;
     public Sprite GreenEgg;
     public Image image;
+    private int numEggs = 0;
 
-    void Start()
+    void OnEnable()
     {
-        foreach (int egg in LevelManager.EggsCollected)
+        if (EggHorizontalLayout != null)
         {
-            Image img = Instantiate(image, EggHorizontalLayout.transform);
-            switch (egg)
-            {
-                case (int) EggType.RED:
-                    img.sprite = RedEgg;
-                    break;
-                case (int) EggType.BLUE:
-                    img.sprite = BlueEgg;
-                    break;
-                case (int) EggType.GREEN:
-                    img.sprite = GreenEgg;
-                    break;
-            }
+            showEggs();
         }
 
-        float totalTimeTaken = LevelManager.timeTakenPerStage.Values.Sum();
-        TimeText.text = totalTimeTaken.ToString("n2") + " s";
+        if (TimeText)
+        {
+            float totalTimeTaken = LevelManager.timeTakenPerStage.Values.Sum();
+            TimeText.text = totalTimeTaken.ToString("n2") + " s";
+        }
+
+    }
+
+    void showEggs()
+    {
+        if (numEggs != LevelManager.EggsCollected.Count)
+        {
+            for (int j = numEggs; j < LevelManager.EggsCollected.Count; j++ )
+            {
+                Image img = Instantiate(image, EggHorizontalLayout.transform);
+                switch (LevelManager.EggsCollected[j])
+                {
+                    case (int)EggType.RED:
+                        img.sprite = RedEgg;
+                        break;
+                    case (int)EggType.BLUE:
+                        img.sprite = BlueEgg;
+                        break;
+                    case (int)EggType.GREEN:
+                        img.sprite = GreenEgg;
+                        break;
+                }
+                numEggs += 1;
+            }
+        }
     }
 }
