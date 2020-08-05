@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     // UI gameObjects, found dynamically everytime loadNextScene is called.
     public static GameObject PauseMenuUI;
     private GameObject WeaponUI;
-    private TextMeshProUGUI timeDebugText;
+    public TextMeshProUGUI timeDebugText;
 
     // Level attributes
     private bool loadingFromSaveData = false;
@@ -144,6 +144,10 @@ public class LevelManager : MonoBehaviour
     #endregion
 
     #region in-game level mechanics: updateLevel, respawn
+    public void setWeaponUI()
+    {
+        WeaponUI = GameObject.Find("WeaponUI");
+    }
 
     void updateStage()
     {
@@ -202,9 +206,6 @@ public class LevelManager : MonoBehaviour
                 }
             }
 
-            timeDebugText = PauseMenuUI.gameObject.transform.Find("TimeText").GetComponent<TextMeshProUGUI>();
-            timeDebugText.gameObject.SetActive(true);
-
             // set player spawn position
             player = GameObject.FindGameObjectWithTag("Player");
             if (player != null) playerSpawnPosition = player.transform.position;
@@ -215,7 +216,7 @@ public class LevelManager : MonoBehaviour
 
         if (currentStage >= 2 && WeaponUI == null)
         {
-            WeaponUI = GameObject.Find("WeaponUI");
+            setWeaponUI();
         }
 
         SaveSystem.SavePlayer();
