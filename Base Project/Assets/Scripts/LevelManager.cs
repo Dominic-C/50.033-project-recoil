@@ -154,7 +154,6 @@ public class LevelManager : MonoBehaviour
         currentStage = SceneManager.GetActiveScene().buildIndex;
         if (currentStage >= 1)
         {
-            Debug.Log("LevelManager's thingsPickedup when update Stage: " + thingsPickedUp.Count);
             currentSceneName = SceneManager.GetSceneByBuildIndex(currentStage).name;
 
             if (!audioIsPlaying) // play audio if it is not playing already

@@ -314,6 +314,12 @@ public class WeaponController : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = weaponData.weaponImage;
         }
     }
+
+    public void setEquippedGun(string gun)
+    {
+        equippedGun = gun;
+        if (WeaponUI != null) setWeaponUI(equippedGun);
+    }
 }
 
 
