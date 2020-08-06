@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47fed7252be6954fbf67c0ebf497c1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHit: 0
   batteryOkClip: {fileID: 7400000, guid: cbf2055d130e10c4c8a1a566e26033b2, type: 2}
   batteryDestroyedClip: {fileID: 7400000, guid: e597040e075ffb44797355cd9c3dc83a,
     type: 2}

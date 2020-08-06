@@ -84,7 +84,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,7 +103,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1555016015
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4890714490481895995, guid: be90e3274d953f842bcd6e1a8df27ac6,
     type: 3}
@@ -148,11 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c21d04b8bd358c4c803c344828389e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 0
   groundCheck1: {fileID: 0}
   groundCheck2: {fileID: 0}
   groundCheck3: {fileID: 0}
-  leftWallCheck: {fileID: 0}
-  rightWallCheck: {fileID: 0}
+  wallCheck1: {fileID: 0}
+  wallCheck2: {fileID: 0}
   runSpeed: 3
   jumpSpeed: 1
   idleAnimationClip: {fileID: 7400000, guid: 6827f4b6893d2e44ca612561577be22e, type: 2}
@@ -163,7 +164,10 @@ MonoBehaviour:
     type: 2}
   shootBackAnimationClip: {fileID: 7400000, guid: d0cf6f7d303f1ea42b6ace9c19ffabf5,
     type: 2}
+  slidingAnimation: {fileID: 0}
+  deathAnimation: {fileID: 0}
   airControlImpulse: 0
+  weaponPrefab: {fileID: 0}
 --- !u!50 &7288655147318556872
 Rigidbody2D:
   serializedVersion: 4

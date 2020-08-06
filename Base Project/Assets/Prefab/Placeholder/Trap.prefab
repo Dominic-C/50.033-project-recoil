@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4484310772904773035}
   - component: {fileID: 4484310772904773028}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Trap
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -782219211
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 034c33bf0d4bcac43a5a4c3363431154, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125,6 +125,8 @@ MonoBehaviour:
   activationDistance: 3
   groundCheck: {fileID: 4484310773696171284}
   moveSpeed: 2
+  idleAnimation: {fileID: 0}
+  attackAnimation: {fileID: 0}
 --- !u!1 &4484310773696171285
 GameObject:
   m_ObjectHideFlags: 0

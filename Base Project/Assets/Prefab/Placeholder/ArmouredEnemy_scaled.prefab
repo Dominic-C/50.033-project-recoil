@@ -94,14 +94,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2abd2b1a619038469b586bb68b5ca6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   eyes: {fileID: 1949078979015242065}
   moveSpeed: 1
   chaseSpeed: 0
   rangeOfSight: 0
   idleAnimationClip: {fileID: 7400000, guid: 49c10814be32d3140a949d0da7809f15, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 49c10814be32d3140a949d0da7809f15, type: 2}
-  deathAnimationClip: {fileID: 0}
   health: 1
   startWaitTime: 0.1
   moveSpots: []
@@ -235,7 +233,7 @@ PrefabInstance:
     - target: {fileID: 6613253835725317404, guid: 176152620b7319041bbf419144406eec,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8103111865742841653, guid: 176152620b7319041bbf419144406eec,
         type: 3}
@@ -296,6 +294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8323218263421131186, guid: 176152620b7319041bbf419144406eec,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8907437092791801385, guid: 176152620b7319041bbf419144406eec,
         type: 3}

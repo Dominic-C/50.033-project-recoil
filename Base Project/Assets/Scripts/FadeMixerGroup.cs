@@ -33,7 +33,6 @@ public class FadeMixerGroup
 
     public static void TransitToSnapshot(AudioMixerSnapshot snapshot)
     {
-        Debug.Log("Transitioning to AudioSnapshot...");
         snapshot.TransitionTo(1f);
     }
 }
