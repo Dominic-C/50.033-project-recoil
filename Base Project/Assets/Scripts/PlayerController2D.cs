@@ -82,6 +82,7 @@ public class PlayerController2D : MonoBehaviour
             // Check for Grounded State
             if (isGrounded)
             {
+                rb2d.mass = 1f;
                 // Move Right on ground
                 if (rightPressed)
                 {
@@ -108,14 +109,18 @@ public class PlayerController2D : MonoBehaviour
                 }
             }
 
+            // Check for onIce state
             else if (isOnIce)
             {
+                rb2d.mass = 5f; // to make player not able to go up ice
+
                 if (rightPressed)
                 {
                     animator.Play(slidingAnimation.name);
                     if (rb2d.velocity.x < runSpeed)
                     {
                         rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
+                        
                     }
                     isFacingRight = true;
                 }
@@ -125,6 +130,7 @@ public class PlayerController2D : MonoBehaviour
                     animator.Play(slidingAnimation.name);
                     if (rb2d.velocity.x > -runSpeed)
                     {
+                        
                         rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
                     }
                     isFacingRight = false;
@@ -136,6 +142,7 @@ public class PlayerController2D : MonoBehaviour
             }
             else // Not Grounded
             {
+                rb2d.mass = 1f;
                 animationLogicNotGrounded();
 
                 // Press Right in Air

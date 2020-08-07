@@ -254,6 +254,10 @@ public class WeaponController : MonoBehaviour
     public void shootRecoilForce(float recoilForce)
     {
         float x, y;
+        if (PlayerController2D.isOnIce)
+        {
+            recoilForce = recoilForce * rb2d.mass * 2;
+        }
         if (PlayerController2D.isFacingRight)
         {
             // Debug.Log("transform.eulerAngles: " + transform.eulerAngles.ToString());
