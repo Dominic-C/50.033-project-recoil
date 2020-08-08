@@ -254,6 +254,7 @@ public class PlayerController2D : MonoBehaviour
         if (isAlive)
         {
             isAlive = false;
+            gameObject.layer = LayerMask.NameToLayer("ignore_raycast");
             StartCoroutine(playDeathAnim());
         }
     }
@@ -267,9 +268,11 @@ public class PlayerController2D : MonoBehaviour
         LevelManager.onPlayerDeath();
         animator.Play(idleAnimationClip.name);
         isAlive = true;
+        gameObject.layer = LayerMask.NameToLayer("Action");
+
     }
 
-        void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("NextLevelDoor"))
         {

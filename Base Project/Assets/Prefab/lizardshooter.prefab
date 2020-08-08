@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8520144058430989293}
   - component: {fileID: 8520144058430989294}
   - component: {fileID: 8520144058430989289}
-  - component: {fileID: 8520144058430989290}
   - component: {fileID: 1135154076834762929}
+  - component: {fileID: 3257823733320427008}
   m_Layer: 0
-  m_Name: ShooterEnemy
+  m_Name: lizardshooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 8520144058430989295}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 3.2, y: -1.16, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 8520144059150491287}
   m_Father: {fileID: 0}
@@ -47,7 +47,7 @@ Animator:
   m_GameObject: {fileID: 8520144058430989295}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b4902ec9984baac428eb9edf8a177135, type: 2}
+  m_Controller: {fileID: 9100000, guid: b53c400e3299f2344b46268c69aad6bf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_SortingLayerID: -782219211
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3a75502cb10083f4197a6d573d1ad883, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 32d1cdb175107e8428c01af9052719b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,15 +122,15 @@ MonoBehaviour:
   moveSpeed: 1
   chaseSpeed: 0
   rangeOfSight: 4
-  idleAnimationClip: {fileID: 7400000, guid: fb21525c46a03804a87719939d45ab97, type: 2}
-  runAnimationClip: {fileID: 7400000, guid: fb21525c46a03804a87719939d45ab97, type: 2}
+  idleAnimationClip: {fileID: 7400000, guid: 81b51c4c86435ea4eaf68175579f3f5a, type: 2}
+  runAnimationClip: {fileID: 7400000, guid: 9d8fc317141b9334ab1c0d410c7d0803, type: 2}
   health: 1
   startWaitTime: 0.5
   moveSpots: []
   startTimeBetweenShots: 0.5
   projectile: {fileID: 4507134427231319588, guid: c0e69d3da8bb5994a80f3b2f40861418,
     type: 3}
-  shootAnimationClip: {fileID: 7400000, guid: 600735f25142dfe46bc039b9b973f3a1, type: 2}
+  shootAnimationClip: {fileID: 7400000, guid: 503d2fe088a90434ab11a7243ce9607b, type: 2}
 --- !u!50 &8520144058430989289
 Rigidbody2D:
   serializedVersion: 4
@@ -152,32 +152,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &8520144058430989290
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520144058430989295}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.006610036}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.62, y: 2.44}
-    newSize: {x: 1.96, y: 2.38}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.96, y: 2.1993344}
-  m_EdgeRadius: 0
 --- !u!82 &1135154076834762929
 AudioSource:
   m_ObjectHideFlags: 0
@@ -275,6 +249,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!61 &3257823733320427008
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520144058430989295}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.05333221}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.28}
+    newSize: {x: 1.96, y: 2.38}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.17333555}
+  m_EdgeRadius: 0
 --- !u!1 &8520144059150491288
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +299,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8520144059150491288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.454, y: -0.196, z: 0}
+  m_LocalPosition: {x: 0.034, y: -0.054, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8520144058430989291}
