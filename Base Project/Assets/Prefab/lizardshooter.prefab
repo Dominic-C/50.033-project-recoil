@@ -121,7 +121,7 @@ MonoBehaviour:
   eyes: {fileID: 8520144059150491287}
   moveSpeed: 1
   chaseSpeed: 0
-  rangeOfSight: 4
+  rangeOfSight: 2
   idleAnimationClip: {fileID: 7400000, guid: 81b51c4c86435ea4eaf68175579f3f5a, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 9d8fc317141b9334ab1c0d410c7d0803, type: 2}
   health: 1

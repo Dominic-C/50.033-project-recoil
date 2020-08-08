@@ -269,6 +269,7 @@ public class PlayerController2D : MonoBehaviour
         animator.Play(idleAnimationClip.name);
         isAlive = true;
         gameObject.layer = LayerMask.NameToLayer("Action");
+        rb2d.velocity = new Vector2(0f, 0f);
 
     }
 
