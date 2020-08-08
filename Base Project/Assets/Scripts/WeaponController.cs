@@ -78,6 +78,7 @@ public class WeaponController : MonoBehaviour
         weaponFireAudioSource = sources[0];
         weaponSwitchAudioSource = sources[1];
         flamethrowerProjectile = FlamethrowerParticleSystem.GetComponent<ParticleSystem>();
+
     }
 
     public void findWeaponUI()
@@ -92,36 +93,39 @@ public class WeaponController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // calc direction of aim
-        Vector3 aimDirection = (mouseWorldPosition - PlayerArm.transform.position).normalized;
-
-        // apply transformation based on whether its flipped
-        if (PlayerController2D.isFacingRight)
+        if (PlayerController2D.isAlive)
         {
-            // convert to euler angles
-            float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-            PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
-        }
-        else
-        {
-            // convert to euler angles
-            float angle = Mathf.Atan2(aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
-            angle = angle + 90;  // i forgot the math, not sure why need to +90 degrees in this case
-            PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
-        }
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Time.time > nextReloadTime)
-        {
-            refillAmmo();
+            // calc direction of aim
+            Vector3 aimDirection = (mouseWorldPosition - PlayerArm.transform.position).normalized;
+
+            // apply transformation based on whether its flipped
+            if (PlayerController2D.isFacingRight)
+            {
+                // convert to euler angles
+                float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+                PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
+            }
+            else
+            {
+                // convert to euler angles
+                float angle = Mathf.Atan2(aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
+                angle = angle + 90;  // i forgot the math, not sure why need to +90 degrees in this case
+                PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
+            }
+
+            if (Time.time > nextReloadTime)
+            {
+                refillAmmo();
+            }
         }
     }
 
     void Update()
     {
         // only take in input when game is not paused
-        if (!LevelManager.GameIsPaused)
+        if (!LevelManager.GameIsPaused && PlayerController2D.isAlive)
         {
             bool shootClicked = Input.GetButton("Fire1");
             if (shootClicked)

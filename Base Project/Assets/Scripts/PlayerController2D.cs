@@ -17,6 +17,7 @@ public class PlayerController2D : MonoBehaviour
     private bool leftPressed;
     private bool rightPressed;
     private bool hitWall;
+    public static bool isAlive;
 
     public bool DebugMode = false;
 
@@ -55,6 +56,7 @@ public class PlayerController2D : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
         prevFaceRight = true;
+        isAlive = true;
         if (DebugMode)
         {
             LevelManager.unlockedGuns = 3;
@@ -65,7 +67,7 @@ public class PlayerController2D : MonoBehaviour
     {
         // Controller Mode
         // Check For Pause State
-        if (!LevelManager.GameIsPaused)
+        if (!LevelManager.GameIsPaused && isAlive)
         {
             // Get Inputs;
             rightPressed = Input.GetKey("d");
@@ -120,7 +122,7 @@ public class PlayerController2D : MonoBehaviour
                     if (rb2d.velocity.x < runSpeed)
                     {
                         rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
-                        
+
                     }
                     isFacingRight = true;
                 }
@@ -130,7 +132,7 @@ public class PlayerController2D : MonoBehaviour
                     animator.Play(slidingAnimation.name);
                     if (rb2d.velocity.x > -runSpeed)
                     {
-                        
+
                         rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
                     }
                     isFacingRight = false;
@@ -249,19 +251,22 @@ public class PlayerController2D : MonoBehaviour
     }
     private void KillPlayer()
     {
-        StartCoroutine(playDeathAnim());
-  
-        LevelManager.onPlayerDeath();
-        animator.Play(idleAnimationClip.name);
-
+        if (isAlive)
+        {
+            isAlive = false;
+            StartCoroutine(playDeathAnim());
+        }
     }
 
     private IEnumerator playDeathAnim()
     {
         Debug.Log("death animation");
         animator.Play(deathAnimation.name);
-        //yield return new WaitForSeconds(deathAnimation.length);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(deathAnimation.length);
+        //yield return new WaitForSeconds(2f);
+        LevelManager.onPlayerDeath();
+        animator.Play(idleAnimationClip.name);
+        isAlive = true;
     }
 
         void OnTriggerEnter2D(Collider2D col)
