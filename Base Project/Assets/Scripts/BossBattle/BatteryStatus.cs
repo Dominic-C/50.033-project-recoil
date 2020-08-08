@@ -6,6 +6,7 @@ public class BatteryStatus : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool isHit;
+    public GameObject indicator;
     private Animator animator;
     public AnimationClip batteryOkClip;
     public AnimationClip batteryDestroyedClip;
@@ -19,7 +20,7 @@ public class BatteryStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,6 +30,7 @@ public class BatteryStatus : MonoBehaviour
             isHit = true;
             collision.gameObject.SetActive(false);
             animator.Play(batteryDestroyedClip.name);
+            indicator.SetActive(false);
         }
     }
 }
