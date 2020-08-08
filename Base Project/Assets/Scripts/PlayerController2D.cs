@@ -38,6 +38,7 @@ public class PlayerController2D : MonoBehaviour
 
     public float runSpeed;
     public float jumpSpeed;
+    public float iceSpeedModifier = 0.4f;
 
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
@@ -74,15 +75,45 @@ public class PlayerController2D : MonoBehaviour
             leftPressed = Input.GetKey("a");
 
             // Reload Loop
-            if (isGrounded && !isJustGrounded)
+            if ((isGrounded || isOnIce) && !isJustGrounded)
             {
                 if (WeaponController.isEnabled)
                 {
                     WeaponController.onGroundReload();
                 }
             }
+
+            // Check for onIce state
+            if (isOnIce)
+            {
+                rb2d.mass = 2f; // to make player not able to go up ice
+                if (rightPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x < runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(0.2f * iceSpeedModifier, 0.0f), ForceMode2D.Impulse);
+
+                    }
+                    isFacingRight = true;
+                }
+                // Move Left on ground
+                else if (leftPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x > -runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(-0.2f * iceSpeedModifier, 0.0f), ForceMode2D.Impulse);
+                    }
+                    isFacingRight = false;
+                }
+                else // Idle Animation
+                {
+                    animator.Play(slidingAnimation.name);
+                }
+            }
             // Check for Grounded State
-            if (isGrounded)
+            else if (isGrounded)
             {
                 rb2d.mass = 1f;
                 // Move Right on ground
@@ -108,38 +139,6 @@ public class PlayerController2D : MonoBehaviour
                 else // Idle Animation
                 {
                     animator.Play(idleAnimationClip.name);
-                }
-            }
-
-            // Check for onIce state
-            else if (isOnIce)
-            {
-                rb2d.mass = 5f; // to make player not able to go up ice
-
-                if (rightPressed)
-                {
-                    animator.Play(slidingAnimation.name);
-                    if (rb2d.velocity.x < runSpeed)
-                    {
-                        rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
-
-                    }
-                    isFacingRight = true;
-                }
-                // Move Left on ground
-                else if (leftPressed)
-                {
-                    animator.Play(slidingAnimation.name);
-                    if (rb2d.velocity.x > -runSpeed)
-                    {
-
-                        rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
-                    }
-                    isFacingRight = false;
-                }
-                else // Idle Animation
-                {
-                    animator.Play(slidingAnimation.name);
                 }
             }
             else // Not Grounded
@@ -170,7 +169,7 @@ public class PlayerController2D : MonoBehaviour
             }
 
             // state machine to retain state of previous frame
-            isJustGrounded = isGrounded;
+            isJustGrounded = isGrounded || isOnIce;
             prevFaceRight = isFacingRight;
         }
     }
@@ -198,8 +197,6 @@ public class PlayerController2D : MonoBehaviour
         else
         {
             isOnIce = false;
-
-
         }
 
         if (LevelManager.unlockedGuns == 0)
@@ -282,7 +279,7 @@ public class PlayerController2D : MonoBehaviour
         else if (col.gameObject.CompareTag("Enemy"))
         {
             KillPlayer();
-            
+
         }
         else if (col.gameObject.CompareTag("EnemyProjectile"))
         {
@@ -316,5 +313,5 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
-    
+
 }

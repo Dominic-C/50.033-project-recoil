@@ -46,6 +46,7 @@ public class WeaponController : MonoBehaviour
 
     public float xCorrection = 0.70f;
     public float yCorrection = 0.9f;
+    public float iceImpulseModifier = 1f;
 
     public static bool isEnabled = false;
     public delegate void GroundReload();
@@ -144,7 +145,7 @@ public class WeaponController : MonoBehaviour
 
                             // update next reload time
                             flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
-                            if (PlayerController2D.isGrounded) nextReloadTime = Time.time + onGroundReloadInterval;
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
 
                             // start flame animation
                             if (!flamethrowerProjectile.isPlaying) flamethrowerProjectile.Play();
@@ -189,32 +190,27 @@ public class WeaponController : MonoBehaviour
                             shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
 
                             // update next reload time
-                            if (PlayerController2D.isGrounded) nextReloadTime = Time.time + onGroundReloadInterval;
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
                         }
                         break;
                     case (GunTypes.Rocket):
                         // Check if we have Rocket Ammo and can fire it.
                         if (RocketWeaponData.ammoCount > 0 && Time.time > rocketNextFireTime)
                         {
+                            // update ammoCount and change UI
+                            RocketWeaponData.ammoCount -= 1;
+                            weaponFireAudioSource.PlayOneShot(RocketWeaponData.fireSound);
+                            // update next fire time to control fire rate of gun
+                            nextReloadTime = Time.time + RocketWeaponData.fireInterval;
+
                             // Generate projectile for rocket
                             projectile = ObjectPooler.Instance.SpawnFromPool("rocket");
                             projectile.transform.position = FirepointPrefab.transform.position;
                             projectile.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
                             projectile.SetActive(true);
 
-
-                            // update ammoCount and change UI
-                            RocketWeaponData.ammoCount -= 1;
-                            weaponFireAudioSource.PlayOneShot(RocketWeaponData.fireSound);
-
-                            // update next fire time to control fire rate of gun
-                            nextReloadTime = Time.time + RocketWeaponData.fireInterval;
-
                             // update next reload time
-                            if (PlayerController2D.isGrounded)
-                            {
-                                nextReloadTime = Time.time + onGroundReloadInterval;
-                            }
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
                         }
                         break;
                     default:
@@ -258,9 +254,10 @@ public class WeaponController : MonoBehaviour
     public void shootRecoilForce(float recoilForce)
     {
         float x, y;
+
         if (PlayerController2D.isOnIce)
         {
-            recoilForce = recoilForce * rb2d.mass * 2;
+            recoilForce = recoilForce * rb2d.mass;
         }
         if (PlayerController2D.isFacingRight)
         {
@@ -274,6 +271,7 @@ public class WeaponController : MonoBehaviour
             x = recoilForce * xCorrection * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
             y = recoilForce * yCorrection * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
         }
+
         if (!PlayerController2D.isOnIce)
         {
             rb2d.velocity = new Vector2(0, 0);
@@ -281,7 +279,7 @@ public class WeaponController : MonoBehaviour
         }
         else
         {
-            rb2d.AddForce(new Vector2(x * 0.5f, y * 0.5f));
+            rb2d.AddForce(new Vector2(x * iceImpulseModifier, y * iceImpulseModifier));
         }
         return;
     }
