@@ -3548,7 +3548,7 @@ PrefabInstance:
     - target: {fileID: 3411497921672819215, guid: 1c4729db5bd0feb4283e45d0135caa5f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.0733514
+      value: -1.71
       objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 1c4729db5bd0feb4283e45d0135caa5f,
         type: 3}
@@ -4662,7 +4662,7 @@ GameObject:
   - component: {fileID: 693346403}
   m_Layer: 0
   m_Name: Cosmetic
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5607,7 +5607,7 @@ GameObject:
   - component: {fileID: 710278267}
   m_Layer: 0
   m_Name: NextLevelDoor
-  m_TagString: Untagged
+  m_TagString: NextLevelDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5808,7 +5808,7 @@ PrefabInstance:
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.18000028
+      value: 0.18000025
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
@@ -23565,7 +23565,7 @@ GameObject:
   - component: {fileID: 1728916441}
   m_Layer: 8
   m_Name: Platforms
-  m_TagString: Untagged
+  m_TagString: GameBorder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
