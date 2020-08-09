@@ -11,6 +11,8 @@ public class RocketProjectileController : MonoBehaviour
     public bool toUpdateTime = false;
     public float timeToDestroyBullet = 5.0f;
     public float timeElapsed = 0.0f;
+    private UnityEngine.Object explosionRef;
+
 
     void onEnabled()
     {
@@ -25,7 +27,7 @@ public class RocketProjectileController : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
+        explosionRef = Resources.Load("Explosion");
         playerPrefab = GameObject.FindGameObjectsWithTag("Player")[0];
         playerRb2d = playerPrefab.GetComponent<Rigidbody2D>();
     }
@@ -51,7 +53,7 @@ public class RocketProjectileController : MonoBehaviour
         float recoilMagnitude = RocketWeaponData.recoilForce;
 
         Vector2 finalRecoil = new Vector2(recoilDirection.x * recoilMagnitude, recoilDirection.y * recoilMagnitude);
-        playerRb2d.AddForce(finalRecoil);
+        playerRb2d.AddForce(finalRecoil, ForceMode2D.Impulse);
         Debug.Log("finalRecoil: " + finalRecoil.ToString());
     }
 
@@ -60,6 +62,9 @@ public class RocketProjectileController : MonoBehaviour
         if (other.gameObject.tag == "GameBorder" || other.gameObject.tag == "Enemy")
         {
             LaunchRecoil();
+            GameObject explosion = (GameObject)Instantiate(explosionRef);
+            explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
+            Destroy(explosion, 5.0f);
         }
     }
 }

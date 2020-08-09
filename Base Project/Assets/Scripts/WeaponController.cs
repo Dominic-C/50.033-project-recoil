@@ -46,6 +46,7 @@ public class WeaponController : MonoBehaviour
 
     public float xCorrection = 0.70f;
     public float yCorrection = 0.9f;
+    public float iceImpulseModifier = 1f;
 
     public static bool isEnabled = false;
     public delegate void GroundReload();
@@ -78,6 +79,7 @@ public class WeaponController : MonoBehaviour
         weaponFireAudioSource = sources[0];
         weaponSwitchAudioSource = sources[1];
         flamethrowerProjectile = FlamethrowerParticleSystem.GetComponent<ParticleSystem>();
+
     }
 
     public void findWeaponUI()
@@ -92,36 +94,39 @@ public class WeaponController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // calc direction of aim
-        Vector3 aimDirection = (mouseWorldPosition - PlayerArm.transform.position).normalized;
-
-        // apply transformation based on whether its flipped
-        if (PlayerController2D.isFacingRight)
+        if (PlayerController2D.isAlive)
         {
-            // convert to euler angles
-            float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-            PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
-        }
-        else
-        {
-            // convert to euler angles
-            float angle = Mathf.Atan2(aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
-            angle = angle + 90;  // i forgot the math, not sure why need to +90 degrees in this case
-            PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
-        }
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Time.time > nextReloadTime)
-        {
-            refillAmmo();
+            // calc direction of aim
+            Vector3 aimDirection = (mouseWorldPosition - PlayerArm.transform.position).normalized;
+
+            // apply transformation based on whether its flipped
+            if (PlayerController2D.isFacingRight)
+            {
+                // convert to euler angles
+                float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+                PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
+            }
+            else
+            {
+                // convert to euler angles
+                float angle = Mathf.Atan2(aimDirection.x, aimDirection.y) * Mathf.Rad2Deg;
+                angle = angle + 90;  // i forgot the math, not sure why need to +90 degrees in this case
+                PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
+            }
+
+            if (Time.time > nextReloadTime)
+            {
+                refillAmmo();
+            }
         }
     }
 
     void Update()
     {
         // only take in input when game is not paused
-        if (!LevelManager.GameIsPaused)
+        if (!LevelManager.GameIsPaused && PlayerController2D.isAlive)
         {
             bool shootClicked = Input.GetButton("Fire1");
             if (shootClicked)
@@ -140,7 +145,7 @@ public class WeaponController : MonoBehaviour
 
                             // update next reload time
                             flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
-                            if (PlayerController2D.isGrounded) nextReloadTime = Time.time + onGroundReloadInterval;
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
 
                             // start flame animation
                             if (!flamethrowerProjectile.isPlaying) flamethrowerProjectile.Play();
@@ -185,32 +190,27 @@ public class WeaponController : MonoBehaviour
                             shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
 
                             // update next reload time
-                            if (PlayerController2D.isGrounded) nextReloadTime = Time.time + onGroundReloadInterval;
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
                         }
                         break;
                     case (GunTypes.Rocket):
                         // Check if we have Rocket Ammo and can fire it.
                         if (RocketWeaponData.ammoCount > 0 && Time.time > rocketNextFireTime)
                         {
+                            // update ammoCount and change UI
+                            RocketWeaponData.ammoCount -= 1;
+                            weaponFireAudioSource.PlayOneShot(RocketWeaponData.fireSound);
+                            // update next fire time to control fire rate of gun
+                            nextReloadTime = Time.time + RocketWeaponData.fireInterval;
+
                             // Generate projectile for rocket
                             projectile = ObjectPooler.Instance.SpawnFromPool("rocket");
                             projectile.transform.position = FirepointPrefab.transform.position;
                             projectile.transform.eulerAngles = FirepointPrefab.transform.eulerAngles;
                             projectile.SetActive(true);
 
-
-                            // update ammoCount and change UI
-                            RocketWeaponData.ammoCount -= 1;
-                            weaponFireAudioSource.PlayOneShot(RocketWeaponData.fireSound);
-
-                            // update next fire time to control fire rate of gun
-                            nextReloadTime = Time.time + RocketWeaponData.fireInterval;
-
                             // update next reload time
-                            if (PlayerController2D.isGrounded)
-                            {
-                                nextReloadTime = Time.time + onGroundReloadInterval;
-                            }
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
                         }
                         break;
                     default:
@@ -254,6 +254,11 @@ public class WeaponController : MonoBehaviour
     public void shootRecoilForce(float recoilForce)
     {
         float x, y;
+
+        if (PlayerController2D.isOnIce)
+        {
+            recoilForce = recoilForce * rb2d.mass;
+        }
         if (PlayerController2D.isFacingRight)
         {
             // Debug.Log("transform.eulerAngles: " + transform.eulerAngles.ToString());
@@ -266,6 +271,7 @@ public class WeaponController : MonoBehaviour
             x = recoilForce * xCorrection * Mathf.Cos((transform.eulerAngles.z + 180) * Mathf.Deg2Rad) * -1;
             y = recoilForce * yCorrection * Mathf.Sin((transform.eulerAngles.z + 180) * Mathf.Deg2Rad);
         }
+
         if (!PlayerController2D.isOnIce)
         {
             rb2d.velocity = new Vector2(0, 0);
@@ -273,7 +279,7 @@ public class WeaponController : MonoBehaviour
         }
         else
         {
-            rb2d.AddForce(new Vector2(x * 0.5f, y * 0.5f));
+            rb2d.AddForce(new Vector2(x * iceImpulseModifier, y * iceImpulseModifier));
         }
         return;
     }

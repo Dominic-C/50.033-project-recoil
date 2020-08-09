@@ -26,7 +26,7 @@ TagManager:
   - Action
   - DEATH
   - Ice
-  - 
+  - ignore_raycast
   - 
   - 
   - 

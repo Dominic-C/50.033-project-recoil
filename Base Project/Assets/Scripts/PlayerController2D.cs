@@ -17,6 +17,7 @@ public class PlayerController2D : MonoBehaviour
     private bool leftPressed;
     private bool rightPressed;
     private bool hitWall;
+    public static bool isAlive;
 
     public bool DebugMode = false;
 
@@ -37,6 +38,7 @@ public class PlayerController2D : MonoBehaviour
 
     public float runSpeed;
     public float jumpSpeed;
+    public float iceSpeedModifier = 0.4f;
 
     public AnimationClip idleAnimationClip;
     public AnimationClip runAnimationClip;
@@ -55,6 +57,7 @@ public class PlayerController2D : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         isFacingRight = true;
         prevFaceRight = true;
+        isAlive = true;
         if (DebugMode)
         {
             LevelManager.unlockedGuns = 3;
@@ -65,23 +68,54 @@ public class PlayerController2D : MonoBehaviour
     {
         // Controller Mode
         // Check For Pause State
-        if (!LevelManager.GameIsPaused)
+        if (!LevelManager.GameIsPaused && isAlive)
         {
             // Get Inputs;
             rightPressed = Input.GetKey("d");
             leftPressed = Input.GetKey("a");
 
             // Reload Loop
-            if (isGrounded && !isJustGrounded)
+            if ((isGrounded || isOnIce) && !isJustGrounded)
             {
                 if (WeaponController.isEnabled)
                 {
                     WeaponController.onGroundReload();
                 }
             }
-            // Check for Grounded State
-            if (isGrounded)
+
+            // Check for onIce state
+            if (isOnIce)
             {
+                rb2d.mass = 2f; // to make player not able to go up ice
+                if (rightPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x < runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(0.2f * iceSpeedModifier, 0.0f), ForceMode2D.Impulse);
+
+                    }
+                    isFacingRight = true;
+                }
+                // Move Left on ground
+                else if (leftPressed)
+                {
+                    animator.Play(slidingAnimation.name);
+                    if (rb2d.velocity.x > -runSpeed)
+                    {
+                        rb2d.AddForce(new Vector2(-0.2f * iceSpeedModifier, 0.0f), ForceMode2D.Impulse);
+                    }
+                    isFacingRight = false;
+                }
+                else // Idle Animation
+                {
+                    animator.Play(slidingAnimation.name);
+                }
+            }
+            // Check for Grounded State
+            else if (isGrounded)
+            {
+                rb2d.mass = 1f;
                 // Move Right on ground
                 if (rightPressed)
                 {
@@ -107,35 +141,9 @@ public class PlayerController2D : MonoBehaviour
                     animator.Play(idleAnimationClip.name);
                 }
             }
-
-            else if (isOnIce)
-            {
-                if (rightPressed)
-                {
-                    animator.Play(slidingAnimation.name);
-                    if (rb2d.velocity.x < runSpeed)
-                    {
-                        rb2d.AddForce(new Vector2(0.2f, 0.0f), ForceMode2D.Impulse);
-                    }
-                    isFacingRight = true;
-                }
-                // Move Left on ground
-                else if (leftPressed)
-                {
-                    animator.Play(slidingAnimation.name);
-                    if (rb2d.velocity.x > -runSpeed)
-                    {
-                        rb2d.AddForce(new Vector2(-0.2f, 0.0f), ForceMode2D.Impulse);
-                    }
-                    isFacingRight = false;
-                }
-                else // Idle Animation
-                {
-                    animator.Play(slidingAnimation.name);
-                }
-            }
             else // Not Grounded
             {
+                rb2d.mass = 1f;
                 animationLogicNotGrounded();
 
                 // Press Right in Air
@@ -161,7 +169,7 @@ public class PlayerController2D : MonoBehaviour
             }
 
             // state machine to retain state of previous frame
-            isJustGrounded = isGrounded;
+            isJustGrounded = isGrounded || isOnIce;
             prevFaceRight = isFacingRight;
         }
     }
@@ -189,8 +197,6 @@ public class PlayerController2D : MonoBehaviour
         else
         {
             isOnIce = false;
-
-
         }
 
         if (LevelManager.unlockedGuns == 0)
@@ -242,22 +248,29 @@ public class PlayerController2D : MonoBehaviour
     }
     private void KillPlayer()
     {
-        StartCoroutine(playDeathAnim());
-  
-        LevelManager.onPlayerDeath();
-        animator.Play(idleAnimationClip.name);
-
+        if (isAlive)
+        {
+            isAlive = false;
+            gameObject.layer = LayerMask.NameToLayer("ignore_raycast");
+            StartCoroutine(playDeathAnim());
+        }
     }
 
     private IEnumerator playDeathAnim()
     {
         Debug.Log("death animation");
         animator.Play(deathAnimation.name);
-        //yield return new WaitForSeconds(deathAnimation.length);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(deathAnimation.length);
+        //yield return new WaitForSeconds(2f);
+        LevelManager.onPlayerDeath();
+        animator.Play(idleAnimationClip.name);
+        isAlive = true;
+        gameObject.layer = LayerMask.NameToLayer("Action");
+        rb2d.velocity = new Vector2(0f, 0f);
+
     }
 
-        void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("NextLevelDoor"))
         {
@@ -266,7 +279,7 @@ public class PlayerController2D : MonoBehaviour
         else if (col.gameObject.CompareTag("Enemy"))
         {
             KillPlayer();
-            
+
         }
         else if (col.gameObject.CompareTag("EnemyProjectile"))
         {
@@ -300,5 +313,5 @@ public class PlayerController2D : MonoBehaviour
         }
     }
 
-    
+
 }

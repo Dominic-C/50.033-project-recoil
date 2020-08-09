@@ -191,7 +191,7 @@ MonoBehaviour:
   startTimeBetweenShots: 1.5
   projectile: {fileID: 4507134427231319588, guid: c0e69d3da8bb5994a80f3b2f40861418,
     type: 3}
-  shootAnimationClip: {fileID: 0}
+  shootAnimationClip: {fileID: 7400000, guid: 503d2fe088a90434ab11a7243ce9607b, type: 2}
 --- !u!61 &5404222627522980072
 BoxCollider2D:
   m_ObjectHideFlags: 0
