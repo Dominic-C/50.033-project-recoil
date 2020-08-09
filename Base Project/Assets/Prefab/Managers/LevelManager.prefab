@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1021846444}
   - component: {fileID: 1021846443}
   m_Layer: 5
-  m_Name: StageText (1)
+  m_Name: StageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,39 +415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c10860647720f74aaf698709271fbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageNameText: {fileID: 1021846445}
   timeDebugText: {fileID: 8185723448751990954}
   audioMixer: {fileID: 24100000, guid: 57b1789a5b1a2bb4aac494baeff568e2, type: 2}
-  progressSlider: {fileID: 0}
-  progressFill: {fileID: 0}
-  progressColorGradient:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 0.9816715, g: 1, b: 0.3962264, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 1}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 33346
-    atime2: 65535
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 3
 --- !u!82 &1782345252
 AudioSource:
   m_ObjectHideFlags: 0
@@ -979,6 +949,26 @@ PrefabInstance:
     - target: {fileID: 3367309404165653118, guid: c0406a3a6b76fdf4b8d1823f11542319,
         type: 3}
       propertyPath: m_enableAutoSizing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447862404776803698, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447862404776803698, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447862404776803698, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447862404776803698, guid: c0406a3a6b76fdf4b8d1823f11542319,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7310262399845839991, guid: c0406a3a6b76fdf4b8d1823f11542319,

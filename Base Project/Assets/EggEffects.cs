@@ -15,7 +15,7 @@ public class EggEffects : MonoBehaviour
     }
     void playSound()
     {
-        if (!audioSource.isPlaying && Vector3.Distance(player.transform.position, gameObject.transform.position) < 5)
+        if (!audioSource.isPlaying && Vector3.Distance(player.transform.position, gameObject.transform.position) < 10)
         {
             audioSource.Play();
         }

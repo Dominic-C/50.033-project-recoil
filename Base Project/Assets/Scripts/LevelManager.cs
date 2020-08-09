@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     // UI gameObjects, found dynamically everytime loadNextScene is called.
     public static GameObject PauseMenuUI;
     private GameObject WeaponUI;
+    public TextMeshProUGUI stageNameText;
     public TextMeshProUGUI timeDebugText;
 
     // Level attributes
@@ -149,11 +150,12 @@ public class LevelManager : MonoBehaviour
         WeaponUI = GameObject.Find("WeaponUI");
     }
 
+
     void updateStage()
     {
         currentStage = SceneManager.GetActiveScene().buildIndex;
         currentSceneName = SceneManager.GetSceneByBuildIndex(currentStage).name;
-        StageName.updateStageText(currentSceneName);
+        stageNameText.text = currentSceneName;
 
         if (currentStage >= 1)
         {

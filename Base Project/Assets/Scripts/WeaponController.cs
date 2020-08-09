@@ -132,7 +132,7 @@ public class WeaponController : MonoBehaviour
         // only take in input when game is not paused
         if (!LevelManager.GameIsPaused && PlayerController2D.isAlive)
         {
-            if (!(PlayerController2D.isGrounded || PlayerController2D.isOnIce))
+            if (!(PlayerController2D.isGrounded || PlayerController2D.isOnIce) && WeaponUI!= null)
             {
                 WeaponUIData.StopAmmoRefillCooldown();
             }
@@ -153,7 +153,7 @@ public class WeaponController : MonoBehaviour
 
                             // update next reload time
                             flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
-                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce && WeaponUIData != null)
                             {
                                 nextReloadTime = onGroundReloadInterval;
                                 WeaponUIData.StartAmmoRefillCooldown();
@@ -199,7 +199,7 @@ public class WeaponController : MonoBehaviour
 
                             // update next fire time to control fire rate of gun
                             shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
-                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce && WeaponUIData != null)
                             {
                                 nextReloadTime = onGroundReloadInterval;
                                 WeaponUIData.StartAmmoRefillCooldown();
@@ -223,7 +223,7 @@ public class WeaponController : MonoBehaviour
                             projectile.SetActive(true);
 
                             // update next reload time
-                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce && WeaponUIData != null)
                             {
                                 nextReloadTime = onGroundReloadInterval;
                                 WeaponUIData.StartAmmoRefillCooldown();
@@ -307,9 +307,12 @@ public class WeaponController : MonoBehaviour
         FlamethrowerWeaponData.ammoCount = FlamethrowerWeaponData.maxAmmo;
         // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
         nextReloadTime = float.MaxValue;
-        WeaponUIData.StopAmmoRefillCooldown();
 
-        if (WeaponUI != null) setWeaponUI(equippedGun);
+        if (WeaponUI != null)
+        {
+            WeaponUIData.StopAmmoRefillCooldown();
+            setWeaponUI(equippedGun);
+        }
     }
 
 
