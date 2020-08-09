@@ -98,7 +98,7 @@ public class LevelManager : MonoBehaviour
             WeaponUI.SetActive(false);
         }
         FadeMixerGroup.TransitToSnapshot(pausedSnapshot);
-        timeDebugText.text = "Time: " + timeTakenCurrentStage;
+        timeDebugText.text = timeTakenCurrentStage.ToString("n2") + " s";
         timeTakenPerStage[currentSceneName] = timeTakenCurrentStage;
         Time.timeScale = 0f;
         toUpdateTime = false;
