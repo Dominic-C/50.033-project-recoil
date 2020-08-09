@@ -280,13 +280,11 @@ public class LevelManager : MonoBehaviour
 
     private void disablePickedUpObjects()
     {
-        Debug.Log("Disabling picked up objects...");
         if (thingsPickedUp.Count > 0)
         {
             // previously got pick up shit, now disable those so player won't pick up again.
             foreach (string gameObjName in thingsPickedUp)
             {
-                Debug.Log("Disabled object as it is picked up previously :" + gameObjName);
                 GameObject obj = GameObject.Find(gameObjName);
                 if (obj != null)
                 {
