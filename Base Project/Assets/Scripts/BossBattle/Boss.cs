@@ -149,7 +149,7 @@ public class Boss : Enemy
             collision.gameObject.SetActive(false); // send back to object pooler
             health--; // 1 damage
             isHit = true;
-            spriteRenderer.material = matWhite;
+            // spriteRenderer.material = matWhite;
             if (health <= 0)
             {
                 KillSelf();
@@ -170,9 +170,9 @@ public class Boss : Enemy
     {
         GameObject explosion = (GameObject)Instantiate(explosionRef);
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
-        Destroy(explosion, 5.0f);
-        //Destroy(gameObject);
-        gameObject.SetActive(false);
+        // Destroy(explosion, 5.0f);
+        // Destroy(gameObject);
+        // gameObject.SetActive(false);
         postBattlecamera.SetActive(true);
     }
 }

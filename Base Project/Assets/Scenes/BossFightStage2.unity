@@ -20086,6 +20086,12 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1142037004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1763585591456590793, guid: 083854405516b974dbb62641d23a2a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1375642588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1181589432
 GameObject:
   m_ObjectHideFlags: 0
@@ -20508,7 +20514,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357119972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.84, y: 10.11, z: 0}
+  m_LocalPosition: {x: 10.84, y: 10.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1420295426}
@@ -21006,7 +21012,7 @@ PrefabInstance:
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000013411045
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
@@ -22256,6 +22262,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab388fd8adf59af4c854aa0ac52fc3c1, type: 3}
+--- !u!1 &1730576531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1642749234, guid: 083854405516b974dbb62641d23a2a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1375642588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1731619554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22771,6 +22783,10 @@ PlayableDirector:
     value: {fileID: 1847769240}
   - key: {fileID: 635036442444716408, guid: 537bccd15755b1f4db8b02c889ba4a52, type: 2}
     value: {fileID: 539728456}
+  - key: {fileID: 6162184513867064993, guid: 537bccd15755b1f4db8b02c889ba4a52, type: 2}
+    value: {fileID: 1142037004}
+  - key: {fileID: -6278245219616305320, guid: 537bccd15755b1f4db8b02c889ba4a52, type: 2}
+    value: {fileID: 1730576531}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1806527029
