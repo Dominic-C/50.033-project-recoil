@@ -22,6 +22,7 @@ public class Boss : Enemy
     private float timeBetweenShots;
     public float BurstShotsInterval;
     public float aimedShotsInterval;
+    public GameObject postBattlecamera;
 
 
     void Start()
@@ -37,6 +38,7 @@ public class Boss : Enemy
         playerObject = GameObject.FindGameObjectWithTag("Player");
         projectileMovespeed = 2f;
         aimedProjectileMovespeed = 3f;
+        postBattlecamera.SetActive(false);
 
     }
 
@@ -169,6 +171,8 @@ public class Boss : Enemy
         GameObject explosion = (GameObject)Instantiate(explosionRef);
         explosion.transform.position = new Vector3(transform.position.x, transform.position.y + transform.position.z);
         Destroy(explosion, 5.0f);
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
+        postBattlecamera.SetActive(true);
     }
 }
