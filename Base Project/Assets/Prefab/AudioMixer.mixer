@@ -221,13 +221,14 @@ AudioMixerController:
     name: BGM
   - guids:
     - 2bbdc2663fd3a284fb9810609cb21682
+    - 5d1a01dc8f59b2f46a0b7a8bf402f42a
     - 19fcb128071fdc346a9475ac733cfdde
     - f73974223f3b9aa429081c304f7c9d46
     - d047f330c73716749aca77fdcd87df51
     - 4362609b2773dda44849f84cdc801081
     - f3d5ee71398609141949e1351f640929
     name: SFX
-  m_CurrentViewIndex: 2
+  m_CurrentViewIndex: 1
   m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
@@ -274,13 +275,14 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 7cf1c479320daf243871517c78c7aedb
   m_FloatValues:
-    614f14b1e4eca2c468505b463d52d8ee: -0.102314346
+    614f14b1e4eca2c468505b463d52d8ee: -10
     69662c42555018547bd9f1dcce85c25a: -2.018035
     bce391a2fdcb22f47b7a1d39be5aedee: -5
     a53a8878788fa9c46be8f99798b1c28c: -24.900742
     79ca4ad87b2937b40985b953c768ee1e: 0.36
     b0d60d291ea4d2f4584448007e6a9fe0: -19.928478
-    1973b5cda6d94b9449b9c005bf6c6f49: -0.19117343
+    1973b5cda6d94b9449b9c005bf6c6f49: -80
+    e87e77def7897e0458213532f6a6dd87: -80
   m_TransitionOverrides: {}
 --- !u!244 &46868353912957482
 AudioMixerEffectController:
