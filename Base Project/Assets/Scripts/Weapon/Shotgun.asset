@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   weaponName: Shotgun
-  ammoCount: 2
+  ammoCount: 1
   weaponImage: {fileID: -4440242183763085551, guid: fd91ce36dcb9b734ba90e9b1d0a6dd6a,
     type: 3}
   projectileSpeed: 10
-  recoilForce: 6.5
+  recoilForce: 6
   fireInterval: 0.5
   firePosition: {x: 0.092, y: 0.016, z: 0}
   maxAmmo: 2
