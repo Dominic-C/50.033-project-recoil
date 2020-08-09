@@ -251,6 +251,7 @@ MonoBehaviour:
   wallCheck2: {fileID: 3345714327273652223}
   runSpeed: 3
   jumpSpeed: 1
+  iceSpeedModifier: 0.4
   idleAnimationClip: {fileID: 7400000, guid: 6827f4b6893d2e44ca612561577be22e, type: 2}
   runAnimationClip: {fileID: 7400000, guid: 1e013d5a69da7dc4e8696906163abf84, type: 2}
   shootBottomAnimationClip: {fileID: 7400000, guid: 91f51bf074ef1f543b987017a0e6ed42,
@@ -422,7 +423,7 @@ PrefabInstance:
     - target: {fileID: 497043997816486070, guid: a77bc06c01107d446b24ad41e9ac0977,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11634446
+      value: 0.417
       objectReference: {fileID: 0}
     - target: {fileID: 497043997816486070, guid: a77bc06c01107d446b24ad41e9ac0977,
         type: 3}
@@ -504,6 +505,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2972807805089839808}
     m_Modifications:
+    - target: {fileID: 7774105930902788326, guid: e9f3a5474116dab4faafb9130eb6341e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.272
+      objectReference: {fileID: 0}
     - target: {fileID: 7774105931457736272, guid: e9f3a5474116dab4faafb9130eb6341e,
         type: 3}
       propertyPath: m_Name
