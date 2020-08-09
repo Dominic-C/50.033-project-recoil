@@ -39,7 +39,7 @@ public class RocketProjectileController : MonoBehaviour
         timeElapsed += Time.deltaTime;
         if (timeElapsed >= timeToDestroyBullet)
         {
-            gameObject.SetActive(false);
+            LaunchRecoil();
             timeElapsed = 0f;
         }
     }

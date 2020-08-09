@@ -116,8 +116,11 @@ public class WeaponController : MonoBehaviour
                 angle = angle + 90;  // i forgot the math, not sure why need to +90 degrees in this case
                 PlayerArm.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, angle);
             }
-
-            if (Time.time > nextReloadTime)
+            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
+            {
+                nextReloadTime -= Time.deltaTime;
+            }
+            if (nextReloadTime < 0)
             {
                 refillAmmo();
             }
@@ -129,6 +132,10 @@ public class WeaponController : MonoBehaviour
         // only take in input when game is not paused
         if (!LevelManager.GameIsPaused && PlayerController2D.isAlive)
         {
+            if (!(PlayerController2D.isGrounded || PlayerController2D.isOnIce))
+            {
+                WeaponUIData.StopAmmoRefillCooldown();
+            }
             bool shootClicked = Input.GetButton("Fire1");
             if (shootClicked)
             {
@@ -148,7 +155,7 @@ public class WeaponController : MonoBehaviour
                             flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
                             if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
                             {
-                                nextReloadTime = Time.time + onGroundReloadInterval;
+                                nextReloadTime = onGroundReloadInterval;
                                 WeaponUIData.StartAmmoRefillCooldown();
                             }
                             // start flame animation
@@ -192,11 +199,9 @@ public class WeaponController : MonoBehaviour
 
                             // update next fire time to control fire rate of gun
                             shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
-
-                            // update next reload time
                             if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
                             {
-                                nextReloadTime = Time.time + onGroundReloadInterval;
+                                nextReloadTime = onGroundReloadInterval;
                                 WeaponUIData.StartAmmoRefillCooldown();
                             }
                         }
@@ -220,7 +225,7 @@ public class WeaponController : MonoBehaviour
                             // update next reload time
                             if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
                             {
-                                nextReloadTime = Time.time + onGroundReloadInterval;
+                                nextReloadTime = onGroundReloadInterval;
                                 WeaponUIData.StartAmmoRefillCooldown();
                             }
                         }
@@ -341,7 +346,7 @@ public class WeaponController : MonoBehaviour
 
 
 
-    
+
 
 }
 
