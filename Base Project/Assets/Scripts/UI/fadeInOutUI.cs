@@ -17,7 +17,7 @@ public class fadeInOutUI : MonoBehaviour
     void Start()
     {
         StartCoroutine(WaitBeforeAnimation());
-        SceneManager.sceneLoaded += delegate { StartCoroutine(showUI()); };
+        SceneManager.activeSceneChanged += delegate { StartCoroutine(showUI()); };
     }
 
     IEnumerator showUI()
