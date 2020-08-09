@@ -89,6 +89,7 @@ public class WeaponController : MonoBehaviour
         {
             WeaponUIData = WeaponUI.GetComponent<CurrWeaponUI>();
             setWeaponUI(equippedGun);
+            WeaponUIData.SetReloadTime(onGroundReloadInterval);
         }
     }
 
@@ -145,8 +146,11 @@ public class WeaponController : MonoBehaviour
 
                             // update next reload time
                             flamethrowerNextFireTime = Time.time + FlamethrowerWeaponData.fireInterval;
-                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
-
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
+                            {
+                                nextReloadTime = Time.time + onGroundReloadInterval;
+                                WeaponUIData.StartAmmoRefillCooldown();
+                            }
                             // start flame animation
                             if (!flamethrowerProjectile.isPlaying) flamethrowerProjectile.Play();
                         }
@@ -190,7 +194,11 @@ public class WeaponController : MonoBehaviour
                             shotgunNextFireTime = Time.time + ShotgunWeaponData.fireInterval;
 
                             // update next reload time
-                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
+                            {
+                                nextReloadTime = Time.time + onGroundReloadInterval;
+                                WeaponUIData.StartAmmoRefillCooldown();
+                            }
                         }
                         break;
                     case (GunTypes.Rocket):
@@ -210,7 +218,11 @@ public class WeaponController : MonoBehaviour
                             projectile.SetActive(true);
 
                             // update next reload time
-                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce) nextReloadTime = Time.time + onGroundReloadInterval;
+                            if (PlayerController2D.isGrounded || PlayerController2D.isOnIce)
+                            {
+                                nextReloadTime = Time.time + onGroundReloadInterval;
+                                WeaponUIData.StartAmmoRefillCooldown();
+                            }
                         }
                         break;
                     default:
@@ -290,11 +302,17 @@ public class WeaponController : MonoBehaviour
         FlamethrowerWeaponData.ammoCount = FlamethrowerWeaponData.maxAmmo;
         // ensure that ammo will only be reloaded once (esp in combination with the passive reload when on the ground)
         nextReloadTime = float.MaxValue;
+        WeaponUIData.StopAmmoRefillCooldown();
 
         if (WeaponUI != null) setWeaponUI(equippedGun);
     }
 
 
+    public void setEquippedGun(string gun)
+    {
+        equippedGun = gun;
+        if (WeaponUI != null) setWeaponUI(equippedGun);
+    }
     // set weapon UI methods
     public WeaponData getWeaponDataForUI(string gunName)
     {
@@ -321,11 +339,10 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public void setEquippedGun(string gun)
-    {
-        equippedGun = gun;
-        if (WeaponUI != null) setWeaponUI(equippedGun);
-    }
+
+
+    
+
 }
 
 

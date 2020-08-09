@@ -7,16 +7,67 @@ using UnityEngine.UI;
 
 public class CurrWeaponUI : MonoBehaviour
 {
-    // Start is called before the first frame update
     public TextMeshProUGUI AmmoCounter;
     public TextMeshProUGUI GunName;
     public Image GunSprite;
 
     public void setWeaponData(WeaponData data)
     {
-        // Debug.Log("Setting weapon data for UI");
         AmmoCounter.text = data.ammoCount.ToString() + " / " + data.maxAmmo.ToString();
         GunName.text = data.weaponName;
         GunSprite.sprite = data.weaponImage;
+        //SetReloadTime(data.maxAmmo);
     }
+
+    void Update()
+    {
+        if (toUpdateTime)
+        {
+            timeElapsed += Time.deltaTime;
+            SetReloadProgress(timeElapsed);
+        }
+
+        if (timeElapsed > reloadTime)
+        {
+            StopAmmoRefillCooldown();
+        }
+    }
+
+    #region Progress Slider UI Functions (currently unused, COULD BE TRANSFERRED TO SHOWING AMMO REFILL COOLDOWN.)
+
+    // Weapon Reload UI related functions
+    private float timeElapsed;
+    private bool toUpdateTime;
+    private float reloadTime;
+    public Slider progressSlider;
+    public Image progressFill;
+    public Gradient progressColorGradient;
+
+
+    public void SetReloadProgress(float timeElapsed)
+    {
+        progressSlider.value = timeElapsed;
+        progressFill.color = progressColorGradient.Evaluate(progressSlider.normalizedValue);
+    }
+
+    public void SetReloadTime(float reloadTime)
+    {
+        this.reloadTime = reloadTime;
+        progressSlider.maxValue = reloadTime;
+    }
+
+    public void StartAmmoRefillCooldown()
+    {
+        toUpdateTime = true;
+        timeElapsed = 0;
+        SetReloadProgress(timeElapsed);
+    }
+
+    public void StopAmmoRefillCooldown()
+    {
+        timeElapsed = 0;
+        SetReloadProgress(timeElapsed);
+        toUpdateTime = false;
+    }
+    #endregion  
 }
