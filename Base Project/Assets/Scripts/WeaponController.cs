@@ -275,11 +275,11 @@ public class WeaponController : MonoBehaviour
         if (!PlayerController2D.isOnIce)
         {
             rb2d.velocity = new Vector2(0, 0);
-            rb2d.AddForce(new Vector2(x, y));
+            rb2d.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
         }
         else
         {
-            rb2d.AddForce(new Vector2(x * iceImpulseModifier, y * iceImpulseModifier));
+            rb2d.AddForce(new Vector2(x * iceImpulseModifier, y * iceImpulseModifier), ForceMode2D.Impulse);
         }
         return;
     }

@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8997138146253432520}
   - component: {fileID: 2138838157944981172}
-  - component: {fileID: -3096100512905325852}
   - component: {fileID: -3533886463869897618}
   - component: {fileID: 8861631671428745258}
   - component: {fileID: 6404720398806066956}
@@ -117,27 +116,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &-3096100512905325852
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567365073268194130}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!61 &-3533886463869897618
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192,6 +170,7 @@ MonoBehaviour:
     type: 3}
   BurstShotsInterval: 5
   aimedShotsInterval: 1
+  postBattlecamera: {fileID: 0}
 --- !u!95 &6404720398806066956
 Animator:
   serializedVersion: 3
