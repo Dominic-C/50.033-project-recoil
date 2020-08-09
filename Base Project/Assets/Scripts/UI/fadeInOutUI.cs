@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class TutorialUI : MonoBehaviour
+public class fadeInOutUI : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject player;
@@ -13,25 +14,38 @@ public class TutorialUI : MonoBehaviour
     public bool fadeOut;
     public float waitTimeBeforeAnimation = 2.0f;
 
-    void OnEnable()
+    void Start()
     {
         StartCoroutine(WaitBeforeAnimation());
+        SceneManager.sceneLoaded += delegate { StartCoroutine(showUI()); };
     }
 
-    IEnumerator WaitBeforeAnimation()
+    IEnumerator showUI()
     {
-        yield return new WaitForSeconds(waitTimeBeforeAnimation);
         foreach (Transform t in gameObject.transform)
         {
             if (fadeIn)
             {
                 Debug.Log("Fading in");
-                StartCoroutine(fadeInAndOut(t.gameObject, true, 2f));
+                StartCoroutine(fadeInAndOut(t.gameObject, true, 1f));
             }
+        }
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(WaitBeforeAnimation());
+    }
+
+    IEnumerator WaitBeforeAnimation()
+    {
+        yield return new WaitForSeconds(waitTimeBeforeAnimation);
+        
+
+        // yield return new WaitForSeconds(waitTimeBeforeAnimation);
+        foreach (Transform t in gameObject.transform)
+        {
             if (fadeOut)
             {
                 Debug.Log("Fading out");
-                StartCoroutine(fadeInAndOut(t.gameObject, false, 2f));
+                StartCoroutine(fadeInAndOut(t.gameObject, false, 1f));
             }
         }
     }

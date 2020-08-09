@@ -152,9 +152,11 @@ public class LevelManager : MonoBehaviour
     void updateStage()
     {
         currentStage = SceneManager.GetActiveScene().buildIndex;
+        currentSceneName = SceneManager.GetSceneByBuildIndex(currentStage).name;
+        StageName.updateStageText(currentSceneName);
+
         if (currentStage >= 1)
         {
-            currentSceneName = SceneManager.GetSceneByBuildIndex(currentStage).name;
 
             if (!audioIsPlaying) // play audio if it is not playing already
             {
