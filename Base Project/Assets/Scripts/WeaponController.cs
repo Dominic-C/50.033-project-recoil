@@ -293,7 +293,7 @@ public class WeaponController : MonoBehaviour
         {
             if (recoilForce == FlamethrowerWeaponData.recoilForce)
             {
-                rb2d.velocity = rb2d.velocity * 0.5f;
+                rb2d.velocity = rb2d.velocity * 0.4f;
             }
             else
             {
