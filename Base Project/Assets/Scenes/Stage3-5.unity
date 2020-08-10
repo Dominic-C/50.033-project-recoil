@@ -469,17 +469,17 @@ PrefabInstance:
     - target: {fileID: 7014333851934916578, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: DebugMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916581, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -103.38
+      value: -105.73
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916581, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.68
+      value: -12.73
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916581, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
@@ -1666,12 +1666,12 @@ PrefabInstance:
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -103.38
+      value: -105.73
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.03
+      value: -12.079999
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
@@ -9611,9 +9611,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1670201071}
   - component: {fileID: 1670201070}
-  - component: {fileID: 1670201069}
   - component: {fileID: 1670201068}
   - component: {fileID: 1670201067}
+  - component: {fileID: 1670201069}
   m_Layer: 8
   m_Name: Platform 1
   m_TagString: GameBorder
@@ -9675,15 +9675,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1670201066}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 628c28e9ea4b95a46a4e77314de1e4bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 159dc8446590af842beb6e43077a326b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
+  startWaitTime: 1
+  moveSpots:
   - {fileID: 778767490}
   - {fileID: 1167558136}
-  target: {fileID: 0}
-  moveSpeed: 2
-  waitTime: 2
+  moveSpeed: 3
 --- !u!212 &1670201070
 SpriteRenderer:
   m_ObjectHideFlags: 0
