@@ -23943,12 +23943,12 @@ PrefabInstance:
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000023841858
+      value: 0.00000020861626
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.65000015
+      value: 0.8790002
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
@@ -25629,10 +25629,10 @@ PlayableDirector:
     value: {fileID: 256162535}
   - key: {fileID: 734685538303460856, guid: 1794376f8fa88834e9acd28b3e7cad5c, type: 2}
     value: {fileID: 256162535}
-  - key: {fileID: -5550796978509669281, guid: 1794376f8fa88834e9acd28b3e7cad5c, type: 2}
-    value: {fileID: 1521886561}
   - key: {fileID: 5237374988556641264, guid: 1794376f8fa88834e9acd28b3e7cad5c, type: 2}
     value: {fileID: 1646619515}
+  - key: {fileID: 3345159744877039419, guid: 1794376f8fa88834e9acd28b3e7cad5c, type: 2}
+    value: {fileID: 1521886561}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1770704356
