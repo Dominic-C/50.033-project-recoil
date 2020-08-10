@@ -17,6 +17,7 @@ public class GameResults : MonoBehaviour
     public WeaponData flamethrowerData;
 
     public TextMeshProUGUI TimeText;
+    public TextMeshProUGUI NumDeathText;
 
     public Image image;
     private int numEggs = 0;
@@ -38,6 +39,11 @@ public class GameResults : MonoBehaviour
         {
             float totalTimeTaken = LevelManager.timeTakenPerStage.Values.Sum();
             TimeText.text = totalTimeTaken.ToString("n2") + " s";
+        }
+
+        if (NumDeathText)
+        {
+            NumDeathText.text = LevelManager.numDeaths.ToString();
         }
 
     }
