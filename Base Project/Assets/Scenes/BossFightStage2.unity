@@ -23943,12 +23943,12 @@ PrefabInstance:
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000023841858
+      value: 8.600024
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.65000015
+      value: 10.650001
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
@@ -24423,6 +24423,12 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1517192043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4680686100437927915, guid: 083854405516b974dbb62641d23a2a7f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1375642588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1521886561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6389962538265849219, guid: ab388fd8adf59af4c854aa0ac52fc3c1,
@@ -25762,6 +25768,8 @@ PlayableDirector:
     value: {fileID: 1875557484}
   - key: {fileID: 4959381693530616413, guid: 537bccd15755b1f4db8b02c889ba4a52, type: 2}
     value: {fileID: 326582999}
+  - key: {fileID: -7759841931681454714, guid: 537bccd15755b1f4db8b02c889ba4a52, type: 2}
+    value: {fileID: 1517192043}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1806527029
