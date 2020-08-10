@@ -53,6 +53,7 @@ public class LevelManager : MonoBehaviour
     public delegate void PlayerDeath();
     public static event PlayerDeath PlayerDie;
     public static void onPlayerDeath() { PlayerDie(); }
+    public static int numDeaths = 0;
 
     void Awake()
     {
@@ -259,8 +260,8 @@ public class LevelManager : MonoBehaviour
 
     public void respawn()
     {
-        Debug.Log("Respawning");
         player.transform.position = playerSpawnPosition;
+        numDeaths += 1;
     }
     #endregion
 
