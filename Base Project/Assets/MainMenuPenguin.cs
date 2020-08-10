@@ -11,14 +11,12 @@ public class MainMenuPenguin : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("MainMenu Penguin!");
         renderedImage = GetComponent<Image>();
         originalExpression = renderedImage.sprite;
     }
 
     public void changeExpression()
     {
-        Debug.Log("Changing Expression");
         StartCoroutine(ChangeExpression());
 
     }

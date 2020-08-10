@@ -276,9 +276,8 @@ public class LevelManager : MonoBehaviour
     {
         loadingFromSaveData = true;
         PlayerData playerData = SaveSystem.LoadPlayer();
-        Debug.Log("loading player data, stage:" + playerData.currentStage);
 
-        string stageToLoad = playerData.currentStage;
+        string stageToLoad = playerData.timeTakenPerStage.Keys.Last();
         timeTakenPerStage = playerData.timeTakenPerStage;
         thingsPickedUp = playerData.thingsPickedUp;
         Debug.Log("LevelManager's thingsPickedup when loading data : " + thingsPickedUp.Count);
@@ -286,11 +285,11 @@ public class LevelManager : MonoBehaviour
         EggsCollected = playerData.eggsCollected;
 
         timeTakenCurrentStage = 0;
-        SceneManager.LoadScene(stageToLoad);
 
         // these variables need to be set again if return to Main Menu and load the game
         toUpdateTime = true;
-        PauseMenuUI.SetActive(false);
+        SceneManager.LoadScene(stageToLoad);
+        if (PauseMenuUI) PauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
