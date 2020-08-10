@@ -919,7 +919,7 @@ PrefabInstance:
     - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
         type: 3}
@@ -954,7 +954,7 @@ PrefabInstance:
     - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: toggleInputActive
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
         type: 3}
@@ -965,12 +965,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 413404389}
+      objectReference: {fileID: 0}
     - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1697750373}
+    - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 799e5ce68fa4e814f81f213c2a340396, type: 3}
 --- !u!1 &290276460 stripped
@@ -17700,7 +17705,7 @@ CompositeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
