@@ -291,7 +291,14 @@ public class WeaponController : MonoBehaviour
 
         if (!PlayerController2D.isOnIce)
         {
-            rb2d.velocity = new Vector2(0, 0);
+            if (recoilForce == FlamethrowerWeaponData.recoilForce)
+            {
+                rb2d.velocity = rb2d.velocity * 0.5f;
+            }
+            else
+            {
+                rb2d.velocity = rb2d.velocity * 0.2f;
+            }
             rb2d.AddForce(new Vector2(x, y), ForceMode2D.Impulse);
         }
         else
