@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueEggPickup (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5474,6 +5479,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueEggPickup (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6052,7 +6062,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1021846444, guid: 083854405516b974dbb62641d23a2a7f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 083854405516b974dbb62641d23a2a7f, type: 3}
 --- !u!1 &1002215012
 GameObject:
@@ -7045,6 +7056,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueEggPickup (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7183,6 +7199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueEggPickup (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7251,6 +7272,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlueEggPickup (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
@@ -7658,6 +7684,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlueEggPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}

@@ -11,7 +11,10 @@ public class EggEffects : MonoBehaviour
     {
         audioSource = GetComponents<AudioSource>()[1];
         player = GameObject.FindGameObjectWithTag("Player");
-        InvokeRepeating("playSound", 2.0f, 5.0f);
+        if (audioSource != null && player !=null)
+        {
+            InvokeRepeating("playSound", 2.0f, 5.0f);
+        }
     }
     void playSound()
     {

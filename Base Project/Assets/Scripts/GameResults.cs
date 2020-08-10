@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,17 +49,42 @@ public class GameResults : MonoBehaviour
             for (int j = numEggs; j < LevelManager.EggsCollected.Count; j++ )
             {
                 Image img = Instantiate(image, EggsLayout.transform);
-                switch (LevelManager.EggsCollected[j])
+                Animator animator = img.GetComponent<Animator>();
+                
+                if (animator == null)
                 {
-                    case (int)EggType.RED:
-                        img.sprite = RedEgg;
-                        break;
-                    case (int)EggType.BLUE:
-                        img.sprite = BlueEgg;
-                        break;
-                    case (int)EggType.GREEN:
-                        img.sprite = GreenEgg;
-                        break;
+
+                    switch (LevelManager.EggsCollected[j])
+                    {
+                        case (int)EggType.RED:
+                            img.sprite = RedEgg;
+                            break;
+                        case (int)EggType.BLUE:
+                            img.sprite = BlueEgg;
+                            break;
+                        case (int)EggType.GREEN:
+                            img.sprite = GreenEgg;
+                            break;
+                    }
+                }
+
+                else
+                {
+                    switch (LevelManager.EggsCollected[j])
+                    {
+                        case (int)EggType.RED:
+                            img.sprite = RedEgg;
+                            animator.SetInteger("Color", 0);
+                            break;
+                        case (int)EggType.BLUE:
+                            img.sprite = BlueEgg;
+                            animator.SetInteger("Color", 2);
+                            break;
+                        case (int)EggType.GREEN:
+                            img.sprite = GreenEgg;
+                            animator.SetInteger("Color", 1);
+                            break;
+                    }
                 }
                 numEggs += 1;
             }
