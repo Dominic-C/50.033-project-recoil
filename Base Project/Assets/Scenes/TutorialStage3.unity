@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6535,7 +6535,7 @@ PrefabInstance:
     - target: {fileID: 6897690573878405170, guid: 0eb09996239a23f458dd956ed823c9c2,
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6897690573878405170, guid: 0eb09996239a23f458dd956ed823c9c2,
         type: 3}
@@ -6581,11 +6581,12 @@ PrefabInstance:
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 6918815430719067966}
+      objectReference: {fileID: 4680686100437927909, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
     - target: {fileID: 6897690573878405170, guid: 0eb09996239a23f458dd956ed823c9c2,
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Pause
+      value: toggleInputActive
       objectReference: {fileID: 0}
     - target: {fileID: 6897690573878405170, guid: 0eb09996239a23f458dd956ed823c9c2,
         type: 3}
@@ -10010,6 +10011,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 6918815430719067965}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4680686100437927909, guid: 083854405516b974dbb62641d23a2a7f,
+          type: 3}
+        m_MethodName: toggleInputActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -130,9 +130,9 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         // only take in input when game is not paused
-        if (!LevelManager.GameIsPaused && PlayerController2D.isAlive)
+        if (!LevelManager.GameIsPaused && PlayerController2D.isAlive && LevelManager.InputOn)
         {
-            if (!(PlayerController2D.isGrounded || PlayerController2D.isOnIce) && WeaponUI!= null)
+            if (!(PlayerController2D.isGrounded || PlayerController2D.isOnIce) && WeaponUI != null)
             {
                 WeaponUIData.StopAmmoRefillCooldown();
             }

@@ -30,6 +30,7 @@ public class LevelManager : MonoBehaviour
     public static int currentLevel = 0;
     public static string currentSceneName;
     public static bool GameIsPaused = false;
+    public static bool InputOn = true;
     public static bool audioIsPlaying = false;
     private bool toUpdateTime = false;
     private float timeTakenCurrentStage = 0f;
@@ -59,7 +60,8 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(this);
-        } else
+        }
+        else
         {
             Destroy(gameObject);
             Destroy(this);
@@ -150,6 +152,18 @@ public class LevelManager : MonoBehaviour
         WeaponUI = GameObject.Find("WeaponUI");
     }
 
+    public void toggleInputActive()
+    {
+        InputOn = !InputOn;
+        if (!InputOn)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
 
     void updateStage()
     {
