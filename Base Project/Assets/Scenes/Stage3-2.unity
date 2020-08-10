@@ -4091,7 +4091,7 @@ PrefabInstance:
     - target: {fileID: 7014333851934916578, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: DebugMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916580, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
@@ -4101,12 +4101,12 @@ PrefabInstance:
     - target: {fileID: 7014333851934916581, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.18
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916581, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.17
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916581, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
@@ -5605,6 +5605,7 @@ GameObject:
   - component: {fileID: 710278266}
   - component: {fileID: 710278268}
   - component: {fileID: 710278267}
+  - component: {fileID: 710278269}
   m_Layer: 0
   m_Name: NextLevelDoor
   m_TagString: NextLevelDoor
@@ -5745,6 +5746,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &710278269
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710278265}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &774472400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6512218461408860120, guid: 364de58e9e8ca2c44b4c930a2c1dc680,
@@ -5798,7 +5815,7 @@ PrefabInstance:
     - target: {fileID: 96001764772324605, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.865082
       objectReference: {fileID: 0}
     - target: {fileID: 96001764772324605, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
@@ -5808,12 +5825,12 @@ PrefabInstance:
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.18000019
+      value: -0.06999985
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.48000014
+      value: 0.40000015
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}

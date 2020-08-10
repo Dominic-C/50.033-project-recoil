@@ -59,6 +59,9 @@ TagManager:
   - name: Platform
     uniqueID: 3220689259
     locked: 0
+  - name: PlayerProjectile
+    uniqueID: 1289279617
+    locked: 0
   - name: Player
     uniqueID: 2739951281
     locked: 0
@@ -73,7 +76,4 @@ TagManager:
     locked: 0
   - name: PlayerHands
     uniqueID: 3643723693
-    locked: 0
-  - name: PlayerProjectile
-    uniqueID: 1289279617
     locked: 0

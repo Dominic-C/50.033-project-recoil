@@ -18,7 +18,7 @@ MonoBehaviour:
   projectileSpeed: 5
   recoilForce: 8.5
   fireInterval: 1
-  firePosition: {x: 0.22, y: 0.05, z: 0}
+  firePosition: {x: -0.2, y: 0.05, z: 0}
   maxAmmo: 1
   fireSound: {fileID: 8300000, guid: 8a20108660f5858448df2332d6ccd4db, type: 3}
   switchToSound: {fileID: 8300000, guid: 8a20108660f5858448df2332d6ccd4db, type: 3}
