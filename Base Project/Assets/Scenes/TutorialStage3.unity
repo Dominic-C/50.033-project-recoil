@@ -6575,7 +6575,7 @@ PrefabInstance:
     - target: {fileID: 6897690573878405170, guid: 0eb09996239a23f458dd956ed823c9c2,
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6897690573878405170, guid: 0eb09996239a23f458dd956ed823c9c2,
         type: 3}
@@ -10027,7 +10027,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
 --- !u!114 &6918815431520158549
 MonoBehaviour:
   m_ObjectHideFlags: 0
