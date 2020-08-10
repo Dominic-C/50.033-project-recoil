@@ -10,6 +10,7 @@ public class GameResults : MonoBehaviour
     public Sprite RedEgg;
     public Sprite BlueEgg;
     public Sprite GreenEgg;
+    public Sprite Benedict;
 
     public GameObject WeaponsLayout;
     public WeaponData shotgunData;
@@ -89,6 +90,10 @@ public class GameResults : MonoBehaviour
                         case (int)EggType.GREEN:
                             img.sprite = GreenEgg;
                             animator.SetInteger("Color", 1);
+                            break;
+                        case 4:
+                            Destroy(animator);
+                            img.sprite = Benedict;
                             break;
                     }
                 }
