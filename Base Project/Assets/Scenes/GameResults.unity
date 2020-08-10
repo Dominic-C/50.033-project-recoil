@@ -695,6 +695,7 @@ MonoBehaviour:
   RedEgg: {fileID: 21300000, guid: f5dc90af67ac5f24b84c08300e42390e, type: 3}
   BlueEgg: {fileID: 21300000, guid: 86eac987f2e886c4db9146833b31c2d0, type: 3}
   GreenEgg: {fileID: 21300000, guid: 3aa3682efbb062147a0d3f1ff3376bd4, type: 3}
+  Benedict: {fileID: 21300000, guid: d4a3a48d6da8bcc4c8670bcb05cd4e46, type: 3}
   WeaponsLayout: {fileID: 0}
   shotgunData: {fileID: 0}
   rocketData: {fileID: 0}
