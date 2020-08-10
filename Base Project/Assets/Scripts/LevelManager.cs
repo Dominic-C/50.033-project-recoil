@@ -284,7 +284,7 @@ public class LevelManager : MonoBehaviour
         unlockedGuns = playerData.unlockedGuns;
         EggsCollected = playerData.eggsCollected;
 
-        timeTakenCurrentStage = 0;
+        timeTakenCurrentStage = playerData.timeTakenPerStage[stageToLoad];
 
         // these variables need to be set again if return to Main Menu and load the game
         toUpdateTime = true;
