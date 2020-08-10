@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -813,7 +813,7 @@ PrefabInstance:
     - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
@@ -845,6 +845,32 @@ PrefabInstance:
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 849011908}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 4680686100437927909, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: toggleInputActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819215, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21252,6 +21278,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1563298753}
@@ -21259,6 +21290,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: hideUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4680686100437927909, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: toggleInputActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2149811463049132226, guid: 9b66628aad5f53c42af03bb14fb6deee,
         type: 3}
@@ -21695,7 +21752,7 @@ PrefabInstance:
     - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8951423183269345430, guid: 799e5ce68fa4e814f81f213c2a340396,
         type: 3}
@@ -23323,6 +23380,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
         type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1516826245}
@@ -23330,6 +23392,32 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: hideUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4680686100437927909, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: toggleInputActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149811462793292971, guid: 9b66628aad5f53c42af03bb14fb6deee,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2149811463049132226, guid: 9b66628aad5f53c42af03bb14fb6deee,
         type: 3}
