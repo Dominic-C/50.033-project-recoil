@@ -636,6 +636,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4447862405222786735, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447862405222786735, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447862405222786735, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447862405222786735, guid: 083854405516b974dbb62641d23a2a7f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4680686100437927908, guid: 083854405516b974dbb62641d23a2a7f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3822,7 +3842,15 @@ PrefabInstance:
     - target: {fileID: 3532805840383911768, guid: 9b66628aad5f53c42af03bb14fb6deee,
         type: 3}
       propertyPath: m_text
-      value: Why is there so many poor kids lying around??
+      value: '... OH GOSH, the Navy Seal was going to turn you into a scrambled egg?
+
+
+        Everything
+        is alright now. I''ll make sure of it, little one.
+
+
+        I hope little
+        Benedict is still safe.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b66628aad5f53c42af03bb14fb6deee, type: 3}
@@ -17765,7 +17793,7 @@ PrefabInstance:
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000014901161
+      value: 0.00000023841858
       objectReference: {fileID: 0}
     - target: {fileID: 96001766030537208, guid: 6cef58ae0489a854fb6b3e7125ea84a5,
         type: 3}

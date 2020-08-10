@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -11378,7 +11378,7 @@ PrefabInstance:
     - target: {fileID: 7014333851934916578, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
       propertyPath: DebugMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7014333851934916579, guid: 9ef2d3391e8919e4ea21599031650491,
         type: 3}
@@ -11997,6 +11997,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'You can find your collected eggs in the Pause Menu.
 
+
         To Pause,
         either press the "esc" key or click on the pause button | | .'
       objectReference: {fileID: 0}
@@ -12611,7 +12612,7 @@ PrefabInstance:
     - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
       propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3411497921672819213, guid: 333f065a95c206d41be21d58386c06b1,
         type: 3}
