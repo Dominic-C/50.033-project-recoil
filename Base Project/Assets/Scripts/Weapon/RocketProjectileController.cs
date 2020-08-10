@@ -46,14 +46,14 @@ public class RocketProjectileController : MonoBehaviour
 
     void LaunchRecoil()
     {
-        gameObject.SetActive(false);
-
         Vector3 recoilVector = playerPrefab.transform.position - transform.position;
         Vector3 recoilDirection = recoilVector.normalized;
         float recoilMagnitude = RocketWeaponData.recoilForce;
 
         Vector2 finalRecoil = new Vector2(recoilDirection.x * recoilMagnitude, recoilDirection.y * recoilMagnitude);
         playerRb2d.AddForce(finalRecoil, ForceMode2D.Impulse);
+        // playerRb2d.AddForce(finalRecoil);
+        gameObject.SetActive(false);
         Debug.Log("finalRecoil: " + finalRecoil.ToString());
     }
 
