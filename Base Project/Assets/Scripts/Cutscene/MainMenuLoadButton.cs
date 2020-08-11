@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoadButton : MonoBehaviour
+public class MainMenuLoadButton : MonoBehaviour
 {
     public GameObject LoadInterface;
     public Image lastSaveImage;
