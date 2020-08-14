@@ -98,4 +98,12 @@ public class Pickup : MonoBehaviour
         GetComponent<Collider2D>().enabled = true;
     }
 
+    public void pauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+    public void resumeGame()
+    {
+        Time.timeScale = 1f;
+    }
 }
