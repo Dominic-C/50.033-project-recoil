@@ -27,7 +27,6 @@ public class LevelManager : MonoBehaviour
     public Gradient progressColorGradient;
 
     // Level attributes
-    private bool loadingFromSaveData = false;
     private static LevelManager Instance;
     public static int currentStage;
     public static int currentLevel = 0;
@@ -78,6 +77,10 @@ public class LevelManager : MonoBehaviour
         SceneManager.sceneLoaded += delegate { updateStage(); };
         SceneManager.activeSceneChanged += delegate { disablePickedUpObjects(); };
         PlayerDie += delegate { respawn(); };
+
+        progressSlider.value = 1;
+        progressSlider.maxValue = 5;
+        progressFill.color = progressColorGradient.Evaluate(progressSlider.normalizedValue);
     }
 
     void Update()
@@ -163,7 +166,6 @@ public class LevelManager : MonoBehaviour
 
         if (currentStage >= 1)
         {
-
             if (!audioIsPlaying) // play audio if it is not playing already
             {
                 startingSnapshot = audioMixer.FindSnapshot("Starting");
@@ -180,18 +182,16 @@ public class LevelManager : MonoBehaviour
             }
 
             // update timeTakenPerStage
-            if (!timeTakenPerStage.ContainsKey(currentSceneName) && !loadingFromSaveData)
+            if (!timeTakenPerStage.ContainsKey(currentSceneName))
             {
                 Debug.Log("not loading from save data");
                 timeTakenPerStage.Add(currentSceneName, 0f); // key may already exist if loaded from savefile.
                 timeTakenCurrentStage = 0f;
                 thingsPickedUp = new List<string>();
-                loadingFromSaveData = false;
-            }
-
-            toUpdateTime = true;
+            } 
 
             // set pause menu ui and time debug text
+            toUpdateTime = true;
             PauseMenuUI = gameObject.transform.Find("PauseCanvas/PauseMenu").gameObject;
             if (PauseMenuUI != null)
             {
@@ -217,8 +217,8 @@ public class LevelManager : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player");
             if (player != null) playerSpawnPosition = player.transform.position;
 
-            // play music, TODO: add stage transition animation
-            transitToNextLevel();
+            setProgressSlider();
+            TransitStageToNextLevel();
         }
 
         if (currentStage >= 2 && WeaponUI == null)
@@ -230,16 +230,29 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    private void transitToNextLevel()
+    private void setProgressSlider()
+    {
+        if (currentSceneName.Contains("BossFight"))
+        {
+            progressSlider.maxValue = 2;
+        }
+        else
+        {
+            progressSlider.maxValue = 5;
+        }
+        progressSlider.value = float.Parse(currentSceneName[currentSceneName.Length - 1].ToString());
+        progressFill.color = progressColorGradient.Evaluate(progressSlider.normalizedValue);
+    }
+
+    private void TransitStageToNextLevel()
     {
         // yes i know this line is very convoluted, but the scenemanager is not able to call GetSceneAt(index) for unloaded scenes.
         string prevSceneName = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(SceneManager.GetActiveScene().buildIndex - 1));
 
-        if (currentSceneName.ElementAt(5) != prevSceneName.ElementAt(5) && prevSceneName != "MainMenu") // a hack done to see if the level the user is at changed
+        if (currentSceneName.ElementAt(5) != prevSceneName.ElementAt(5) && !prevSceneName.Contains("Cutscene")) // a hack done to see if the level the user is at changed
         {
             currentLevel += 1;
-            Debug.Log("Level Changed: " + currentLevel);
-
+            Debug.Log("Level Changed: " + currentLevel); // tutorial is lvl 0
 
             // change bgm
             audioSources[currentLevel].volume = 0.1f;
@@ -247,25 +260,7 @@ public class LevelManager : MonoBehaviour
             string prevSceneMusicParam = FadeMixerGroup.exposedBGMParams[currentLevel - 1];
             StartCoroutine(FadeMixerGroup.StartFade(audioMixer, prevSceneMusicParam, 2f, 0f));
             StartCoroutine(FadeMixerGroup.StartFade(audioMixer, nextSceneMusicParam, 4f, 1f));
-
-            // change progress slider
-            if (currentSceneName.Contains("BossFight"))
-            {
-                progressSlider.maxValue = 2;
-            } else
-            {
-                progressSlider.maxValue = 5;
-            }
-
-            progressSlider.value = 1;
-        } 
-        
-        else
-        {
-            progressSlider.value += 1;
         }
-
-        progressFill.color = progressColorGradient.Evaluate(progressSlider.normalizedValue);
     }
 
     public void respawn()
@@ -284,16 +279,13 @@ public class LevelManager : MonoBehaviour
 
     public void loadPlayerData()
     {
-        loadingFromSaveData = true;
         PlayerData playerData = SaveSystem.LoadPlayer();
 
         string stageToLoad = playerData.timeTakenPerStage.Keys.Last();
         timeTakenPerStage = playerData.timeTakenPerStage;
         thingsPickedUp = playerData.thingsPickedUp;
-        Debug.Log("LevelManager's thingsPickedup when loading data : " + thingsPickedUp.Count);
         unlockedGuns = playerData.unlockedGuns;
         EggsCollected = playerData.eggsCollected;
-
         timeTakenCurrentStage = playerData.timeTakenPerStage[stageToLoad];
 
         // these variables need to be set again if return to Main Menu and load the game
