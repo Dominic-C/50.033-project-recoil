@@ -130,7 +130,7 @@ public class WeaponController : MonoBehaviour
     void Update()
     {
         // only take in input when game is not paused
-        if (!LevelManager.GameIsPaused && PlayerController2D.isAlive && LevelManager.InputOn)
+        if (!LevelManager.GameIsPaused && PlayerController2D.isAlive)
         {
             if (!(PlayerController2D.isGrounded || PlayerController2D.isOnIce) && WeaponUI != null)
             {

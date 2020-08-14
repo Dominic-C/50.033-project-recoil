@@ -33,7 +33,7 @@ public class CurrWeaponUI : MonoBehaviour
         }
     }
 
-    #region Progress Slider UI Functions (currently unused, COULD BE TRANSFERRED TO SHOWING AMMO REFILL COOLDOWN.)
+    #region Progress Slider UI Functions
 
     // Weapon Reload UI related functions
     private float timeElapsed;

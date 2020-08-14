@@ -13,6 +13,7 @@ public class fadeInOutUI : MonoBehaviour
     public bool fadeIn;
     public bool fadeOut;
     public float waitTimeBeforeAnimation = 2.0f;
+    public float fadeOutDuration = 2.0f;
 
     void Start()
     {
@@ -22,30 +23,25 @@ public class fadeInOutUI : MonoBehaviour
 
     IEnumerator showUI()
     {
-        foreach (Transform t in gameObject.transform)
+        foreach (Transform t in gameObject.GetComponentsInChildren<Transform>())
         {
             if (fadeIn)
             {
-                Debug.Log("Fading in");
                 StartCoroutine(fadeInAndOut(t.gameObject, true, 1f));
             }
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(waitTimeBeforeAnimation);
         yield return StartCoroutine(WaitBeforeAnimation());
     }
 
     IEnumerator WaitBeforeAnimation()
     {
         yield return new WaitForSeconds(waitTimeBeforeAnimation);
-        
-
-        // yield return new WaitForSeconds(waitTimeBeforeAnimation);
-        foreach (Transform t in gameObject.transform)
+        foreach (Transform t in gameObject.GetComponentsInChildren<Transform>())
         {
             if (fadeOut)
             {
-                Debug.Log("Fading out");
-                StartCoroutine(fadeInAndOut(t.gameObject, false, 1f));
+                StartCoroutine(fadeInAndOut(t.gameObject, false, fadeOutDuration));
             }
         }
     }

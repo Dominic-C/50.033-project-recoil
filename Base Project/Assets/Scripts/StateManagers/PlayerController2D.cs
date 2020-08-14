@@ -68,7 +68,7 @@ public class PlayerController2D : MonoBehaviour
     {
         // Controller Mode
         // Check For Pause State
-        if (!LevelManager.GameIsPaused && isAlive && LevelManager.InputOn)
+        if (!LevelManager.GameIsPaused && isAlive)
         {
             // Get Inputs;
             rightPressed = Input.GetKey("d");
