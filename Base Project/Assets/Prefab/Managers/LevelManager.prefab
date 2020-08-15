@@ -286,6 +286,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0}
   fadeIn: 1
   fadeOut: 1
+  persistThroughScenes: 1
   waitTimeBeforeAnimation: 3
   fadeOutDuration: 3
 --- !u!1 &642754200605599590

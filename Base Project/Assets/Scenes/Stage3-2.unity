@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3545,6 +3545,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: RedEggPickup
       objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 1c4729db5bd0feb4283e45d0135caa5f,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 1c4729db5bd0feb4283e45d0135caa5f,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 1c4729db5bd0feb4283e45d0135caa5f,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 1c4729db5bd0feb4283e45d0135caa5f,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 348024999}
+    - target: {fileID: 3411497921672819213, guid: 1c4729db5bd0feb4283e45d0135caa5f,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: showUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 1c4729db5bd0feb4283e45d0135caa5f,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3411497921672819213, guid: 1c4729db5bd0feb4283e45d0135caa5f,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 755678712}
     - target: {fileID: 3411497921672819215, guid: 1c4729db5bd0feb4283e45d0135caa5f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6098,6 +6133,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b66628aad5f53c42af03bb14fb6deee, type: 3}
+--- !u!1 &755678712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2149811463049132226, guid: 9b66628aad5f53c42af03bb14fb6deee,
+    type: 3}
+  m_PrefabInstance: {fileID: 755678711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &774472400 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6512218461408860120, guid: 364de58e9e8ca2c44b4c930a2c1dc680,

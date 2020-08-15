@@ -12,13 +12,17 @@ public class fadeInOutUI : MonoBehaviour
     public Vector2 offset;
     public bool fadeIn;
     public bool fadeOut;
+    public bool persistThroughScenes = false;
     public float waitTimeBeforeAnimation = 2.0f;
     public float fadeOutDuration = 2.0f;
 
     void Start()
     {
         StartCoroutine(WaitBeforeAnimation());
-        SceneManager.activeSceneChanged += delegate { StartCoroutine(showUI()); };
+        if (persistThroughScenes)
+        {
+            SceneManager.activeSceneChanged += delegate { StartCoroutine(showUI()); };
+        }
     }
 
     IEnumerator showUI()
