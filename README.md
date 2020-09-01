@@ -1,10 +1,10 @@
-<link href="style.css" rel="stylesheet"
->
+<body style="background-color: #7ca69f;box-sizing: border-box;">
+
 <div align="center">
     <img src="screenshots/v1.0/main_menu.png"></img>
 </div>
 
-# Introduction to the Game
+<h1 style="color: #ffffff; text-shadow: 2px 2px 5px #333;"> Introduction to the Game </h1>
 
 <div class="section">
 
@@ -58,3 +58,4 @@ But armed with **_guns_**, Pingu can traverse great heights and distances using 
 - Walkthrough version [here](https://www.youtube.com/)
 
 </div>
+</body>
