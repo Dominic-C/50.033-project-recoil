@@ -7,9 +7,8 @@
 &nbsp;
 &nbsp;
 
-<img align="right" src="screenshots\v1.0\seal_with_benedict.png" />
-
 <p align="right">
+<img align="right" src="screenshots\v1.0\seal_with_benedict.png" />
 
 Recoil is an action-platformer game where you assume the role of Pingu the Penguin, on a journey to rescue **Benedict the Egg**, who has been kidnapped by the **Navy Seal**.
 
@@ -18,9 +17,8 @@ Recoil is an action-platformer game where you assume the role of Pingu the Pengu
 &nbsp;
 &nbsp;
 
-<img width="40%" align="left" src="screenshots/v1.0/Recoil_example.png" />
-
 <p align="right">
+<img width="40%" height=200 align="left" src="screenshots/v1.0/Recoil_example.png" />
 
 Pingu cannot innately jump, and can move only left and right.But armed with **_guns_**, Pingu can traverse great heights and distances using the recoil mechanic.
 
