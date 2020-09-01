@@ -32,11 +32,11 @@ But armed with **_guns_**, Pingu can traverse great heights and distances using 
 
 # Screenshots
 
-<div align="center" style="justify-content: center;">
-<img style="max-width:40%" src="screenshots/v1.0/energy_cores.png" />
-<img style="max-width:40%" src="screenshots/v1.0/Egg_Pickup.png" />
-<img style="max-width:40%" src="screenshots/v1.0/enemy.png" />
-<img style="max-width:40%" src="screenshots/v1.0/enemy2.png" />
+<div align="center">
+<img width="40%" src="screenshots/v1.0/energy_cores.png" />
+<img width="40%" src="screenshots/v1.0/Egg_Pickup.png" />
+<img width="40%" src="screenshots/v1.0/enemy.png" />
+<img width="40%" src="screenshots/v1.0/enemy2.png" />
 </div>
 
 # Playthrough Videos
