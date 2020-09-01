@@ -1,0 +1,23 @@
+@url (https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap);
+
+body {
+  background-color: #7ca69f;
+  box-sizing: border-box;
+}
+
+h1,
+h2 {
+  color: #ffffff;
+  text-shadow: 2px 2px 5px #333;
+}
+
+.section {
+  background-image: url("Base Project/Assets/UI/Fantasy Wooden GUI  Free/normal_ui_set A/UI board Large Set.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 15% 10% 15% 10%;
+}
+
+div > img {
+  margin-bottom: 10px;
+}

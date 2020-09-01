@@ -1,29 +1,5 @@
-<style>
-@url(https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap);
-
-body {
-    background-color: #7CA69F;
-    box-sizing: border-box;
-}
-
-h1, h2 {
-    color: #FFFFFF;
-    text-shadow: 2px 2px 5px #333;
-}
-
-.section {
-    background-image: url("Base Project/Assets/UI/Fantasy Wooden GUI  Free/normal_ui_set A/UI board Large Set.png");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    padding: 15% 10% 15% 10%;
-}
-
-div > img {
-    margin-bottom: 10px;
-}
-
-</style>
-
+<link href="style.css" rel="stylesheet"
+>
 <div align="center">
     <img src="screenshots/v1.0/main_menu.png"></img>
 </div>
@@ -41,7 +17,7 @@ Recoil is an action-platformer game where you assume the role of Pingu the Pengu
 
 <div class="section">
 
-Pingu cannot innately jump, and can move only left and right. 
+Pingu cannot innately jump, and can move only left and right.
 
 But armed with **_guns_**, Pingu can traverse great heights and distances using the recoil mechanic.
 
@@ -57,7 +33,7 @@ But armed with **_guns_**, Pingu can traverse great heights and distances using 
 
 - **22 different stages** that test your recoil mechanic mastery
 - **3 unique weapons**, each with a different recoil mechanic
-- **Easter egg collectibles** throughout the labyrith 
+- **Easter egg collectibles** throughout the labyrith
 - **30 mins++** worth of fun!
 </div>
 
