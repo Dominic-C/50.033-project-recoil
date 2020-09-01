@@ -6,13 +6,14 @@
 
 <h1 style="color: #ffffff; text-shadow: 2px 2px 5px #333;"> Introduction to the Game </h1>
 
-<div class="section">
+<div style="background-image: url(Base Project/Assets/UI/Fantasy Wooden GUI  Free/normal_ui_set A/UI board Large Set.png);">
 
 Recoil is an action-platformer game where you assume the role of Pingu the Penguin, on a journey to rescue **Benedict the Egg**, who has been kidnapped by the **Navy Seal**.
 
 <div align="center">
 <img src="screenshots\v1.0\seal_with_benedict.png">
 </div>
+
 </div>
 
 <div class="section">
@@ -37,9 +38,7 @@ But armed with **_guns_**, Pingu can traverse great heights and distances using 
 - **30 mins++** worth of fun!
 </div>
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQFQ5V24Kf21UT13KwYKII_u5fMjBHDwYlm7RuOL2R71W9lvnPlBW68L_oItyH55JE4pRXMBPcGga8a/embed?start=true&loop=false&delayms=5000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-> P.S. If you're interested in the details of our game design, visit the [report](REPORT.docx).
+> P.S. If you're interested in the details of our game design, visit the [report](REPORT.docx) and [final checkpoint slides](https://docs.google.com/presentation/d/e/2PACX-1vQFQ5V24Kf21UT13KwYKII_u5fMjBHDwYlm7RuOL2R71W9lvnPlBW68L_oItyH55JE4pRXMBPcGga8a/pub?start=false&loop=false&delayms=3000).
 
 # Screenshots
 
