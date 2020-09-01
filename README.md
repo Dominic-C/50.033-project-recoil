@@ -11,6 +11,8 @@ Recoil is an action-platformer game where you assume the role of Pingu the Pengu
 
 </p>
 
+&nbsp;
+
 <p align="left">
 <img  height=150 align="right" src="screenshots/v1.0/Recoil_example.png" />
 
