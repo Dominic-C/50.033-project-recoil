@@ -1,28 +1,32 @@
 # Introduction to the Game
 
-<div align="center" style="margin-bottom:28px;">
-<img width="60%" align="center" src="screenshots/v1.0/main_menu.png" />
-
+<div align="center">
+    <img width="60%" align="center" src="screenshots/v1.0/main_menu.png" />
 </div>
-<div style="border: 1px solid #333; border-radius: 8px; background-color: #7ca69f; color: #FFFFFF; padding:8px;" align="left">
 
-<img align="right" src="screenshots\v1.0\seal_with_benedict.png">
+<br />
+<br />
+
+<div align="left">
+    <img align="right" src="screenshots\v1.0\seal_with_benedict.png">
 
 Recoil is an action-platformer game where you assume the role of Pingu the Penguin, on a journey to rescue **Benedict the Egg**, who has been kidnapped by the **Navy Seal**.
 
 </div>
+<br />
+<br />
 
-<div class="section">
+<div>
 
-Pingu cannot innately jump, and can move only left and right.
+<img width="40%" align="left" src="screenshots/v1.0/Recoil_example.png" />
 
-But armed with **_guns_**, Pingu can traverse great heights and distances using the recoil mechanic.
-
-<div align="center">
-<img style="max-width:40%; align-self:center;" src="screenshots/v1.0/Recoil_example.png" />
-</div>
+Pingu cannot innately jump, and can move only left and right.But armed with **_guns_**, Pingu can traverse great heights and distances using the recoil mechanic.
 
 </div>
+
+<br />
+<br />
+<br />
 
 # Features
 
@@ -49,8 +53,7 @@ But armed with **_guns_**, Pingu can traverse great heights and distances using 
 
 <div class="section">
 
-- Speedrun version [here](https://www.youtube.com/watch?v=2_mM3nSqtXs)
-- Walkthrough version [here](https://www.youtube.com/)
+- Speedrun with timestamps for relevant features [here](https://www.youtube.com/watch?v=2_mM3nSqtXs)
 
 </div>
 </body>
