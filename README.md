@@ -1,10 +1,8 @@
-# Introduction to the Game
-
 <div align="center">
     <img width="60%" src="screenshots/v1.0/main_menu.png" />
 </div>
 
-&nbsp;
+# Introduction to the Game
 
 <p align="left">
 <img align="left" src="screenshots\v1.0\seal_with_benedict.png" width=100 />
